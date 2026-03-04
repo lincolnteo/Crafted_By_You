@@ -24,8 +24,8 @@ body {
 
 .logo-spot {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  bottom: 20px;
+  left: 20px;
   width: 132px;
   height: 132px;
   border-radius: 15px;
@@ -87,7 +87,8 @@ section {
 
 .services,
 .clients,
-.gallery {
+.gallery,
+.workshops {
   text-align: center;
 }
 
@@ -251,4 +252,208 @@ h3 {
   padding: 20px;
   border-radius: 40px 40px 0 0;
   box-shadow: 0 -10px 30px rgba(196, 69, 105, 0.2);
+  position: relative;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+  .hero {
+    padding: 60px 15px 15px 15px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+    letter-spacing: 1px;
+  }
+
+  .hero p {
+    font-size: 18px;
+    height: auto;
+    letter-spacing: 1px;
+  }
+
+  .slogan {
+    width: 100%;
+    max-width: 300px;
+    margin: 15px auto;
+    padding-top: 10px;
+  }
+
+  .logo-spot {
+    width: 100px;
+    height: 100px;
+    bottom: 15px;
+    left: 15px;
+  }
+
+  section {
+    padding: 40px 5%;
+    margin: 15px auto;
+  }
+
+  .about {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .about-img img {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .workshop-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .card {
+    padding: 12px;
+    border-radius: 20px;
+    box-shadow: 0 4px 0 rgba(255, 150, 0, 0.2), 0 8px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+  }
+
+  .card img {
+    height: 150px;
+  }
+
+  .highlight {
+    min-height: 200px;
+    font-size: 16px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .gallery-grid img {
+    height: 180px;
+  }
+
+  .client-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 20px;
+  }
+
+  h2 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+  }
+
+  h3 {
+    font-size: 1.1em;
+    margin: 12px 0;
+  }
+
+  .footer {
+    padding: 15px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .footer p, .footer h3 {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 50px 10px 10px 10px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+    letter-spacing: 0px;
+  }
+
+  .hero p {
+    font-size: 14px;
+    letter-spacing: 0px;
+  }
+
+  .logo-spot {
+    width: 80px;
+    height: 80px;
+    bottom: 10px;
+    left: 10px;
+  }
+
+  section {
+    padding: 30px 4%;
+    margin: 10px auto;
+  }
+
+  .workshop-grid {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+  }
+
+  .card {
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 3px 0 rgba(255, 150, 0, 0.15), 0 6px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .card img {
+    height: 120px;
+    border-radius: 15px;
+  }
+
+  .card h3 {
+    font-size: 0.9em;
+  }
+
+  .card p {
+    font-size: 0.8em;
+  }
+
+  .highlight {
+    min-height: 150px;
+    font-size: 14px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .gallery-grid img {
+    height: 200px;
+  }
+
+  .client-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .client-grid img {
+    max-width: 90%;
+  }
+
+  h2 {
+    font-size: 1.5em;
+    margin-bottom: 12px;
+  }
+
+  h3 {
+    font-size: 1em;
+    margin: 10px 0;
+  }
+
+  .slogan {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .footer {
+    padding: 12px;
+  }
+
+  .footer p, .footer h3 {
+    font-size: 0.8em;
+  }
 }
