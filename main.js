@@ -1,9 +1,3 @@
-document.getElementById("quoteForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  alert("Quotation request submitted successfully.");
-  this.reset();
-});
-
 // Copy phone number on click
 document.addEventListener("DOMContentLoaded", function() {
   const phoneElement = document.querySelector(".copy-phone");
