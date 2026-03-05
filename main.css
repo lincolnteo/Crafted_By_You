@@ -92,6 +92,12 @@ section {
   text-align: center;
 }
 
+.services ul {
+  text-align: left;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
 .workshop-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
