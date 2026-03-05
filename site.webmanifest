@@ -1,0 +1,23 @@
+{
+  "name": "Crafted By You",
+  "short_name": "Crafted By You",
+  "description": "DIY Workshops & Corporate Events",
+  "icons": [
+    {
+      "src": "assets/Website/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/Website/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#ff6b9d",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/"
+}
