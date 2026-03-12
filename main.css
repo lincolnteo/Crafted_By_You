@@ -702,7 +702,7 @@ h3 {
   transform: translateY(0);
 }
 .nav-logo {
-  height: 40px;
+  height: 52px;
   width: auto;
   border-radius: 8px;
 }
@@ -1049,7 +1049,7 @@ button, .highlight {
   #sticky-nav { padding: 7px 4%; }
   .nav-links  { gap: 14px; }
   .nav-links a { font-size: 12px; }
-  .nav-logo   { height: 32px; }
+  .nav-logo   { height: 40px; }
   #scroll-top { bottom: 16px; right: 16px; width: 44px; height: 44px; font-size: 18px; }
   .gallery-item img { height: 180px; }
   .lb-nav { width: 44px; height: 44px; font-size: 24px; }
