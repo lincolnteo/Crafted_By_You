@@ -102,6 +102,10 @@ function updatePageLanguage() {
     ["terrarium", "terrarium_desc"],
     ["body_lotion", "body_lotion_desc"],
     ["mosaic_vase", "mosaic_vase_desc"],
+    ["cute_charm", "cute_charm_desc"],
+    ["spa_scrub", "spa_scrub_desc"],
+    ["wellness_mist", "wellness_mist_desc"],
+    ["aroma_diffuser", "aroma_diffuser_desc"],
     ["perfume", "perfume"],
     ["diffuser", "diffuser"],
     ["terrazzo_coaster", "terrazzo_coaster"]
@@ -115,7 +119,7 @@ function updatePageLanguage() {
       const h3 = card.querySelector("h3");
       const p = card.querySelector("p");
       if (h3) {
-        if (i < 12) {
+        if (i < 16) {
           h3.textContent = t(cardData[i][0]);
           if (p) p.textContent = t(cardData[i][1]);
         } else {
