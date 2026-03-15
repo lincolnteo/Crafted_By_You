@@ -139,6 +139,24 @@ function updatePageLanguage() {
   const galleryIntro = document.querySelector(".gallery > p");
   if (galleryIntro) galleryIntro.textContent = t("gallery_intro");
 
+  // Partner section
+  const partnerTitle = document.querySelector(".partner > h2");
+  if (partnerTitle) partnerTitle.textContent = t("partner_title");
+  const partnerIntro = document.querySelector(".partner > p");
+  if (partnerIntro) partnerIntro.textContent = t("partner_intro");
+  const partnerBrandCopy = document.querySelector(".partner-brand-copy");
+  if (partnerBrandCopy) partnerBrandCopy.textContent = t("partner_brand_copy");
+  const partnerTags = document.querySelectorAll(".partner-tags span");
+  const partnerTagKeys = [
+    "partner_tag_1",
+    "partner_tag_2",
+    "partner_tag_3",
+    "partner_tag_4"
+  ];
+  partnerTags.forEach((tag, i) => {
+    if (partnerTagKeys[i]) tag.textContent = t(partnerTagKeys[i]);
+  });
+
   // Clients section
   const clientsTitle = document.querySelector(".clients > h2");
   if (clientsTitle) clientsTitle.textContent = t("clients_title");

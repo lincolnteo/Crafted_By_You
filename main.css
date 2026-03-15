@@ -140,6 +140,7 @@ section {
 }
 
 .services,
+.partner,
 .clients,
 .gallery,
 .workshops {
@@ -240,6 +241,51 @@ section {
   transform: scale(1.1) rotate(-2deg);
 }
 
+.partner-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.partner-tags span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 140px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fff2c6 0%, #ffd6e7 100%);
+  color: #6d2c53;
+  font-weight: 700;
+  box-shadow: 0 6px 0 rgba(255, 151, 180, 0.25), 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.partner-brand {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 28px;
+  text-align: center;
+}
+
+.partner-brand-copy {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #6d2c53;
+  max-width: 680px;
+  text-align: center;
+}
+
+.partner-brand-logo {
+  width: 110px;
+  height: auto;
+  border-radius: 18px;
+  object-fit: contain;
+}
+
 .quotation form {
   max-width: 500px;
   margin: auto;
@@ -294,7 +340,7 @@ h3 {
   font-weight: 700;
 }
 
-.services, .about, .workshops, .gallery, .clients {
+.services, .about, .workshops, .gallery, .partner, .clients {
   background: #fdf0f5;
   border-radius: 25px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
@@ -499,6 +545,30 @@ h3 {
   .client-grid {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 20px;
+  }
+
+  .partner-tags {
+    gap: 10px;
+  }
+
+  .partner-tags span {
+    min-width: 0;
+    width: calc(50% - 10px);
+    padding: 10px 14px;
+  }
+
+  .partner-brand {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .partner-brand-copy {
+    font-size: 0.8rem;
+    max-width: 100%;
+  }
+
+  .partner-brand-logo {
+    width: 84px;
   }
 
   h2 {
