@@ -1,1 +1,23 @@
-{}
+{
+  "name": "primary",
+  "version": "1.0.0",
+  "description": "🌿 Crafted By You — Landing Page This repository contains the source code for the Crafted By You official website. The project is designed to showcase DIY craft workshops, corporate team-building services, and event activation portfolios.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lincolnteo/Crafted_By_You.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lincolnteo/Crafted_By_You/issues"
+  },
+  "homepage": "https://github.com/lincolnteo/Crafted_By_You#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
