@@ -1,1 +1,13 @@
-{}
+{
+  "name": "crafted-by-you",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@vercel/speed-insights": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "echo 'No build step required for static HTML project'",
+    "dev": "echo 'Use a local server to serve files'"
+  }
+}
