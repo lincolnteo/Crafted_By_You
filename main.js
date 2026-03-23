@@ -111,11 +111,7 @@ function updatePageLanguage() {
     ["terrazzo_coaster", "terrazzo_coaster"]
   ];
   cards.forEach((card, i) => {
-    if (i === cards.length - 1) {
-      // Last card is the "Request" button
-      const h3 = card.querySelector("h3");
-      if (h3) h3.textContent = t("request_quote");
-    } else if (cardData[i]) {
+    if (cardData[i]) {
       const h3 = card.querySelector("h3");
       const p = card.querySelector("p");
       if (h3) {
@@ -128,6 +124,10 @@ function updatePageLanguage() {
         }
       }
     }
+  });
+
+  document.querySelectorAll("[data-i18n='request_quote']").forEach(el => {
+    el.textContent = t("request_quote");
   });
 
   const disclaimer = document.querySelector("p[style*='color: red']");
@@ -410,7 +410,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     this.appendChild(rpl);
     setTimeout(() => rpl.remove(), 700);
   }
-  document.querySelectorAll("button, .highlight").forEach(el => el.addEventListener("click", addRipple));
+  document.querySelectorAll("button, .highlight, .request-quote-btn").forEach(el => el.addEventListener("click", addRipple));
 
   /* ── Cursor sparkle trail (mouse only) ───────────────────────── */
   const sparkleColors = ["#ff6b9d","#ffb84d","#ff6600","#9b59b6","#3498db","#2ecc71","#e91e99"];
