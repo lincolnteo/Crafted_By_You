@@ -4,13 +4,13 @@
   "description": "DIY Workshops & Corporate Events",
   "icons": [
     {
-      "src": "assets/Website/logo.png",
+      "src": "assets/Website/branding/logo.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "assets/Website/logo.png",
+      "src": "assets/Website/branding/logo.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

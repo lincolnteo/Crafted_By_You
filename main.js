@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   const nav = document.createElement("nav");
   nav.id = "sticky-nav";
   nav.innerHTML = `
-    <img src="assets/Website/logo.png" alt="Crafted By You" class="nav-logo" />
+    <img src="assets/Website/branding/logo.png" alt="Crafted By You" class="nav-logo" />
     <ul class="nav-links">
       <li><a href="#about">${t("nav_about")}</a></li>
       <li><a href="#services">${t("nav_services")}</a></li>

@@ -65,7 +65,7 @@ body {
 }
 
 .hero {
-  background-image: url(assets/Website/header_background.png);
+  background-image: url(assets/Website/backgrounds/header_background.png);
   background-size: cover;
   background-position: center;
   color: white;
