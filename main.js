@@ -106,7 +106,7 @@ function updatePageLanguage() {
     ["spa_scrub", "spa_scrub_desc"],
     ["wellness_mist", "wellness_mist_desc"],
     ["aroma_diffuser", "aroma_diffuser_desc"],
-    ["perfume", "perfume"],
+    ["perfume", "perfume_desc"],
     ["diffuser", "diffuser"],
     ["terrazzo_coaster", "terrazzo_coaster"]
   ];
@@ -115,7 +115,7 @@ function updatePageLanguage() {
       const h3 = card.querySelector("h3");
       const p = card.querySelector("p");
       if (h3) {
-        if (i < 16) {
+        if (i < 17) {
           h3.textContent = t(cardData[i][0]);
           if (p) p.textContent = t(cardData[i][1]);
         } else {
@@ -144,8 +144,11 @@ function updatePageLanguage() {
   if (partnerTitle) partnerTitle.textContent = t("partner_title");
   const partnerIntro = document.querySelector(".partner > p");
   if (partnerIntro) partnerIntro.textContent = t("partner_intro");
-  const partnerBrandCopy = document.querySelector(".partner-brand-copy");
-  if (partnerBrandCopy) partnerBrandCopy.textContent = t("partner_brand_copy");
+  const partnerBrandCopies = document.querySelectorAll(".partner-brand-copy");
+  const partnerCopyKeys = ["partner_brand_copy", "partner_brand_copy_2"];
+  partnerBrandCopies.forEach((copy, i) => {
+    if (partnerCopyKeys[i]) copy.textContent = t(partnerCopyKeys[i]);
+  });
   const partnerTags = document.querySelectorAll(".partner-tags span");
   const partnerTagKeys = [
     "partner_tag_1",
