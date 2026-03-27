@@ -31,23 +31,14 @@ function switchLanguage(lang) {
 function updatePageLanguage() {
   // Navbar
   const navLinks = document.querySelectorAll(".nav-links a");
-  if (navLinks[0]) navLinks[0].textContent = t("nav_about");
-  if (navLinks[1]) navLinks[1].textContent = t("nav_services");
-  if (navLinks[2]) navLinks[2].textContent = t("nav_workshops");
-  if (navLinks[3]) navLinks[3].textContent = t("nav_gallery");
-  if (navLinks[4]) navLinks[4].textContent = t("nav_quote");
+  if (navLinks[0]) navLinks[0].textContent = t("nav_services");
+  if (navLinks[1]) navLinks[1].textContent = t("nav_workshops");
+  if (navLinks[2]) navLinks[2].textContent = t("nav_gallery");
+  if (navLinks[3]) navLinks[3].textContent = t("nav_quote");
 
   // Hero
   const heroP = document.querySelector(".hero p");
   if (heroP) heroP.textContent = t("hero_tagline");
-
-  // About section
-  const aboutTitle = document.querySelector(".about-text h2");
-  if (aboutTitle) aboutTitle.textContent = t("about_title");
-  const aboutPs = document.querySelectorAll(".about-text p");
-  if (aboutPs[0]) aboutPs[0].textContent = t("about_p1");
-  if (aboutPs[1]) aboutPs[1].textContent = t("about_p2");
-  if (aboutPs[2]) aboutPs[2].textContent = t("about_p3");
 
   // Services section
   const servicesTitle = document.querySelector(".services > h2");
@@ -219,7 +210,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   nav.innerHTML = `
     <img src="assets/Website/branding/logo.png" alt="Crafted By You" class="nav-logo" />
     <ul class="nav-links">
-      <li><a href="#about">${t("nav_about")}</a></li>
       <li><a href="#services">${t("nav_services")}</a></li>
       <li><a href="#workshops">${t("nav_workshops")}</a></li>
       <li><a href="#gallery">${t("nav_gallery")}</a></li>
@@ -228,7 +218,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   document.body.prepend(nav);
 
   // Assign IDs to sections (quotation already has one in HTML)
-  [["section.about", "about"], ["section.services", "services"],
+  [["section.services", "services"],
    ["section.workshops", "workshops"], ["section.gallery", "gallery"]
   ].forEach(([sel, id]) => {
     const el = document.querySelector(sel);
@@ -295,11 +285,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   staggerReveal(".client-grid",   0.07);
   staggerReveal(".gallery-grid",  0.05);
   staggerReveal(".services ul",   0.08);
-
-  const aboutImg = document.querySelector(".about-img");
-  const aboutTxt = document.querySelector(".about-text");
-  if (aboutImg) aboutImg.classList.add("reveal-left");
-  if (aboutTxt) aboutTxt.classList.add("reveal-right");
 
   // Generic reveal observer
   const revealObserver = new IntersectionObserver((entries) => {

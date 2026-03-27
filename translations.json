@@ -1,15 +1,10 @@
 {
   "en": {
-    "nav_about": "About",
     "nav_services": "Services",
     "nav_workshops": "Workshops",
     "nav_gallery": "Gallery",
     "nav_quote": "Get a Quote ✨",
     "hero_tagline": "YOUR ONE-STOP DIY CRAFT WORKSHOPS, EVENTS & SUPPLIES",
-    "about_title": "Crafted By You",
-    "about_p1": "Crafted By You was founded in 2022 with a simple purpose — to create meaningful, hands-on craft experiences for people and businesses.",
-    "about_p2": "We specialise in DIY craft workshops and have extensive experience handling corporate events, team-building sessions, birthday parties, product launches, and promotional activities for brands and banks. Our workshops are designed to be engaging, creative, and suitable for all skill levels.",
-    "about_p3": "At Crafted By You, we believe that creativity is more than an activity — it's a way to connect, unwind, and create moments that last beyond the workshop itself.",
     "services_title": "🌿 Crafted By You — Our Services",
     "services_intro": "At Crafted By You, we design and organise hands-on DIY craft experiences tailored for corporate events, team building, brand activations, and private gatherings. From mindful wellness workshops to creative group activities, our sessions are thoughtfully curated to engage, inspire, and bring people together. Whether it's a small team session or a large-scale event, we customise each experience to suit your objectives, audience, and occasion.",
     "service_1_title": "Corporate Team Building",
@@ -85,16 +80,11 @@
     "footer_whatsapp": "WHATSAPP NUMBER"
   },
   "zh": {
-    "nav_about": "关于我们",
     "nav_services": "服务",
     "nav_workshops": "工作坊",
     "nav_gallery": "相册",
     "nav_quote": "获取报价 ✨",
     "hero_tagline": "您一站式DIY工艺工作坊、活动和用品中心",
-    "about_title": "Crafted By You",
-    "about_p1": "Crafted By You 成立于 2022 年，目的很简单——为人们和企业创造有意义的手工工艺体验。",
-    "about_p2": "我们专门从事DIY工艺工作坊，在处理企业活动、团队建设会议、生日派对、产品发布会和品牌及银行推广活动方面拥有丰富经验。我们的工作坊设计新颖、创意十足，适合所有技能水平的人员。",
-    "about_p3": "在 Crafted By You，我们相信创意不仅仅是一项活动——它是连接、放松和创造超越工作坊本身的时刻的方式。",
     "services_title": "🌿 Crafted By You —— 我们的服务",
     "services_intro": "在 Crafted By You，我们设计和组织量身定制的手工DIY工艺体验，适用于企业活动、团队建设、品牌激活和私人聚会。从正念健康工作坊到创意小组活动，我们的课程经过精心策划，以吸引、启发和团结人们。无论是小型团队会议还是大规模活动，我们都会根据您的目标、受众和场合定制每种体验。",
     "service_1_title": "企业团队建设",
