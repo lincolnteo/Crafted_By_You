@@ -98,6 +98,7 @@ function updatePageLanguage() {
     ["wellness_mist", "wellness_mist_desc"],
     ["aroma_diffuser", "aroma_diffuser_desc"],
     ["perfume", "perfume_desc"],
+    ["postcard", "postcard_desc"],
     ["diffuser", "diffuser"],
     ["terrazzo_coaster", "terrazzo_coaster"]
   ];
@@ -106,7 +107,7 @@ function updatePageLanguage() {
       const h3 = card.querySelector("h3");
       const p = card.querySelector("p");
       if (h3) {
-        if (i < 17) {
+        if (i < 18) {
           h3.textContent = t(cardData[i][0]);
           if (p) p.textContent = t(cardData[i][1]);
         } else {
@@ -254,23 +255,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     topBtn.classList.toggle("visible", scrollY > 400);
   }, { passive: true });
 
-  /* ── Hero floating emojis ────────────────────────────────────── */
-  const hero = document.querySelector(".hero");
-  if (hero) {
-    const emojis = ["✂️","🎨","🖌️","🌸","⭐","✨","🕯️","🌿","💎","🌺","🎭","🧵","🪡","🌷"];
-    for (let i = 0; i < 14; i++) {
-      const span = document.createElement("span");
-      span.className = "hero-emoji";
-      span.textContent = emojis[i % emojis.length];
-      span.style.cssText = `
-        left: ${5 + Math.random() * 90}%;
-        top: ${5 + Math.random() * 85}%;
-        font-size: ${13 + Math.random() * 18}px;
-        animation-duration: ${3.5 + Math.random() * 3.5}s;
-        animation-delay: ${Math.random() * 3}s;`;
-      hero.appendChild(span);
-    }
-  }
+  /* ── Hero floating emojis (REMOVED: Corporate Aesthetic) ── */
 
   /* ── Scroll reveal (IntersectionObserver) ────────────────────── */
   function staggerReveal(selector, delay = 0.07) {
@@ -400,25 +385,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
   document.querySelectorAll("button, .highlight, .request-quote-btn").forEach(el => el.addEventListener("click", addRipple));
 
-  /* ── Cursor sparkle trail (mouse only) ───────────────────────── */
-  const sparkleColors = ["#ff6b9d","#ffb84d","#ff6600","#9b59b6","#3498db","#2ecc71","#e91e99"];
-  document.addEventListener("mousemove", e => {
-    if (Math.random() > 0.32) return; // throttle to ~32% of events
-    const dot = document.createElement("div");
-    dot.className = "cursor-sparkle";
-    const sz = 5 + Math.random() * 7;
-    Object.assign(dot.style, {
-      left:       e.clientX + "px",
-      top:        e.clientY + "px",
-      width:      sz + "px",
-      height:     sz + "px",
-      background: sparkleColors[Math.floor(Math.random() * sparkleColors.length)],
-      "--tx":     (Math.random() * 54 - 27) + "px",
-      "--ty":     (Math.random() * 54 - 27) + "px",
-    });
-    document.body.appendChild(dot);
-    setTimeout(() => dot.remove(), 900);
-  });
+  /* ── Cursor sparkle trail (REMOVED: Corporate Aesthetic) ── */
 
   /* ── Smooth scroll for all in-page links ─────────────────────── */
   document.querySelectorAll("a[href^='#']").forEach(a => {
@@ -426,6 +393,78 @@ document.addEventListener("DOMContentLoaded", async function () {
       const target = document.querySelector(a.getAttribute("href"));
       if (target) { e.preventDefault(); target.scrollIntoView({ behavior: "smooth" }); }
     });
+  });
+
+  /* ── Carousel Scrolling & Desktop Grab ───────────────────────── */
+  document.querySelectorAll(".carousel-wrapper").forEach(wrapper => {
+    const track = wrapper.querySelector(".carousel-track");
+    const prevBtn = wrapper.querySelector(".prev-btn");
+    const nextBtn = wrapper.querySelector(".next-btn");
+    
+    if (!track) return;
+
+    const getScrollAmount = () => {
+      const gap = 32; // 2rem
+      return track.firstElementChild ? track.firstElementChild.getBoundingClientRect().width + gap : 320;
+    };
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => track.scrollBy({ left: -getScrollAmount(), behavior: "smooth" }));
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => track.scrollBy({ left: getScrollAmount(), behavior: "smooth" }));
+    }
+
+    const handleScrollButtons = () => {
+      if (prevBtn && nextBtn) {
+        prevBtn.style.opacity = track.scrollLeft <= 10 ? "0.3" : "0.9";
+        nextBtn.style.opacity = track.scrollLeft >= track.scrollWidth - track.clientWidth - 10 ? "0.3" : "0.9";
+      }
+    };
+    
+    track.addEventListener("scroll", handleScrollButtons, { passive: true });
+    window.addEventListener("resize", handleScrollButtons);
+    setTimeout(handleScrollButtons, 100);
+
+    // Desktop Grab to Swipe Magic
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let isDragging = false;
+
+    track.addEventListener("mousedown", (e) => {
+      isDown = true;
+      isDragging = false;
+      track.style.scrollSnapType = "none";
+      startX = e.pageX - track.offsetLeft;
+      scrollLeft = track.scrollLeft;
+    });
+
+    track.addEventListener("mouseleave", () => {
+      isDown = false;
+      track.style.scrollSnapType = "x mandatory";
+    });
+
+    track.addEventListener("mouseup", () => {
+      isDown = false;
+      track.style.scrollSnapType = "x mandatory";
+    });
+
+    track.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - track.offsetLeft;
+      const walk = (x - startX) * 2;
+      if (Math.abs(walk) > 10) isDragging = true;
+      track.scrollLeft = scrollLeft - walk;
+    });
+
+    track.addEventListener("click", (e) => {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, { capture: true });
   });
 
 });
