@@ -823,6 +823,12 @@ section {
     margin-bottom: 0 !important;
   }
 
+  .workshops .carousel-track .card img {
+    height: 150px;
+    object-fit: cover;
+    width: 100%;
+  }
+
   .gallery-grid.carousel-track {
     grid-template-columns: none; /* disable grid */
   }
