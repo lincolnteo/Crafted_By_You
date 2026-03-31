@@ -2,6 +2,36 @@
    Crafted By You — Interactive JS
 ═══════════════════════════════════════════════════════════════ */
 
+// Compatibility shim for third-party scripts expecting mgt.clearMarks().
+// Some integrations expose unmark() or clearMark() instead.
+(function patchMgtClearMarks() {
+  if (typeof window === "undefined") return;
+
+  function applyPatch(target) {
+    if (!target || typeof target.clearMarks === "function") return true;
+    if (typeof target.unmark === "function") {
+      target.clearMarks = (...args) => target.unmark(...args);
+      return true;
+    }
+    if (typeof target.clearMark === "function") {
+      target.clearMarks = (...args) => target.clearMark(...args);
+      return true;
+    }
+    return false;
+  }
+
+  if (applyPatch(window.mgt)) return;
+
+  let attempts = 0;
+  const maxAttempts = 50;
+  const timer = setInterval(() => {
+    attempts += 1;
+    if (applyPatch(window.mgt) || attempts >= maxAttempts) {
+      clearInterval(timer);
+    }
+  }, 100);
+})();
+
 // Multi-language support
 let translations = {};
 let currentLang = localStorage.getItem("lang") || "en";
@@ -400,6 +430,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     const track = wrapper.querySelector(".carousel-track");
     const prevBtn = wrapper.querySelector(".prev-btn");
     const nextBtn = wrapper.querySelector(".next-btn");
+    const isWorkshopCarousel = !!wrapper.closest(".workshops");
+    const isGalleryCarousel = !!wrapper.closest(".gallery");
     
     if (!track) return;
 
@@ -421,6 +453,55 @@ document.addEventListener("DOMContentLoaded", async function () {
         nextBtn.style.opacity = track.scrollLeft >= track.scrollWidth - track.clientWidth - 10 ? "0.3" : "0.9";
       }
     };
+
+    if (isWorkshopCarousel || isGalleryCarousel) {
+      const slides = [...track.children];
+      if (slides.length > 1) {
+        const carouselLabel = isWorkshopCarousel ? "Workshop" : "Gallery";
+        const dots = document.createElement("div");
+        dots.className = "carousel-dots";
+        dots.setAttribute("aria-label", `${carouselLabel} slide pagination`);
+
+        const dotButtons = slides.map((slide, index) => {
+          const dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = "carousel-dot";
+          dot.setAttribute("aria-label", `Go to ${carouselLabel.toLowerCase()} slide ${index + 1}`);
+          dot.addEventListener("click", () => {
+            const targetLeft = slide.offsetLeft - ((track.clientWidth - slide.offsetWidth) / 2);
+            track.scrollTo({ left: targetLeft, behavior: "smooth" });
+          });
+          dots.appendChild(dot);
+          return dot;
+        });
+
+        const updateActiveDot = () => {
+          const trackCenter = track.scrollLeft + (track.clientWidth / 2);
+          let nearestIndex = 0;
+          let nearestDistance = Number.POSITIVE_INFINITY;
+
+          slides.forEach((slide, index) => {
+            const slideCenter = slide.offsetLeft + (slide.offsetWidth / 2);
+            const distance = Math.abs(slideCenter - trackCenter);
+            if (distance < nearestDistance) {
+              nearestDistance = distance;
+              nearestIndex = index;
+            }
+          });
+
+          dotButtons.forEach((dot, index) => {
+            const isActive = index === nearestIndex;
+            dot.classList.toggle("active", isActive);
+            dot.setAttribute("aria-current", isActive ? "true" : "false");
+          });
+        };
+
+        wrapper.insertAdjacentElement("afterend", dots);
+        track.addEventListener("scroll", updateActiveDot, { passive: true });
+        window.addEventListener("resize", updateActiveDot);
+        setTimeout(updateActiveDot, 120);
+      }
+    }
     
     track.addEventListener("scroll", handleScrollButtons, { passive: true });
     window.addEventListener("resize", handleScrollButtons);

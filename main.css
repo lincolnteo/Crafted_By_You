@@ -195,15 +195,27 @@ p {
 
 /* ── Hero Section ────────────────────────────────────────────── */
 .hero {
+  background-color: rgba(253, 240, 245, 0.42);
   background-image: url("assets/Website/backgrounds/header_background.png");
   background-size: cover;
   background-position: center;
+  background-blend-mode: soft-light;
   color: white;
   text-align: center;
   padding: 80px 20px 20px 20px;
   border-radius: 0 0 40px 40px;
-  box-shadow: 0 10px 30px rgba(255, 102, 0, 0.2);
+  box-shadow: 0 10px 24px rgba(109, 44, 83, 0.12);
   position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 12, 17, 0.28);
+  border-radius: inherit;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .hero-content {
@@ -452,6 +464,10 @@ section {
 
 .swipe-hint {
   display: none; 
+}
+
+.carousel-dots {
+  display: none;
 }
 
 .card {
@@ -766,26 +782,35 @@ section {
   .quotation { padding: 4rem 5%; }
   .footer { padding: 4rem 5% 3rem; }
   .services > p { margin-bottom: 2rem; }
-  .hero-content { padding: 4rem 5%; }
-  .hero h1 { font-size: 36px; }
-  .hero p { font-size: 16px; }
+  .hero {
+    padding: 20px 16px 12px;
+    border-radius: 0 0 24px 24px;
+  }
+  .hero-content { padding: 1.25rem 0.75rem 0.5rem; }
+  .hero h1 { font-size: 30px; }
+  .hero p { font-size: 14px; }
   
   .hero-brand-row {
     flex-direction: column;
-    margin-bottom: 20px;
-    gap: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    gap: 10px;
   }
   
   .logo-spot {
-    position: relative;
-    left: auto;
-    top: auto;
+    position: absolute;
+    left: 12px;
+    top: 12px;
     transform: none;
-    width: 100px;
-    height: 100px;
+    width: 72px;
+    height: 72px;
+    z-index: 3;
   }
   
-  .slogan { max-width: 250px; }
+  .slogan {
+    max-width: 210px;
+    margin-top: 6px;
+  }
   .client-grid { gap: 2rem; }
   .services li { padding: 2rem; }
   
@@ -824,9 +849,10 @@ section {
   }
 
   .workshops .carousel-track .card img {
-    height: 150px;
-    object-fit: cover;
+    height: 170px;
+    object-fit: contain;
     width: 100%;
+    background: color-mix(in srgb, var(--bg-tertiary) 92%, white);
   }
 
   .gallery-grid.carousel-track {
@@ -852,6 +878,42 @@ section {
   }
   
   .carousel-btn { display: none !important; }
+
+  .workshops .carousel-dots,
+  .gallery .carousel-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.35rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .workshops .carousel-dot,
+  .gallery .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border: 0;
+    border-radius: 999px;
+    padding: 0;
+    background: color-mix(in srgb, var(--text-secondary) 45%, white);
+    opacity: 0.55;
+    transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
+  }
+
+  .workshops .carousel-dot.active,
+  .gallery .carousel-dot.active {
+    background: var(--accent-primary);
+    opacity: 1;
+    transform: scale(1.15);
+  }
+
+  .workshops .carousel-dot:focus-visible,
+  .gallery .carousel-dot:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--accent-primary) 70%, white);
+    outline-offset: 2px;
+  }
+
   .swipe-hint {
     display: block;
     text-align: center;
