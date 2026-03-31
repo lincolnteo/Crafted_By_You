@@ -7,7 +7,7 @@
   --text-primary: #111111;    /* Deep dark */
   --text-secondary: #6d2c53;  /* Deep purple/pink text */
   --accent-primary: #ff6b9d;  /* Bright Pink */
-  --accent-secondary: #81b29a; /* Sage Green */
+  --accent-secondary: #ff8fbd; /* Soft Bright Pink */
   --border-light: rgba(255, 107, 157, 0.2);
   --border-dark: #1a1a1a;
 
@@ -29,7 +29,7 @@ html {
 }
 
 body {
-  background: linear-gradient(135deg, #f0e8cc 0%, #f5cedf 100%);
+  background: linear-gradient(135deg, #ffe6f1 0%, #f5cedf 100%);
   color: var(--text-primary);
   font-family: var(--font-sans);
   line-height: 1.6;
