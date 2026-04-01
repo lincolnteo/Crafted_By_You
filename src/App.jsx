@@ -69,6 +69,23 @@ const WorkshopCard = ({ title, tag, delay }) => (
   </MotionDiv>
 )
 
+const clients = [
+  { name: 'Client 01', logoSrc: '' },
+  { name: 'Client 02', logoSrc: '' },
+  { name: 'Client 03', logoSrc: '' },
+  { name: 'Client 04', logoSrc: '' },
+  { name: 'Client 05', logoSrc: '' },
+  { name: 'Client 06', logoSrc: '' },
+  { name: 'Client 07', logoSrc: '' },
+  { name: 'Client 08', logoSrc: '' },
+  { name: 'Client 09', logoSrc: '' },
+  { name: 'Client 10', logoSrc: '' },
+  { name: 'Client 11', logoSrc: '' },
+  { name: 'Client 12', logoSrc: '' },
+  { name: 'Client 13', logoSrc: '' },
+  { name: 'Client 14', logoSrc: '' },
+]
+
 export default function App() {
   const { scrollYProgress } = useScroll()
   const y = useTransform(scrollYProgress, [0, 1], [0, -100])
@@ -99,14 +116,12 @@ export default function App() {
               We transform corporate office spaces into artisanal studios. High-impact
               workshops designed to lower stress, spark innovation, and build team bonds.
             </p>
-            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <button className="w-full rounded-full bg-slate-900 px-10 py-4 text-lg font-bold text-white transition-all hover:bg-orange-600 hover:shadow-2xl hover:shadow-orange-200 sm:w-auto">
-                Plan Your Event
-              </button>
-              <button className="w-full rounded-full border border-slate-200 px-10 py-4 text-lg font-bold transition-all hover:bg-slate-50 sm:w-auto">
-                Download PDF Deck
-              </button>
-            </div>
+            <Link
+              to="/quote"
+              className="inline-flex w-full items-center justify-center rounded-full bg-slate-900 px-10 py-4 text-lg font-bold text-white transition-all hover:bg-orange-600 hover:shadow-2xl hover:shadow-orange-200 sm:w-auto"
+            >
+              Get a Quote
+            </Link>
           </MotionDiv>
         </div>
       </section>
@@ -120,9 +135,9 @@ export default function App() {
                 Select from our most popular corporate modules, each fully customizable to your brand colors and values.
               </p>
             </div>
-            <div className="flex cursor-pointer items-center gap-2 text-sm font-bold text-orange-600">
+            <Link to="/workshops" className="flex items-center gap-2 text-sm font-bold text-orange-600">
               VIEW ALL WORKSHOPS <ArrowRight size={16} />
-            </div>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
@@ -174,6 +189,34 @@ export default function App() {
                 <Users size={120} className="text-white opacity-40" />
               </div>
             </MotionDiv>
+          </div>
+        </div>
+      </section>
+
+      <section id="clients" className="bg-slate-50 px-6 py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-12 text-center">
+            <h2 className="text-4xl font-medium font-serif text-slate-900 md:text-5xl">Our Clients</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-slate-600">
+              Trusted by teams across industries. Add your 14 client logos below.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
+            {clients.map((client) => (
+              <div
+                key={client.name}
+                className="flex h-24 items-center justify-center rounded-2xl border border-slate-200 bg-white p-3 shadow-sm"
+              >
+                {client.logoSrc ? (
+                  <img src={client.logoSrc} alt={client.name} className="max-h-12 w-full object-contain" />
+                ) : (
+                  <span className="text-center text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    {client.name} logo
+                  </span>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>
