@@ -1,73 +1,82 @@
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowRight, CheckCircle2, Users } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Users, ArrowRight, CheckCircle2, Sparkles, Paintbrush, HeartHandshake } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-const MotionDiv = motion.div
+const MotionLink = motion(Link);
+
+const scrollToSection = (sectionId) => {
+  const section = document.getElementById(sectionId);
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+};
+
+// --- Components ---
 
 const Navbar = () => (
-  <nav className="fixed top-0 z-50 w-full border-b border-slate-100 bg-white/80 backdrop-blur-md">
-    <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-      <div className="text-2xl font-bold font-serif text-slate-900">
-        Artisan<span className="text-orange-600">Flow</span>
+  <nav className="fixed top-0 w-full z-50 bg-[#FFF8F2]/80 backdrop-blur-md border-b border-orange-100">
+    <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div className="text-2xl font-serif font-bold text-slate-900 flex items-center gap-2">
+        <img
+          src="/assets/Website/branding/logo.png"
+          alt="Crafted By You logo"
+          className="h-[60px] w-[60px] rounded-full object-contain"
+        />
+        Crafted By <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-500">You</span>
       </div>
-      <div className="hidden gap-8 text-sm font-medium text-slate-600 md:flex">
-        <a href="#workshops" className="transition-colors hover:text-orange-600">
-          Workshops
-        </a>
-        <a href="#benefits" className="transition-colors hover:text-orange-600">
-          Corporate Benefits
-        </a>
-        <a href="#testimonials" className="transition-colors hover:text-orange-600">
-          Success Stories
-        </a>
+      <div className="hidden md:flex gap-8 text-sm font-bold text-slate-600">
+        <button type="button" onClick={() => scrollToSection('workshops')} className="hover:text-pink-500 transition-colors">Workshops</button>
+        <button type="button" onClick={() => scrollToSection('gallery')} className="hover:text-pink-500 transition-colors">Gallery</button>
+        <button type="button" onClick={() => scrollToSection('benefits')} className="hover:text-violet-600 transition-colors">Corporate Benefits</button>
+        <button type="button" onClick={() => scrollToSection('testimonials')} className="hover:text-orange-500 transition-colors">Success Stories</button>
       </div>
-      <Link
-        to="/quote"
-        className="rounded-full bg-slate-900 px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-orange-600"
-      >
+      <Link to="/quote" className="bg-gradient-to-r from-pink-500 to-orange-500 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:shadow-lg hover:shadow-pink-500/30 hover:scale-105 transition-all duration-300">
         Get a Quote
       </Link>
     </div>
   </nav>
-)
+);
 
-const FloatingDecoration = ({ className, delay = 0 }) => (
-  <MotionDiv
-    animate={{
-      y: [0, -20, 0],
-      rotate: [0, 10, 0],
-      scale: [1, 1.1, 1],
+const FloatingBlob = ({ className, delay = 0, duration = 7 }) => (
+  <motion.div
+    animate={{ 
+      y: [0, -40, 0],
+      x: [0, 30, -10, 0],
+      rotate: [0, 45, -15, 0],
+      scale: [1, 1.2, 0.9, 1]
     }}
-    transition={{ duration: 6, repeat: Infinity, delay, ease: 'easeInOut' }}
-    className={`absolute rounded-full opacity-20 blur-3xl ${className}`}
+    transition={{ duration, repeat: Infinity, delay, ease: "easeInOut" }}
+    className={`absolute rounded-full mix-blend-multiply filter blur-2xl opacity-60 ${className}`}
   />
-)
+);
 
-const WorkshopCard = ({ title, tag, delay }) => (
-  <MotionDiv
-    initial={{ opacity: 0, y: 30 }}
+const WorkshopCard = ({ title, tag, delay, gradient }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 40 }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.6, delay }}
-    whileHover={{ y: -10 }}
-    className="group relative aspect-[4/5] cursor-pointer overflow-hidden rounded-3xl bg-slate-100"
+    viewport={{ once: true, margin: "-50px" }}
+    transition={{ duration: 0.6, delay, type: "spring", bounce: 0.4 }}
+    whileHover={{ y: -15, scale: 1.03, rotate: 2 }}
+    className="group relative overflow-hidden rounded-[2.5rem] bg-slate-100 aspect-[4/5] cursor-pointer shadow-xl shadow-slate-200/50"
   >
-    <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-    <div className="absolute left-6 top-6 z-20">
-      <span className="rounded-full border border-white/30 bg-white/20 px-3 py-1 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-md">
+    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
+    <div className="absolute top-6 left-6 z-20">
+      <span className="px-4 py-1.5 bg-white/20 backdrop-blur-md text-white text-xs font-black uppercase tracking-widest rounded-full border border-white/40 shadow-sm">
         {tag}
       </span>
     </div>
-    <div className="absolute bottom-8 left-8 z-20">
-      <h3 className="mb-2 text-2xl font-bold text-white">{title}</h3>
-      <div className="flex items-center text-orange-400 transition-all group-hover:gap-3">
-        <span className="text-sm font-semibold text-white/90">View Details</span>
-        <ArrowRight size={18} className="ml-2" />
-      </div>
+    <div className="absolute bottom-8 left-8 z-20 pr-6">
+      <h3 className="text-3xl font-black text-white mb-3 leading-tight">{title}</h3>
+      <Link to="/workshops" className="flex items-center text-pink-300 group-hover:text-white group-hover:gap-3 transition-all duration-300 font-bold">
+        <span>View Details</span>
+        <ArrowRight size={20} className="ml-2" />
+      </Link>
     </div>
-    <div className="h-full w-full bg-slate-300 transition-transform duration-700 group-hover:scale-110" />
-  </MotionDiv>
-)
+    {/* Vibrant gradient placeholder for craft images */}
+    <div className={`w-full h-full bg-gradient-to-br ${gradient} group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700`} />
+  </motion.div>
+);
 
 const clients = [
   { name: 'Client 01', logoSrc: '' },
@@ -84,162 +93,341 @@ const clients = [
   { name: 'Client 12', logoSrc: '' },
   { name: 'Client 13', logoSrc: '' },
   { name: 'Client 14', logoSrc: '' },
-]
+];
+
+const galleryPhotos = [
+  { title: 'Workshop Moment 01', imageSrc: '' },
+  { title: 'Workshop Moment 02', imageSrc: '' },
+  { title: 'Workshop Moment 03', imageSrc: '' },
+  { title: 'Workshop Moment 04', imageSrc: '' },
+  { title: 'Workshop Moment 05', imageSrc: '' },
+  { title: 'Workshop Moment 06', imageSrc: '' },
+  { title: 'Workshop Moment 07', imageSrc: '' },
+  { title: 'Workshop Moment 08', imageSrc: '' },
+];
+
+const ClientsMarquee = () => (
+  <section className="bg-violet-900 py-8 overflow-hidden border-y-4 border-pink-500">
+    <div className="flex w-fit">
+      <motion.div
+        animate={{ x: '-50%' }}
+        transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+        className="flex items-center whitespace-nowrap"
+      >
+        {[...clients, ...clients].map((client, index) => (
+          <div key={`${client.name}-${index}`} className="mx-10 flex items-center gap-4">
+            {client.logoSrc ? (
+              <img src={client.logoSrc} alt={client.name} className="h-10 w-24 object-contain" />
+            ) : (
+              <span className="text-lg font-black uppercase tracking-wider text-violet-200/80">
+                {client.name}
+              </span>
+            )}
+            <Sparkles className="text-pink-400/70" size={14} />
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  </section>
+);
+
+const ClientsSection = () => (
+  <section id="clients" className="bg-slate-50 px-6 py-24">
+    <div className="mx-auto max-w-7xl">
+      <div className="mb-12 text-center">
+        <h2 className="text-4xl font-serif font-black text-slate-900 md:text-5xl">Our Clients</h2>
+        <p className="mx-auto mt-4 max-w-2xl text-slate-600 font-medium">
+          Trusted by teams across industries. Add your 14 logos below.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
+        {clients.map((client) => (
+          <div
+            key={client.name}
+            className="flex h-24 items-center justify-center rounded-2xl border border-slate-200 bg-white p-3 shadow-sm"
+          >
+            {client.logoSrc ? (
+              <img src={client.logoSrc} alt={client.name} className="max-h-12 w-full object-contain" />
+            ) : (
+              <span className="text-center text-xs font-semibold uppercase tracking-wider text-slate-500">
+                {client.name} logo
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const GallerySection = () => (
+  <section id="gallery" className="bg-slate-100 py-24">
+    <div className="mx-auto max-w-7xl px-6">
+      <div className="mb-10 text-center">
+        <h2 className="text-4xl font-serif font-black text-slate-900 md:text-5xl">Photo Gallery</h2>
+        <p className="mx-auto mt-3 max-w-2xl text-slate-600 font-medium">
+          Showcase all your event highlights in a continuous scrolling gallery.
+        </p>
+      </div>
+    </div>
+
+      <div className="w-full space-y-5 overflow-hidden">
+        <div className="flex w-fit">
+          <motion.div
+            animate={{ x: '-50%' }}
+            transition={{ duration: 28, repeat: Infinity, ease: 'linear' }}
+            className="flex gap-5 whitespace-nowrap"
+          >
+            {[...galleryPhotos, ...galleryPhotos].map((photo, index) => (
+              <article
+                key={`gallery-top-${photo.title}-${index}`}
+                className="w-72 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm"
+              >
+                {photo.imageSrc ? (
+                  <img src={photo.imageSrc} alt={photo.title} className="h-52 w-full object-cover" />
+                ) : (
+                  <div className="flex h-52 w-full items-center justify-center bg-slate-200 text-sm font-semibold text-slate-600">
+                    Add photo here
+                  </div>
+                )}
+                <div className="px-4 py-3 text-sm font-bold text-slate-700">{photo.title}</div>
+              </article>
+            ))}
+          </motion.div>
+        </div>
+
+        <div className="flex w-fit">
+          <motion.div
+            animate={{ x: ['-50%', '0%'] }}
+            transition={{ duration: 32, repeat: Infinity, ease: 'linear' }}
+            className="flex gap-5 whitespace-nowrap"
+          >
+            {[...galleryPhotos, ...galleryPhotos].map((photo, index) => (
+              <article
+                key={`gallery-bottom-${photo.title}-${index}`}
+                className="w-72 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm"
+              >
+                {photo.imageSrc ? (
+                  <img src={photo.imageSrc} alt={photo.title} className="h-52 w-full object-cover" />
+                ) : (
+                  <div className="flex h-52 w-full items-center justify-center bg-slate-200 text-sm font-semibold text-slate-600">
+                    Add photo here
+                  </div>
+                )}
+                <div className="px-4 py-3 text-sm font-bold text-slate-700">{photo.title}</div>
+              </article>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+  </section>
+);
+
+// --- Main Page ---
 
 export default function App() {
-  const { scrollYProgress } = useScroll()
-  const y = useTransform(scrollYProgress, [0, 1], [0, -100])
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], [0, -150]);
 
   return (
-    <div className="min-h-screen overflow-hidden bg-white text-slate-900 selection:bg-orange-100 selection:text-orange-600">
+    <div className="min-h-screen bg-[#FFF8F2] text-slate-900 selection:bg-pink-200 selection:text-pink-900 overflow-hidden font-sans">
       <Navbar />
-
-      <section className="relative px-6 pb-20 pt-32">
-        <FloatingDecoration className="-left-20 -top-20 h-96 w-96 bg-orange-400" />
-        <FloatingDecoration className="-right-20 bottom-0 h-80 w-80 bg-blue-400" delay={2} />
-
-        <div className="relative z-10 mx-auto max-w-7xl text-center">
-          <MotionDiv
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            style={{ y }}
+      
+      {/* Hero Section */}
+      <section className="relative pt-40 pb-20 px-6 overflow-hidden">
+        {/* Animated Background Blobs */}
+        <FloatingBlob className="w-96 h-96 bg-pink-300 -top-20 -left-10" delay={0} duration={8} />
+        <FloatingBlob className="w-[30rem] h-[30rem] bg-yellow-300 top-20 right-0" delay={2} duration={10} />
+        <FloatingBlob className="w-80 h-80 bg-violet-300 bottom-10 left-1/3" delay={1} duration={9} />
+        
+        <div className="max-w-7xl mx-auto text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, type: "spring", bounce: 0.5 }}
           >
-            <span className="mb-6 inline-block rounded-full bg-orange-50 px-4 py-1.5 text-sm font-bold tracking-wider text-orange-600">
-              TRUSTED BY TOP-TIER HR TEAMS
-            </span>
-            <h1 className="mb-8 text-6xl font-medium font-serif leading-[1.1] md:text-8xl">
-              Foster Unity Through <br />
-              <span className="italic text-slate-400">Tactile Creativity.</span>
-            </h1>
-            <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-slate-600">
-              We transform corporate office spaces into artisanal studios. High-impact
-              workshops designed to lower stress, spark innovation, and build team bonds.
-            </p>
-            <Link
-              to="/quote"
-              className="inline-flex w-full items-center justify-center rounded-full bg-slate-900 px-10 py-4 text-lg font-bold text-white transition-all hover:bg-orange-600 hover:shadow-2xl hover:shadow-orange-200 sm:w-auto"
+            <motion.span 
+              whileHover={{ scale: 1.05, rotate: -2 }}
+              className="inline-flex items-center gap-2 px-5 py-2 mb-8 text-sm font-black tracking-widest text-violet-700 bg-violet-100 rounded-full cursor-default shadow-sm"
             >
-              Get a Quote
-            </Link>
-          </MotionDiv>
-        </div>
-      </section>
+              <HeartHandshake size={16} /> TRUSTED BY TOP HR TEAMS
+            </motion.span>
 
-      <section id="workshops" className="bg-slate-50 px-6 py-24">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-16 flex flex-col items-end justify-between gap-6 md:flex-row">
-            <div className="max-w-xl">
-              <h2 className="mb-4 text-4xl font-medium font-serif text-slate-900">Curated Experiences</h2>
-              <p className="text-slate-600">
-                Select from our most popular corporate modules, each fully customizable to your brand colors and values.
-              </p>
+            <h1 className="text-6xl md:text-[5.5rem] font-serif font-black leading-[1.05] mb-8 text-slate-900">
+              Your One-Stop DIY Craft <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-500">Workshops</span>, Event & Supplies
+            </h1>
+            
+            <p className="max-w-2xl mx-auto text-xl text-slate-700 mb-12 leading-relaxed font-medium">
+              We transform corporate office spaces into vibrant artisanal studios. High-energy, 
+              hands-on workshops designed to melt stress, spark innovation, and build unbreakable team bonds.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+              <MotionLink
+                to="/quote"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full sm:w-auto bg-slate-900 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-violet-700 shadow-xl shadow-slate-900/20 transition-colors"
+              >
+                Get a Quote
+              </MotionLink>
+              <MotionLink
+                to="/workshops"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full sm:w-auto flex items-center justify-center gap-2 px-10 py-4 rounded-full font-bold text-lg bg-white border-2 border-pink-100 text-pink-600 hover:border-pink-300 hover:bg-pink-50 shadow-xl shadow-pink-100/50 transition-colors"
+              >
+                View Workshops
+              </MotionLink>
             </div>
-            <Link to="/workshops" className="flex items-center gap-2 text-sm font-bold text-orange-600">
-              VIEW ALL WORKSHOPS <ArrowRight size={16} />
-            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      <ClientsMarquee />
+
+      {/* Workshop Grid Section */}
+      <section id="workshops" className="py-32 px-6 bg-cyan-50 relative border-b-4 border-white">
+        {/* Decorative corner icon */}
+        <Paintbrush className="absolute top-10 right-10 text-cyan-200 opacity-50 rotate-45" size={120} />
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div className="max-w-xl">
+              <h2 className="text-5xl font-serif font-black mb-6 text-slate-900">Curated Experiences</h2>
+              <p className="text-lg text-slate-600 font-medium">Select from our most popular corporate modules, completely customizable to match your brand's unique energy.</p>
+            </div>
+            <MotionLink
+              to="/workshops"
+              whileHover={{ x: 5 }}
+              className="text-sm font-black text-pink-500 flex items-center gap-2 cursor-pointer bg-white px-6 py-3 rounded-full shadow-md"
+            >
+              VIEW ALL WORKSHOPS <ArrowRight size={18} />
+            </MotionLink>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            <WorkshopCard title="The Ceramic Reset" tag="Pottery" delay={0.1} />
-            <WorkshopCard title="Modern Macrame" tag="Fiber Art" delay={0.2} />
-            <WorkshopCard title="Abstract Expression" tag="Painting" delay={0.3} />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <WorkshopCard 
+              title="The Ceramic Reset" 
+              tag="Pottery" 
+              delay={0.1} 
+              gradient="from-orange-400 via-pink-500 to-violet-500"
+            />
+            <WorkshopCard 
+              title="Modern Macramé" 
+              tag="Fiber Art" 
+              delay={0.2} 
+              gradient="from-emerald-400 via-cyan-500 to-blue-500"
+            />
+            <WorkshopCard 
+              title="Abstract Expression" 
+              tag="Painting" 
+              delay={0.3} 
+              gradient="from-yellow-400 via-orange-500 to-pink-500"
+            />
           </div>
         </div>
       </section>
 
-      <section id="benefits" className="px-6 py-24">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 items-center gap-20 lg:grid-cols-2">
-            <MotionDiv
+      <GallerySection />
+
+      {/* Features / Benefits */}
+      <section id="benefits" className="py-32 px-6 bg-[#FFF8F2]">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <motion.div 
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="space-y-8"
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="space-y-10"
             >
-              <h2 className="text-4xl font-medium font-serif leading-tight">
-                Why Industry Leaders <br /> Choose ArtisanFlow
+              <h2 className="text-5xl font-serif font-black leading-[1.1]">
+                Why Forward-Thinking <br /> Teams Choose <span className="text-violet-700">ArtisanFlow</span>
               </h2>
-              <div className="space-y-6">
+              <div className="space-y-8">
                 {[
-                  { title: 'Stress Reduction', desc: 'Proven sensory activities that lower cortisol levels.' },
-                  { title: 'Communication', desc: 'Non-verbal collaboration that breaks down office silos.' },
-                  { title: 'Tangible Results', desc: 'Everyone leaves with a high-quality piece of art.' },
-                ].map((item) => (
-                  <div key={item.title} className="flex gap-4">
-                    <div className="mt-1 h-fit rounded-lg bg-orange-100 p-2 text-orange-600">
-                      <CheckCircle2 size={20} />
+                  { title: "Melt Stress Fast", desc: "Proven sensory activities that dramatically lower cortisol levels and reset the mind.", color: "text-pink-500", bg: "bg-pink-100" },
+                  { title: "Break Down Silos", desc: "Non-verbal, joyful collaboration that permanently improves cross-department communication.", color: "text-orange-500", bg: "bg-orange-100" },
+                  { title: "Tangible Masterpieces", desc: "Everyone leaves with a high-quality, personal piece of art to proudly display.", color: "text-violet-500", bg: "bg-violet-100" }
+                ].map((item, i) => (
+                  <motion.div 
+                    key={i} 
+                    whileHover={{ x: 10 }}
+                    className="flex gap-5 p-4 rounded-2xl hover:bg-white transition-colors cursor-default"
+                  >
+                    <div className={`mt-1 ${item.bg} ${item.color} p-3 rounded-xl h-fit shadow-sm`}>
+                      <CheckCircle2 size={24} />
                     </div>
                     <div>
-                      <h4 className="text-lg font-bold">{item.title}</h4>
-                      <p className="text-slate-600">{item.desc}</p>
+                      <h4 className="font-black text-xl mb-2">{item.title}</h4>
+                      <p className="text-slate-600 font-medium leading-relaxed">{item.desc}</p>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-            </MotionDiv>
-
-            <MotionDiv
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
               viewport={{ once: true }}
-              className="relative aspect-square overflow-hidden rounded-[4rem] bg-slate-100 shadow-2xl"
+              transition={{ duration: 0.8, type: "spring" }}
+              className="relative aspect-square bg-white rounded-[3rem] overflow-hidden shadow-2xl shadow-violet-900/10 border-8 border-white"
             >
-              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-orange-100 to-slate-200">
-                <Users size={120} className="text-white opacity-40" />
-              </div>
-            </MotionDiv>
+               {/* Colorful Image Placeholder */}
+               <div className="absolute inset-0 bg-gradient-to-br from-pink-300 via-purple-300 to-indigo-400 flex flex-col items-center justify-center">
+                  <motion.div
+                    animate={{ y: [0, -15, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <Users size={140} className="text-white drop-shadow-lg" />
+                  </motion.div>
+                  <p className="text-white font-black text-2xl mt-6 drop-shadow-md">Team Magic Happens Here</p>
+               </div>
+               
+               {/* Decorative floating shapes over the image */}
+               <div className="absolute top-10 left-10 w-16 h-16 bg-yellow-400 rounded-full mix-blend-overlay animate-pulse" />
+               <div className="absolute bottom-10 right-10 w-24 h-24 bg-pink-400 rounded-full mix-blend-overlay animate-bounce" />
+            </motion.div>
           </div>
         </div>
       </section>
 
-      <section id="clients" className="bg-slate-50 px-6 py-24">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-12 text-center">
-            <h2 className="text-4xl font-medium font-serif text-slate-900 md:text-5xl">Our Clients</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-slate-600">
-              Trusted by teams across industries. Add your 14 client logos below.
-            </p>
-          </div>
+      <ClientsSection />
 
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
-            {clients.map((client) => (
-              <div
-                key={client.name}
-                className="flex h-24 items-center justify-center rounded-2xl border border-slate-200 bg-white p-3 shadow-sm"
-              >
-                {client.logoSrc ? (
-                  <img src={client.logoSrc} alt={client.name} className="max-h-12 w-full object-contain" />
-                ) : (
-                  <span className="text-center text-xs font-semibold uppercase tracking-wider text-slate-500">
-                    {client.name} logo
-                  </span>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Highly Vibrant CTA Footer */}
+      <footer id="testimonials" className="relative bg-gradient-to-br from-violet-900 via-purple-900 to-fuchsia-900 py-32 px-6 text-white text-center overflow-hidden">
+        {/* Background decorative elements for footer */}
+        <FloatingBlob className="w-full h-96 bg-pink-600/30 -bottom-20 left-0" delay={0} duration={12} />
+        <FloatingBlob className="w-full h-96 bg-blue-600/30 -top-20 right-0" delay={2} duration={15} />
 
-      <footer id="testimonials" className="bg-slate-900 px-6 py-20 text-center text-white">
-        <MotionDiv
-          initial={{ opacity: 0, y: 20 }}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mx-auto max-w-3xl"
+          transition={{ duration: 0.8 }}
+          className="max-w-4xl mx-auto relative z-10"
         >
-          <h2 className="mb-8 text-4xl font-serif md:text-5xl">Ready to transform your culture?</h2>
-          <p className="mb-10 text-lg text-slate-400">
-            Join 200+ companies that use our workshops to retain top talent.
+          <Sparkles className="mx-auto mb-6 text-yellow-300" size={48} />
+          <h2 className="text-5xl md:text-7xl font-serif font-black mb-8 leading-tight">
+            Ready to completely <br /> transform your culture?
+          </h2>
+          <p className="text-pink-100 mb-12 text-xl md:text-2xl font-medium max-w-2xl mx-auto">
+            Join over 200+ innovative companies that use our workshops to inspire and retain their top talent.
           </p>
-          <Link
+          <MotionLink
             to="/quote"
-            className="inline-block rounded-full bg-orange-600 px-12 py-4 text-xl font-bold text-white transition-all hover:bg-orange-500"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex bg-yellow-400 text-slate-900 px-14 py-5 rounded-full font-black text-2xl hover:bg-yellow-300 shadow-2xl shadow-yellow-400/30 transition-all"
           >
-            Get a Custom Quote
-          </Link>
-        </MotionDiv>
+            Get a Custom Quote Now
+          </MotionLink>
+        </motion.div>
       </footer>
     </div>
-  )
+  );
 }
