@@ -217,6 +217,18 @@ p {
   width: 100%;
 }
 
+.hero-content h1,
+.hero-content h2,
+.hero-content h3,
+.hero-content h4,
+.hero-content p,
+.hero-content strong,
+.hero-content a {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .hero-brand-row {
   position: relative;
   display: flex;
@@ -261,7 +273,7 @@ p {
   font-size: 26px;
   letter-spacing: 2px;
   line-height: 1;
-  margin: 0;
+  margin: 0 auto;
   font-weight: 600;
   color: white;
 }
