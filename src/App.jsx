@@ -29,7 +29,7 @@ const Navbar = () => (
       <div className="hidden md:flex gap-8 text-sm font-bold text-slate-600">
         <button type="button" onClick={() => scrollToSection('workshops')} className="hover:text-pink-500 transition-colors">Workshops</button>
         <button type="button" onClick={() => scrollToSection('gallery')} className="hover:text-pink-500 transition-colors">Gallery</button>
-        <button type="button" onClick={() => scrollToSection('testimonials')} className="hover:text-orange-500 transition-colors">Success Stories</button>
+        <button type="button" onClick={() => scrollToSection('testimonials')} className="hover:text-orange-500 transition-colors">Find Us!</button>
       </div>
       <Link to="/quote" className="bg-gradient-to-r from-pink-500 to-orange-500 text-white px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold hover:shadow-lg hover:shadow-pink-500/30 hover:scale-105 transition-all duration-300">
         Get a Quote
@@ -83,7 +83,6 @@ const WorkshopCard = ({ title, tag, delay, gradient, imageSrc }) => (
 
 const heroBackgrounds = [
   '/assets/Website/backgrounds/header_background.png',
-  '/assets/Website/backgrounds/header_background1.png',
 ];
 
 const clients = [
@@ -189,10 +188,10 @@ const WorkshopsMarquee = () => (
         transition={{ duration: 55, repeat: Infinity, ease: 'linear' }}
         className="flex items-center whitespace-nowrap"
       >
-        {[...workshopMarqueeItems, ...workshopMarqueeItems].map((item, index) => (
-          <div key={`${item}-${index}`} className="mx-5 sm:mx-10 flex items-center gap-3 sm:gap-4">
+        {[...allWorkshopImages, ...allWorkshopImages].map((workshop, index) => (
+          <div key={`${workshop.title}-${index}`} className="mx-5 sm:mx-10 flex items-center gap-3 sm:gap-4">
             <span className="text-sm sm:text-lg font-black uppercase tracking-wider text-violet-200/90">
-              {item}
+              {workshop.title}
             </span>
             <Sparkles className="text-pink-400/70" size={14} />
           </div>
@@ -330,7 +329,6 @@ export default function App() {
 
         <div className="absolute inset-0 -z-0 opacity-20">
           <img src={heroBackgrounds[0]} alt="Hero background" className="h-full w-full object-cover" />
-          <img src={heroBackgrounds[1]} alt="Hero background overlay" className="absolute right-0 top-1/2 hidden h-48 w-48 -translate-y-1/2 rounded-[2rem] object-cover shadow-2xl lg:block" />
         </div>
         
         <div className="max-w-7xl mx-auto text-center relative z-10">
