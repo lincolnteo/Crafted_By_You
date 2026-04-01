@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Users, ArrowRight, CheckCircle2, Sparkles, Paintbrush, HeartHandshake } from 'lucide-react';
+import { Users, ArrowRight, CheckCircle2, Sparkles, Paintbrush } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const MotionLink = motion(Link);
@@ -247,13 +247,6 @@ export default function App() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.8, type: "spring", bounce: 0.5 }}
           >
-            <motion.span 
-              whileHover={{ scale: 1.05, rotate: -2 }}
-              className="inline-flex items-center gap-2 px-5 py-2 mb-8 text-sm font-black tracking-widest text-violet-700 bg-violet-100 rounded-full cursor-default shadow-sm"
-            >
-              <HeartHandshake size={16} /> TRUSTED BY TOP HR TEAMS
-            </motion.span>
-
             <h1 className="text-6xl md:text-[5.5rem] font-serif font-black leading-[1.05] mb-8 text-slate-900">
               Your One-Stop DIY Craft <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-500">Workshops</span>, Event & Supplies
