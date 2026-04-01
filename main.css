@@ -217,6 +217,18 @@ p {
   width: 100%;
 }
 
+.hero-content h1,
+.hero-content h2,
+.hero-content h3,
+.hero-content h4,
+.hero-content p,
+.hero-content strong,
+.hero-content a {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .hero-brand-row {
   position: relative;
   display: flex;
@@ -254,6 +266,15 @@ p {
   letter-spacing: 2px;
   color: white;
   margin-bottom: 0px;
+  text-shadow:
+    -2px -2px 0 rgba(0, 0, 0, 0.7),
+    2px -2px 0 rgba(0, 0, 0, 0.7),
+    -2px 2px 0 rgba(0, 0, 0, 0.7),
+    2px 2px 0 rgba(0, 0, 0, 0.7),
+    -2px 0 0 rgba(0, 0, 0, 0.7),
+    2px 0 0 rgba(0, 0, 0, 0.7),
+    0 -2px 0 rgba(0, 0, 0, 0.7),
+    0 2px 0 rgba(0, 0, 0, 0.7);
 }
 
 .hero p {
@@ -261,9 +282,18 @@ p {
   font-size: 26px;
   letter-spacing: 2px;
   line-height: 1;
-  margin: 0;
+  margin: 0 auto;
   font-weight: 600;
   color: white;
+  text-shadow:
+    -1px -1px 0 rgba(0, 0, 0, 0.6),
+    1px -1px 0 rgba(0, 0, 0, 0.6),
+    -1px 1px 0 rgba(0, 0, 0, 0.6),
+    1px 1px 0 rgba(0, 0, 0, 0.6),
+    -1px 0 0 rgba(0, 0, 0, 0.6),
+    1px 0 0 rgba(0, 0, 0, 0.6),
+    0 -1px 0 rgba(0, 0, 0, 0.6),
+    0 1px 0 rgba(0, 0, 0, 0.6);
 }
 
 .slogan {
