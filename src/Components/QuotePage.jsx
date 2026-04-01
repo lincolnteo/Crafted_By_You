@@ -8,7 +8,7 @@ export default function QuotePage() {
       <div className="mx-auto max-w-5xl">
         <div className="mb-8 flex items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-serif font-semibold sm:text-4xl">Get a Quote</h1>
+            <h1 className="text-3xl font-semibold sm:text-4xl">Get a Quote</h1>
             <p className="mt-2 text-slate-600">Tell us about your event and we will send your custom quote.</p>
           </div>
           <Link

@@ -17,7 +17,7 @@ const scrollToSection = (sectionId) => {
 const Navbar = () => (
   <nav className="fixed top-0 w-full z-50 bg-[#FFF8F2]/80 backdrop-blur-md border-b border-orange-100">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
-      <div className="text-lg sm:text-2xl font-serif font-bold text-slate-900 flex items-center gap-2 leading-none">
+      <div className="text-lg sm:text-2xl font-bold text-slate-900 flex items-center gap-2 leading-none">
         <img
           src="/assets/Website/branding/logo.png"
           alt="Crafted By You logo"
@@ -135,7 +135,7 @@ const ClientsSection = () => (
   <section id="clients" className="bg-slate-50 px-4 sm:px-6 py-16 sm:py-24">
     <div className="mx-auto max-w-7xl">
       <div className="mb-12 text-center">
-        <h2 className="text-3xl sm:text-4xl font-serif font-black text-slate-900 md:text-5xl">Our Clients</h2>
+        <h2 className="text-3xl sm:text-4xl font-black text-slate-900 md:text-5xl">Our Clients</h2>
         <p className="mx-auto mt-4 max-w-2xl text-slate-600 font-medium">
           Trusted by teams across industries. Add your 14 logos below.
         </p>
@@ -165,7 +165,7 @@ const GallerySection = () => (
   <section id="gallery" className="bg-slate-100 py-16 sm:py-24">
     <div className="mx-auto max-w-7xl px-4 sm:px-6">
       <div className="mb-10 text-center">
-        <h2 className="text-3xl sm:text-4xl font-serif font-black text-slate-900 md:text-5xl">Photo Gallery</h2>
+        <h2 className="text-3xl sm:text-4xl font-black text-slate-900 md:text-5xl">Photo Gallery</h2>
         <p className="mx-auto mt-3 max-w-2xl text-slate-600 font-medium">
           Showcase all your event highlights in a continuous scrolling gallery.
         </p>
@@ -231,7 +231,7 @@ export default function App() {
   const y = useTransform(scrollYProgress, [0, 1], [0, -150]);
 
   return (
-    <div className="min-h-screen bg-[#FFF8F2] text-slate-900 selection:bg-pink-200 selection:text-pink-900 overflow-hidden font-sans">
+    <div className="min-h-screen bg-[#FFF8F2] text-slate-900 selection:bg-pink-200 selection:text-pink-900 overflow-hidden">
       <Navbar />
       
       {/* Hero Section */}
@@ -247,7 +247,7 @@ export default function App() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.8, type: "spring", bounce: 0.5 }}
           >
-            <h1 className="text-4xl sm:text-5xl md:text-[5.5rem] font-serif font-black leading-[1.1] md:leading-[1.05] mb-6 sm:mb-8 text-slate-900">
+            <h1 className="text-4xl sm:text-5xl md:text-[5.5rem] font-black leading-[1.1] md:leading-[1.05] mb-6 sm:mb-8 text-slate-900">
               Your One-Stop DIY Craft <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-500">Workshops</span>, Event & Supplies
             </h1>
@@ -289,7 +289,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <div className="max-w-xl">
-              <h2 className="text-3xl sm:text-5xl font-serif font-black mb-4 sm:mb-6 text-slate-900">Curated Experiences</h2>
+              <h2 className="text-3xl sm:text-5xl font-black mb-4 sm:mb-6 text-slate-900">Curated Experiences</h2>
               <p className="text-base sm:text-lg text-slate-600 font-medium">Select from our most popular corporate modules, completely customizable to match your brand's unique energy.</p>
             </div>
             <MotionLink
@@ -337,7 +337,7 @@ export default function App() {
               transition={{ duration: 0.8 }}
               className="space-y-10"
             >
-              <h2 className="text-3xl sm:text-5xl font-serif font-black leading-[1.1]">
+              <h2 className="text-3xl sm:text-5xl font-black leading-[1.1]">
                 Why Forward-Thinking <br /> Teams Choose <span className="text-violet-700">ArtisanFlow</span>
               </h2>
               <div className="space-y-8">
@@ -405,7 +405,7 @@ export default function App() {
           className="max-w-4xl mx-auto relative z-10"
         >
           <Sparkles className="mx-auto mb-6 text-yellow-300" size={48} />
-          <h2 className="text-3xl sm:text-5xl md:text-7xl font-serif font-black mb-6 sm:mb-8 leading-tight">
+          <h2 className="text-3xl sm:text-5xl md:text-7xl font-black mb-6 sm:mb-8 leading-tight">
             Ready to completely <br /> transform your culture?
           </h2>
           <p className="text-pink-100 mb-8 sm:mb-12 text-base sm:text-xl md:text-2xl font-medium max-w-2xl mx-auto">

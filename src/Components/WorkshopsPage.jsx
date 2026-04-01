@@ -69,7 +69,7 @@ export default function WorkshopsPage() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-8 flex items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-serif font-semibold sm:text-4xl">All Workshops</h1>
+            <h1 className="text-3xl font-semibold sm:text-4xl">All Workshops</h1>
             <p className="mt-2 text-slate-600">
               Explore our full catalogue of 10 team-building workshop experiences.
             </p>
