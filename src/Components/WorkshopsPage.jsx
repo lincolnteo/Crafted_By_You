@@ -2,64 +2,124 @@ import { Link } from 'react-router-dom'
 
 const workshops = [
   {
-    title: 'The Ceramic Reset',
-    tag: 'Pottery',
-    description: 'Hands-on wheel and hand-building session focused on mindfulness and flow.',
-    imageSrc: '',
+    title: 'Aromatherapy Spray Mist',
+    tag: 'Wellness',
+    description: 'Make calming spray mists with custom fragrance blends.',
+    imageSrc: '/assets/Website/workshops/Aromatheraphy Spray-Mist.jpeg',
   },
   {
-    title: 'Modern Macrame',
-    tag: 'Fiber Art',
-    description: 'Contemporary knotting techniques that blend design thinking with collaboration.',
-    imageSrc: '',
+    title: 'Floral Bath Salt',
+    tag: 'Wellness',
+    description: 'Create luxurious bath salts with floral accents.',
+    imageSrc: '/assets/Website/workshops/FloralBathSalt.png',
   },
   {
-    title: 'Abstract Expression',
-    tag: 'Painting',
-    description: 'Color-led painting workshop built to encourage creative confidence.',
-    imageSrc: '',
+    title: 'Cute Charm',
+    tag: 'Accessories',
+    description: 'Design playful charm pieces for bags and keys.',
+    imageSrc: '/assets/Website/workshops/CuteCharm.jpeg',
   },
   {
-    title: 'Leathercraft Essentials',
-    tag: 'Leather',
-    description: 'Design and make custom small leather goods with hand-finishing techniques.',
-    imageSrc: '',
-  },
-  {
-    title: 'Candle Lab',
-    tag: 'Fragrance',
-    description: 'Create signature candles and scent blends tailored to your team vibe.',
-    imageSrc: '',
-  },
-  {
-    title: 'Jesmonite Studio',
-    tag: 'Casting',
-    description: 'Mix, pour, and finish modern decor pieces using eco-friendly materials.',
-    imageSrc: '',
-  },
-  {
-    title: 'Terrarium Build Bar',
-    tag: 'Nature Craft',
-    description: 'Build desk-friendly terrariums while exploring visual balance and composition.',
-    imageSrc: '',
-  },
-  {
-    title: 'Tufting for Teams',
-    tag: 'Textile',
-    description: 'Collaborative rug-making experience that turns team ideas into tactile art.',
-    imageSrc: '',
-  },
-  {
-    title: 'Linocut Print Jam',
-    tag: 'Printmaking',
-    description: 'Carve and print custom artwork that can become company keepsakes.',
-    imageSrc: '',
-  },
-  {
-    title: 'Kintsugi Mindset',
+    title: 'Clay Diffuser',
     tag: 'Ceramics',
-    description: 'Repair broken ceramics with gold accents as a lesson in resilience and growth.',
-    imageSrc: '',
+    description: 'Hand-build elegant diffuser forms with clay.',
+    imageSrc: '/assets/Website/workshops/Clay Diffuser.jpg.jpeg',
+  },
+  {
+    title: 'Fluid Bear',
+    tag: 'Art',
+    description: 'Pour vibrant colors to create a fluid bear piece.',
+    imageSrc: '/assets/Website/workshops/fluid_bear.jpg',
+  },
+  {
+    title: 'Herbal Flower Pouch',
+    tag: 'Fragrance',
+    description: 'Craft scented pouches using herbs and florals.',
+    imageSrc: '/assets/Website/workshops/Herbal_Flower_Fragrance_Pouch.jpeg',
+  },
+  {
+    title: 'Lotion Lab',
+    tag: 'Self Care',
+    description: 'Blend nourishing lotions in small batches.',
+    imageSrc: '/assets/Website/workshops/lotion.jpg',
+  },
+  {
+    title: 'Acrylic Pour Painting',
+    tag: 'Painting',
+    description: 'Explore color flow with abstract pour techniques.',
+    imageSrc: '/assets/Website/workshops/acrylic_pour_painting.jpg',
+  },
+  {
+    title: 'Terrarium Build',
+    tag: 'Nature Craft',
+    description: 'Layer soil, stones, and plants into a mini ecosystem.',
+    imageSrc: '/assets/Website/workshops/1terrarium.png',
+  },
+  {
+    title: 'Mosaic Vase',
+    tag: 'Mosaic',
+    description: 'Assemble colorful mosaic patterns on vase forms.',
+    imageSrc: '/assets/Website/workshops/1Mosaic Vase.jpg',
+  },
+  {
+    title: 'Postcard Studio',
+    tag: 'Paper Craft',
+    description: 'Create custom postcards with illustrated details.',
+    imageSrc: '/assets/Website/workshops/postcard.jpeg',
+  },
+  {
+    title: 'Perfume Bar',
+    tag: 'Fragrance',
+    description: 'Mix signature perfumes with top, heart, and base notes.',
+    imageSrc: '/assets/Website/workshops/perfume.jpeg',
+  },
+  {
+    title: 'Neon Sign Art',
+    tag: 'Decor',
+    description: 'Design glowing sign concepts with modern style.',
+    imageSrc: '/assets/Website/workshops/neon_sign.jpg',
+  },
+  {
+    title: 'Mosaic Vase 2',
+    tag: 'Mosaic',
+    description: 'A second mosaic finish with a different surface style.',
+    imageSrc: '/assets/Website/workshops/mosaic_vase.png',
+  },
+  {
+    title: 'Mosaic Arts',
+    tag: 'Mosaic',
+    description: 'Colorful mosaic artwork assembled by hand.',
+    imageSrc: '/assets/Website/workshops/mosaic_arts.jpg',
+  },
+  {
+    title: 'Spa Body Scrub',
+    tag: 'Wellness',
+    description: 'Create a floral body scrub with natural ingredients.',
+    imageSrc: '/assets/Website/workshops/Spa_floral_Body_Scrub.jpeg',
+  },
+  {
+    title: 'Scented Candle',
+    tag: 'Fragrance',
+    description: 'Pour custom candles with clean, warm scents.',
+    imageSrc: '/assets/Website/workshops/Scented_Candle.png',
+  },
+  {
+    title: 'Sand Painting Candle',
+    tag: 'Art',
+    description: 'Blend sand layers and candle making in one workshop.',
+    imageSrc: '/assets/Website/workshops/Sand_Painting_Scented_Candle.jpg',
+  },
+  {
+    title: 'Terrarium 2',
+    tag: 'Nature Craft',
+    description: 'A second terrarium style for greener display options.',
+    imageSrc: '/assets/Website/workshops/terrarium.png',
+  },
+  {
+    title: 'Tufting',
+    tag: 'Textile',
+    description: 'Create tactile textile pieces with tufting tools.',
+    imageSrc: '/assets/Website/workshops/tufting.jpg',
   },
 ]
 
@@ -71,7 +131,7 @@ export default function WorkshopsPage() {
           <div>
             <h1 className="text-3xl font-semibold sm:text-4xl">All Workshops</h1>
             <p className="mt-2 text-slate-600">
-              Explore our full catalogue of 10 team-building workshop experiences.
+              Explore our full catalogue of workshop experiences.
             </p>
           </div>
           <Link
@@ -88,17 +148,11 @@ export default function WorkshopsPage() {
               key={workshop.title}
               className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
             >
-              {workshop.imageSrc ? (
-                <img
-                  src={workshop.imageSrc}
-                  alt={workshop.title}
-                  className="mb-4 h-44 w-full rounded-2xl object-cover"
-                />
-              ) : (
-                <div className="mb-4 flex h-44 w-full items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-100 text-sm font-semibold text-slate-500">
-                  Add workshop image here
-                </div>
-              )}
+              <img
+                src={workshop.imageSrc}
+                alt={workshop.title}
+                className="mb-4 h-44 w-full rounded-2xl object-cover"
+              />
               <span className="mb-4 inline-block rounded-full bg-orange-50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-orange-600">
                 {workshop.tag}
               </span>
