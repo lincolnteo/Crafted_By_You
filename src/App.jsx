@@ -1,160 +1,202 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { ArrowRight, CheckCircle2, Users } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
-function App() {
-  const [count, setCount] = useState(0)
+const MotionDiv = motion.div
+
+const Navbar = () => (
+  <nav className="fixed top-0 z-50 w-full border-b border-slate-100 bg-white/80 backdrop-blur-md">
+    <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+      <div className="text-2xl font-bold font-serif text-slate-900">
+        Artisan<span className="text-orange-600">Flow</span>
+      </div>
+      <div className="hidden gap-8 text-sm font-medium text-slate-600 md:flex">
+        <a href="#workshops" className="transition-colors hover:text-orange-600">
+          Workshops
+        </a>
+        <a href="#benefits" className="transition-colors hover:text-orange-600">
+          Corporate Benefits
+        </a>
+        <a href="#testimonials" className="transition-colors hover:text-orange-600">
+          Success Stories
+        </a>
+      </div>
+      <Link
+        to="/quote"
+        className="rounded-full bg-slate-900 px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-orange-600"
+      >
+        Get a Quote
+      </Link>
+    </div>
+  </nav>
+)
+
+const FloatingDecoration = ({ className, delay = 0 }) => (
+  <MotionDiv
+    animate={{
+      y: [0, -20, 0],
+      rotate: [0, 10, 0],
+      scale: [1, 1.1, 1],
+    }}
+    transition={{ duration: 6, repeat: Infinity, delay, ease: 'easeInOut' }}
+    className={`absolute rounded-full opacity-20 blur-3xl ${className}`}
+  />
+)
+
+const WorkshopCard = ({ title, tag, delay }) => (
+  <MotionDiv
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6, delay }}
+    whileHover={{ y: -10 }}
+    className="group relative aspect-[4/5] cursor-pointer overflow-hidden rounded-3xl bg-slate-100"
+  >
+    <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+    <div className="absolute left-6 top-6 z-20">
+      <span className="rounded-full border border-white/30 bg-white/20 px-3 py-1 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-md">
+        {tag}
+      </span>
+    </div>
+    <div className="absolute bottom-8 left-8 z-20">
+      <h3 className="mb-2 text-2xl font-bold text-white">{title}</h3>
+      <div className="flex items-center text-orange-400 transition-all group-hover:gap-3">
+        <span className="text-sm font-semibold text-white/90">View Details</span>
+        <ArrowRight size={18} className="ml-2" />
+      </div>
+    </div>
+    <div className="h-full w-full bg-slate-300 transition-transform duration-700 group-hover:scale-110" />
+  </MotionDiv>
+)
+
+export default function App() {
+  const { scrollYProgress } = useScroll()
+  const y = useTransform(scrollYProgress, [0, 1], [0, -100])
 
   return (
-    <div className="mx-auto flex min-h-screen w-full max-w-[1126px] flex-col border-x border-gray-200 text-center text-gray-700">
-      <section className="flex grow flex-col place-items-center place-content-center gap-[25px] px-5 py-8 lg:gap-[18px] lg:px-5 lg:py-6">
-        <div className="relative">
-          <img src={heroImg} className="relative z-0 w-[170px]" width="170" height="179" alt="" />
-          <img
-            src={reactLogo}
-            className="absolute left-0 right-0 top-[34px] z-10 mx-auto h-7 [transform:perspective(2000px)_rotateZ(300deg)_rotateX(44deg)_rotateY(39deg)_scale(1.4)]"
-            alt="React logo"
-          />
-          <img
-            src={viteLogo}
-            className="absolute left-0 right-0 top-[107px] z-0 mx-auto h-[26px] w-auto [transform:perspective(2000px)_rotateZ(300deg)_rotateX(40deg)_rotateY(39deg)_scale(0.8)]"
-            alt="Vite logo"
-          />
+    <div className="min-h-screen overflow-hidden bg-white text-slate-900 selection:bg-orange-100 selection:text-orange-600">
+      <Navbar />
+
+      <section className="relative px-6 pb-20 pt-32">
+        <FloatingDecoration className="-left-20 -top-20 h-96 w-96 bg-orange-400" />
+        <FloatingDecoration className="-right-20 bottom-0 h-80 w-80 bg-blue-400" delay={2} />
+
+        <div className="relative z-10 mx-auto max-w-7xl text-center">
+          <MotionDiv
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            style={{ y }}
+          >
+            <span className="mb-6 inline-block rounded-full bg-orange-50 px-4 py-1.5 text-sm font-bold tracking-wider text-orange-600">
+              TRUSTED BY TOP-TIER HR TEAMS
+            </span>
+            <h1 className="mb-8 text-6xl font-medium font-serif leading-[1.1] md:text-8xl">
+              Foster Unity Through <br />
+              <span className="italic text-slate-400">Tactile Creativity.</span>
+            </h1>
+            <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-slate-600">
+              We transform corporate office spaces into artisanal studios. High-impact
+              workshops designed to lower stress, spark innovation, and build team bonds.
+            </p>
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <button className="w-full rounded-full bg-slate-900 px-10 py-4 text-lg font-bold text-white transition-all hover:bg-orange-600 hover:shadow-2xl hover:shadow-orange-200 sm:w-auto">
+                Plan Your Event
+              </button>
+              <button className="w-full rounded-full border border-slate-200 px-10 py-4 text-lg font-bold transition-all hover:bg-slate-50 sm:w-auto">
+                Download PDF Deck
+              </button>
+            </div>
+          </MotionDiv>
         </div>
-        <div>
-          <h1 className="mb-4 text-4xl font-medium tracking-tight text-gray-900 lg:text-6xl">
-            Get started
-          </h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
+      </section>
+
+      <section id="workshops" className="bg-slate-50 px-6 py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-16 flex flex-col items-end justify-between gap-6 md:flex-row">
+            <div className="max-w-xl">
+              <h2 className="mb-4 text-4xl font-medium font-serif text-slate-900">Curated Experiences</h2>
+              <p className="text-slate-600">
+                Select from our most popular corporate modules, each fully customizable to your brand colors and values.
+              </p>
+            </div>
+            <div className="flex cursor-pointer items-center gap-2 text-sm font-bold text-orange-600">
+              VIEW ALL WORKSHOPS <ArrowRight size={16} />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            <WorkshopCard title="The Ceramic Reset" tag="Pottery" delay={0.1} />
+            <WorkshopCard title="Modern Macrame" tag="Fiber Art" delay={0.2} />
+            <WorkshopCard title="Abstract Expression" tag="Painting" delay={0.3} />
+          </div>
         </div>
-        <button
-          className="mb-6 rounded-md border-2 border-transparent bg-indigo-100 px-2.5 py-1.5 text-base text-indigo-700 transition-colors hover:border-indigo-300 focus-visible:outline-2 focus-visible:outline-indigo-600 focus-visible:outline-offset-2"
-          onClick={() => setCount((count) => count + 1)}
+      </section>
+
+      <section id="benefits" className="px-6 py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 items-center gap-20 lg:grid-cols-2">
+            <MotionDiv
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <h2 className="text-4xl font-medium font-serif leading-tight">
+                Why Industry Leaders <br /> Choose ArtisanFlow
+              </h2>
+              <div className="space-y-6">
+                {[
+                  { title: 'Stress Reduction', desc: 'Proven sensory activities that lower cortisol levels.' },
+                  { title: 'Communication', desc: 'Non-verbal collaboration that breaks down office silos.' },
+                  { title: 'Tangible Results', desc: 'Everyone leaves with a high-quality piece of art.' },
+                ].map((item) => (
+                  <div key={item.title} className="flex gap-4">
+                    <div className="mt-1 h-fit rounded-lg bg-orange-100 p-2 text-orange-600">
+                      <CheckCircle2 size={20} />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold">{item.title}</h4>
+                      <p className="text-slate-600">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </MotionDiv>
+
+            <MotionDiv
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="relative aspect-square overflow-hidden rounded-[4rem] bg-slate-100 shadow-2xl"
+            >
+              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-orange-100 to-slate-200">
+                <Users size={120} className="text-white opacity-40" />
+              </div>
+            </MotionDiv>
+          </div>
+        </div>
+      </section>
+
+      <footer id="testimonials" className="bg-slate-900 px-6 py-20 text-center text-white">
+        <MotionDiv
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mx-auto max-w-3xl"
         >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="relative w-full">
-        <span className="absolute -top-[4.5px] left-0 h-0 w-0 border-[5px] border-transparent border-l-gray-200"></span>
-        <span className="absolute -top-[4.5px] right-0 h-0 w-0 border-[5px] border-transparent border-r-gray-200"></span>
-      </div>
-
-      <section className="flex flex-col border-t border-gray-200 text-center lg:flex-row lg:text-left">
-        <div className="flex-1 border-b border-gray-200 px-5 py-6 lg:border-r lg:border-b-0 lg:px-8 lg:py-8">
-          <svg className="mb-4 h-[22px] w-[22px] lg:mx-0 mx-auto" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2 className="mb-2 text-xl font-medium tracking-tight text-gray-900 lg:text-2xl">Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul className="mt-5 flex list-none flex-wrap justify-center gap-2 p-0 lg:mt-8 lg:justify-start">
-            <li>
-              <a
-                href="https://vite.dev/"
-                target="_blank"
-                className="flex items-center justify-center gap-2 rounded-md bg-gray-100 px-3 py-1.5 text-base text-gray-900 no-underline transition-shadow hover:shadow"
-              >
-                <img className="h-[18px]" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://react.dev/"
-                target="_blank"
-                className="flex items-center justify-center gap-2 rounded-md bg-gray-100 px-3 py-1.5 text-base text-gray-900 no-underline transition-shadow hover:shadow"
-              >
-                <img className="h-[18px] w-[18px]" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className="flex-1 px-5 py-6 lg:px-8 lg:py-8">
-          <svg className="mb-4 h-[22px] w-[22px] lg:mx-0 mx-auto" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2 className="mb-2 text-xl font-medium tracking-tight text-gray-900 lg:text-2xl">Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul className="mt-5 flex list-none flex-wrap justify-center gap-2 p-0 lg:mt-8 lg:justify-start">
-            <li>
-              <a
-                href="https://github.com/vitejs/vite"
-                target="_blank"
-                className="flex items-center justify-center gap-2 rounded-md bg-gray-100 px-3 py-1.5 text-base text-gray-900 no-underline transition-shadow hover:shadow"
-              >
-                <svg
-                  className="h-[18px] w-[18px]"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://chat.vite.dev/"
-                target="_blank"
-                className="flex items-center justify-center gap-2 rounded-md bg-gray-100 px-3 py-1.5 text-base text-gray-900 no-underline transition-shadow hover:shadow"
-              >
-                <svg
-                  className="h-[18px] w-[18px]"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://x.com/vite_js"
-                target="_blank"
-                className="flex items-center justify-center gap-2 rounded-md bg-gray-100 px-3 py-1.5 text-base text-gray-900 no-underline transition-shadow hover:shadow"
-              >
-                <svg
-                  className="h-[18px] w-[18px]"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://bsky.app/profile/vite.dev"
-                target="_blank"
-                className="flex items-center justify-center gap-2 rounded-md bg-gray-100 px-3 py-1.5 text-base text-gray-900 no-underline transition-shadow hover:shadow"
-              >
-                <svg
-                  className="h-[18px] w-[18px]"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="relative w-full">
-        <span className="absolute -top-[4.5px] left-0 h-0 w-0 border-[5px] border-transparent border-l-gray-200"></span>
-        <span className="absolute -top-[4.5px] right-0 h-0 w-0 border-[5px] border-transparent border-r-gray-200"></span>
-      </div>
-      <section className="h-12 border-t border-gray-200 lg:h-[88px]"></section>
+          <h2 className="mb-8 text-4xl font-serif md:text-5xl">Ready to transform your culture?</h2>
+          <p className="mb-10 text-lg text-slate-400">
+            Join 200+ companies that use our workshops to retain top talent.
+          </p>
+          <Link
+            to="/quote"
+            className="inline-block rounded-full bg-orange-600 px-12 py-4 text-xl font-bold text-white transition-all hover:bg-orange-500"
+          >
+            Get a Custom Quote
+          </Link>
+        </MotionDiv>
+      </footer>
     </div>
   )
 }
-
-export default App
