@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Users, ArrowRight, CheckCircle2, Sparkles, Paintbrush, Phone, MapPin } from 'lucide-react';
 import { FaInstagram, FaWhatsapp, FaLinkedinIn, FaFacebookF } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
+import { workshops } from './data/workshops';
 
 const MotionLink = motion(Link);
 
@@ -52,7 +53,9 @@ const FloatingBlob = ({ className, delay = 0, duration = 7 }) => (
 );
 
 const WorkshopCard = ({ title, tag, delay, gradient, imageSrc }) => (
-    <motion.div
+    <MotionLink
+        to="/workshops"
+        aria-label={`View ${title} workshop details`}
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
@@ -68,17 +71,17 @@ const WorkshopCard = ({ title, tag, delay, gradient, imageSrc }) => (
         </div>
         <div className="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 z-20 pr-4 sm:pr-6">
             <h3 className="text-2xl sm:text-3xl font-black text-white mb-3 leading-tight">{title}</h3>
-            <Link to="/workshops" className="flex items-center text-pink-300 group-hover:text-white group-hover:gap-3 transition-all duration-300 font-bold">
+            <div className="flex items-center text-pink-300 group-hover:text-white group-hover:gap-3 transition-all duration-300 font-bold">
                 <span>View Details</span>
                 <ArrowRight size={20} className="ml-2" />
-            </Link>
+            </div>
         </div>
         {imageSrc ? (
             <img src={imageSrc} alt={title} className="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700" />
         ) : (
             <div className={`w-full h-full bg-gradient-to-br ${gradient} group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700`} />
         )}
-    </motion.div>
+    </MotionLink>
 );
 
 const heroBackgrounds = [
@@ -138,49 +141,11 @@ const partnerAssets = [
     },
 ];
 
-const workshopSpotlightImages = [
-    '/assets/Website/workshops/Aromatheraphy Spray-Mist.jpeg',
-    '/assets/Website/workshops/FloralBathSalt.png',
-    '/assets/Website/workshops/Scented_Candle.png',
-];
-
-const workshopMarqueeItems = [
-    'Aromatherapy Spray Mist',
-    'Floral Bath Salt',
-    'Cute Charm',
-    'Clay Diffuser',
-    'Fluid Bear',
-    'Herbal Flower Pouch',
-    'Acrylic Pour Painting',
-    'Terrarium Build',
-    'Mosaic Vase',
-    'Perfume Bar',
-    'Neon Sign Art',
-    'Tufting',
-];
-
-const allWorkshopImages = [
-    { title: 'Aromatherapy Spray Mist', tag: 'Wellness', imageSrc: '/assets/Website/workshops/Aromatheraphy Spray-Mist.jpeg' },
-    { title: 'Bath Salt', tag: 'Wellness', imageSrc: '/assets/Website/workshops/FloralBathSalt.png' },
-    { title: 'Cute Charm', tag: 'Accessories', imageSrc: '/assets/Website/workshops/CuteCharm.jpeg' },
-    { title: 'Clay Diffuser', tag: 'Ceramics', imageSrc: '/assets/Website/workshops/Clay Diffuser.jpg.jpeg' },
-    { title: 'Fluid Bear', tag: 'Art', imageSrc: '/assets/Website/workshops/fluid_bear.jpg' },
-    { title: 'Herbal Pouch', tag: 'Fragrance', imageSrc: '/assets/Website/workshops/Herbal_Flower_Fragrance_Pouch.jpeg' },
-    { title: 'Lotion', tag: 'Self Care', imageSrc: '/assets/Website/workshops/lotion.jpg' },
-    { title: 'Acrylic Pour Painting', tag: 'Painting', imageSrc: '/assets/Website/workshops/acrylic_pour_painting.jpg' },
-    { title: 'Terrarium', tag: 'Nature Craft', imageSrc: '/assets/Website/workshops/1terrarium.png' },
-    { title: 'Mosaic Vase', tag: 'Mosaic', imageSrc: '/assets/Website/workshops/1Mosaic Vase.jpg' },
-    { title: 'Postcard', tag: 'Paper Craft', imageSrc: '/assets/Website/workshops/postcard.jpeg' },
-    { title: 'Perfume', tag: 'Fragrance', imageSrc: '/assets/Website/workshops/perfume.jpeg' },
-    { title: 'Neon Sign', tag: 'Decor', imageSrc: '/assets/Website/workshops/neon_sign.jpg' },
-    { title: 'Mosaic Vase 2', tag: 'Mosaic', imageSrc: '/assets/Website/workshops/mosaic_vase.png' },
-    { title: 'Mosaic Arts', tag: 'Mosaic', imageSrc: '/assets/Website/workshops/mosaic_arts.jpg' },
-    { title: 'Body Scrub', tag: 'Wellness', imageSrc: '/assets/Website/workshops/Spa_floral_Body_Scrub.jpeg' },
-    { title: 'Scented Candle', tag: 'Fragrance', imageSrc: '/assets/Website/workshops/Scented_Candle.png' },
-    { title: 'Sand Painting Candle', tag: 'Art', imageSrc: '/assets/Website/workshops/Sand_Painting_Scented_Candle.jpg' },
-    { title: 'Terrarium 2', tag: 'Nature Craft', imageSrc: '/assets/Website/workshops/terrarium.png' },
-    { title: 'Tufting', tag: 'Textile', imageSrc: '/assets/Website/workshops/tufting.jpg' },
-];
+const getRandomWorkshopSpotlights = (workshops, count = 3) => {
+    if (!Array.isArray(workshops) || workshops.length === 0) return [];
+    const shuffled = [...workshops].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, Math.min(count, shuffled.length));
+};
 
 const WorkshopsMarquee = () => (
     <section className="bg-violet-900 py-5 sm:py-8 overflow-hidden border-y-4 border-pink-500">
@@ -190,7 +155,7 @@ const WorkshopsMarquee = () => (
                 transition={{ duration: 55, repeat: Infinity, ease: 'linear' }}
                 className="flex items-center whitespace-nowrap"
             >
-                {[...allWorkshopImages, ...allWorkshopImages].map((workshop, index) => (
+                {[...workshops, ...workshops].map((workshop, index) => (
                     <div key={`${workshop.title}-${index}`} className="mx-5 sm:mx-10 flex items-center gap-3 sm:gap-4">
                         <span className="text-sm sm:text-lg font-black uppercase tracking-wider text-violet-200/90">
                             {workshop.title}
@@ -327,6 +292,15 @@ const GallerySection = () => (
 export default function App() {
     const { scrollYProgress } = useScroll();
     const y = useTransform(scrollYProgress, [0, 1], [0, -150]);
+    const [spotlightWorkshops, setSpotlightWorkshops] = useState(() => getRandomWorkshopSpotlights(workshops, 3));
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setSpotlightWorkshops(getRandomWorkshopSpotlights(workshops, 3));
+        }, 6000);
+
+        return () => clearInterval(intervalId);
+    }, []);
 
     return (
         <div className="min-h-screen bg-[#FFF8F2] text-slate-900 selection:bg-pink-200 selection:text-pink-900 overflow-hidden">
@@ -404,24 +378,15 @@ export default function App() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <WorkshopCard
-                            title="The Ceramic Reset"
-                            tag="Pottery"
-                            delay={0.1}
-                            imageSrc={workshopSpotlightImages[0]}
-                        />
-                        <WorkshopCard
-                            title="Modern Macramé"
-                            tag="Fiber Art"
-                            delay={0.2}
-                            imageSrc={workshopSpotlightImages[1]}
-                        />
-                        <WorkshopCard
-                            title="Abstract Expression"
-                            tag="Painting"
-                            delay={0.3}
-                            imageSrc={workshopSpotlightImages[2]}
-                        />
+                        {spotlightWorkshops.map((workshop, index) => (
+                            <WorkshopCard
+                                key={`${workshop.title}-${index}`}
+                                title={workshop.title}
+                                tag={workshop.tag}
+                                delay={0.1 + index * 0.1}
+                                imageSrc={workshop.imageSrc}
+                            />
+                        ))}
                     </div>
                 </div>
             </section>
