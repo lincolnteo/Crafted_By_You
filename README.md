@@ -1,24 +1,16 @@
-🌿 Crafted By You — Landing Page
-This repository contains the source code for the Crafted By You official website. The project is designed to showcase DIY craft workshops, corporate team-building services, and event activation portfolios.
+# React + Vite
 
-✨ Features
-Modern & Playful UI: A "cartoony" and friendly design aesthetic using Google Fonts (Fredoka, Baloo 2, and Bubblegum Sans).
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Fully Responsive: Optimized for desktop, tablet, and mobile devices with custom media queries.
+Currently, two official plugins are available:
 
-Workshop Catalog: A grid-based display of various craft offerings, from Mosaic Arts to Terrariums.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-Interactive Elements: * Click-to-copy phone number functionality.
+## React Compiler
 
-Embedded JotForm for seamless quotation requests.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-Hover effects on gallery items and client logos.
+## Expanding the ESLint configuration
 
-Social Integration: Direct links to Instagram, WhatsApp, LinkedIn, and Facebook.
-
-🛠️ Tech Stack
-HTML5: Semantic structure for SEO and accessibility.
-
-CSS3: Custom layouts using Flexbox and CSS Grid.
-
-JavaScript: Vanilla JS for form handling and clipboard interactions.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
