@@ -1,8 +1,28 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 
-const JOTFORM_EMBED_URL = 'https://form.jotform.com/your-form-id'
+const JOTFORM_EMBED_URL = 'https://form.jotform.com/jsform/260182283680053'
 
 export default function QuotePage() {
+  const embedContainerRef = useRef(null)
+
+  useEffect(() => {
+    const container = embedContainerRef.current
+    if (!container) return
+
+    container.innerHTML = ''
+
+    const script = document.createElement('script')
+    script.type = 'text/javascript'
+    script.src = JOTFORM_EMBED_URL
+    script.async = true
+    container.appendChild(script)
+
+    return () => {
+      container.innerHTML = ''
+    }
+  }, [])
+
   return (
     <div className="min-h-screen bg-slate-50 px-4 py-10 text-slate-900 sm:px-6">
       <div className="mx-auto max-w-5xl">
@@ -19,13 +39,11 @@ export default function QuotePage() {
           </Link>
         </div>
 
-        <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-          <iframe
-            title="Crafted By You Quote Form"
-            src={JOTFORM_EMBED_URL}
-            className="h-[80vh] w-full"
-            frameBorder="0"
-            allow="geolocation; microphone; camera; fullscreen"
+        <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white p-2 shadow-sm sm:p-4">
+          <div
+            ref={embedContainerRef}
+            className="min-h-[80vh] w-full"
+            aria-label="Crafted By You Quote Form"
           />
         </div>
       </div>
