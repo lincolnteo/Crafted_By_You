@@ -112,4 +112,10 @@ export const workshops = [
       'Discover the joy of the latest trending pastime: crafting your own rug. We provide the tools and expert guidance to help you use a tufting gun and create a unique rug. Join us on this delightful rug-making journey!',
     imageSrc: '/assets/Website/workshops/tufting.jpg',
   },
+  {
+    title: 'None of the above contact us',
+    tag: 'Custom Request',
+    description:
+      'Looking for something different? Contact us and we can tailor a workshop experience to match your event goals.',
+  },
 ]

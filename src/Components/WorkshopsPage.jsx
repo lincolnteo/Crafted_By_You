@@ -18,6 +18,9 @@ export default function WorkshopsPage() {
             <p className="mt-2 text-slate-600">
               Explore our full catalogue of workshop experiences.
             </p>
+            <p className="mt-2 text-sm font-semibold text-red-600">
+              Images are for illustrative purposes only.
+            </p>
           </div>
           <Link
             to="/"
@@ -34,11 +37,13 @@ export default function WorkshopsPage() {
               key={workshop.title}
               className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
             >
-              <img
-                src={workshop.imageSrc}
-                alt={workshop.title}
-                className="mb-4 h-44 w-full rounded-2xl bg-slate-100 p-2 object-contain"
-              />
+              {workshop.imageSrc && (
+                <img
+                  src={workshop.imageSrc}
+                  alt={workshop.title}
+                  className="mb-4 h-44 w-full rounded-2xl bg-slate-100 p-2 object-contain"
+                />
+              )}
               <span className="mb-4 inline-block rounded-full bg-orange-50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-orange-600">
                 {workshop.tag}
               </span>
