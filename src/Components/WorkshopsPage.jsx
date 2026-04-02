@@ -1,5 +1,12 @@
 import { Link } from 'react-router-dom'
 import { workshops } from '../data/workshops'
+import { prewarmJotform } from '../utils/jotform'
+
+const quoteLinkWarmupHandlers = {
+  onMouseEnter: prewarmJotform,
+  onFocus: prewarmJotform,
+  onTouchStart: prewarmJotform,
+}
 
 export default function WorkshopsPage() {
   return (
@@ -39,6 +46,7 @@ export default function WorkshopsPage() {
               <p className="mb-5 text-slate-600">{workshop.description}</p>
               <Link
                 to="/quote"
+                {...quoteLinkWarmupHandlers}
                 className="inline-flex items-center justify-center rounded-full bg-slate-900 px-5 py-2 text-sm font-bold text-white transition-colors hover:bg-orange-600"
               >
                 Get a Quote

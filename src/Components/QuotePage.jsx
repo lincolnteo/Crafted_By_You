@@ -1,27 +1,13 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-
-const JOTFORM_EMBED_URL = 'https://form.jotform.com/jsform/260182283680053'
+import { JOTFORM_FORM_URL, prewarmJotform } from '../utils/jotform'
 
 export default function QuotePage() {
-  const embedContainerRef = useRef(null)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Load Jotform script on mount and fully clean it up on unmount.
-    const container = embedContainerRef.current
-    if (!container) return
-
-    container.innerHTML = ''
-
-    const script = document.createElement('script')
-    script.type = 'text/javascript'
-    script.src = JOTFORM_EMBED_URL
-    script.async = true
-    container.appendChild(script)
-
-    return () => {
-      container.innerHTML = ''
-    }
+    // Warm up Jotform host before iframe navigation starts.
+    prewarmJotform()
   }, [])
 
   return (
@@ -40,11 +26,23 @@ export default function QuotePage() {
           </Link>
         </div>
 
-        <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white p-2 shadow-sm sm:p-4">
-          <div
-            ref={embedContainerRef}
+        <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-2 shadow-sm sm:p-4">
+          {isLoading && (
+            <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/80 backdrop-blur-[1px]">
+              <div className="flex flex-col items-center gap-3 text-slate-600">
+                <span className="h-10 w-10 animate-spin rounded-full border-4 border-slate-200 border-t-orange-500" aria-hidden="true" />
+                <p className="text-sm font-semibold">Loading form...</p>
+              </div>
+            </div>
+          )}
+          <iframe
+            title="Crafted By You Quote Form"
+            src={JOTFORM_FORM_URL}
             className="min-h-[80vh] w-full"
-            aria-label="Crafted By You Quote Form"
+            loading="eager"
+            fetchPriority="high"
+            onLoad={() => setIsLoading(false)}
+            onError={() => setIsLoading(false)}
           />
         </div>
       </div>

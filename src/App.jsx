@@ -4,8 +4,15 @@ import { ArrowRight, CheckCircle2, Sparkles, Paintbrush, Phone, MapPin } from 'l
 import { FaInstagram, FaWhatsapp, FaLinkedinIn, FaFacebookF } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import { workshops } from './data/workshops';
+import { prewarmJotform } from './utils/jotform';
 
 const MotionLink = motion(Link);
+
+const quoteLinkWarmupHandlers = {
+    onMouseEnter: prewarmJotform,
+    onFocus: prewarmJotform,
+    onTouchStart: prewarmJotform,
+};
 
 const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
@@ -25,14 +32,14 @@ const Navbar = () => (
                     alt="Crafted By You logo"
                     className="h-10 w-10 sm:h-14 sm:w-14 rounded-full object-contain"
                 />
-                Crafted By <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-500">You</span>
+                Crafted By <span className="text-transparent bg-clip-text bg-linear-to-r from-pink-500 to-orange-500">You</span>
             </div>
             <div className="hidden md:flex gap-8 text-sm font-bold text-slate-600">
                 <button type="button" onClick={() => scrollToSection('workshops')} className="hover:text-pink-500 transition-colors">Workshops</button>
                 <button type="button" onClick={() => scrollToSection('gallery')} className="hover:text-pink-500 transition-colors">Gallery</button>
                 <button type="button" onClick={() => scrollToSection('testimonials')} className="hover:text-orange-500 transition-colors">Find Us!</button>
             </div>
-            <Link to="/quote" className="bg-gradient-to-r from-pink-500 to-orange-500 text-white px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold hover:shadow-lg hover:shadow-pink-500/30 hover:scale-105 transition-all duration-300">
+            <Link to="/quote" {...quoteLinkWarmupHandlers} className="bg-linear-to-r from-pink-500 to-orange-500 text-white px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold hover:shadow-lg hover:shadow-pink-500/30 hover:scale-105 transition-all duration-300">
                 Get a Quote
             </Link>
         </div>
@@ -61,9 +68,9 @@ const WorkshopCard = ({ title, tag, delay, gradient, imageSrc }) => (
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.6, delay, type: "spring", bounce: 0.4 }}
         whileHover={{ y: -15, scale: 1.03, rotate: 2 }}
-        className="group relative overflow-hidden rounded-[2.5rem] bg-slate-100 aspect-[4/5] cursor-pointer shadow-xl shadow-slate-200/50"
+        className="group relative overflow-hidden rounded-[2.5rem] bg-slate-100 aspect-4/5 cursor-pointer shadow-xl shadow-slate-200/50"
     >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent z-10" />
         <div className="absolute top-6 left-6 z-20">
             <span className="px-4 py-1.5 bg-white/20 backdrop-blur-md text-white text-xs font-black uppercase tracking-widest rounded-full border border-white/40 shadow-sm">
                 {tag}
@@ -79,7 +86,7 @@ const WorkshopCard = ({ title, tag, delay, gradient, imageSrc }) => (
         {imageSrc ? (
             <img src={imageSrc} alt={title} className="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700" />
         ) : (
-            <div className={`w-full h-full bg-gradient-to-br ${gradient} group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700`} />
+            <div className={`w-full h-full bg-linear-to-br ${gradient} group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700`} />
         )}
     </MotionLink>
 );
@@ -198,14 +205,14 @@ const ClientsSection = () => (
 );
 
 const AssetsSection = () => (
-    <section className="bg-gradient-to-b from-rose-50 via-white to-orange-50 px-4 sm:px-6 py-16 sm:py-24 border-y border-rose-100">
+    <section className="bg-linear-to-b from-rose-50 via-white to-orange-50 px-4 sm:px-6 py-16 sm:py-24 border-y border-rose-100">
         <div className="mx-auto max-w-7xl">
             <div className="mb-12 text-center">
                 <p className="mx-auto inline-flex items-center rounded-full border border-rose-200 bg-white/80 px-4 py-1 text-xs font-black uppercase tracking-widest text-rose-500">
                     Our Collaborators
                 </p>
                 <h2 className="mt-4 text-3xl sm:text-4xl font-black text-slate-900 md:text-5xl">
-                    Creative <span className="bg-gradient-to-r from-pink-500 to-orange-500 bg-clip-text text-transparent">Partners</span>
+                    Creative <span className="bg-linear-to-r from-pink-500 to-orange-500 bg-clip-text text-transparent">Partners</span>
                 </h2>
                 <p className="mx-auto mt-4 max-w-3xl text-slate-600 font-medium">
                     At Crafted By You, we collaborate with experienced workshop facilitators to offer a wider range
@@ -221,7 +228,7 @@ const AssetsSection = () => (
                         key={asset.title}
                         className="overflow-hidden rounded-2xl border border-rose-100 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                     >
-                        <div className={`mb-4 h-1 w-full rounded-full ${index % 2 === 0 ? 'bg-gradient-to-r from-pink-400 to-rose-400' : 'bg-gradient-to-r from-orange-400 to-amber-400'}`} />
+                        <div className={`mb-4 h-1 w-full rounded-full ${index % 2 === 0 ? 'bg-linear-to-r from-pink-400 to-rose-400' : 'bg-linear-to-r from-orange-400 to-amber-400'}`} />
                         <img src={asset.imageSrc} alt={asset.title} className="h-24 w-full object-contain" />
                         <figcaption className="mt-3 text-center text-xs font-black uppercase tracking-wider text-slate-600">
                             {asset.title}
@@ -315,10 +322,10 @@ export default function App() {
             <section className="relative pt-28 sm:pt-40 pb-14 sm:pb-20 px-4 sm:px-6 overflow-hidden">
                 {/* Animated Background Blobs */}
                 <FloatingBlob className="w-96 h-96 bg-pink-300 -top-20 -left-10" delay={0} duration={8} />
-                <FloatingBlob className="w-[30rem] h-[30rem] bg-yellow-300 top-20 right-0" delay={2} duration={10} />
+                <FloatingBlob className="w-120 h-120 bg-yellow-300 top-20 right-0" delay={2} duration={10} />
                 <FloatingBlob className="w-80 h-80 bg-violet-300 bottom-10 left-1/3" delay={1} duration={9} />
 
-                <div className="absolute inset-0 -z-0 opacity-20">
+                <div className="absolute inset-0 z-0 opacity-20">
                     <img src={heroBackgrounds[0]} alt="Hero background" className="h-full w-full object-cover" />
                 </div>
 
@@ -330,7 +337,7 @@ export default function App() {
                     >
                         <h1 className="text-4xl sm:text-5xl md:text-[5.5rem] font-black leading-[1.1] md:leading-[1.05] mb-6 sm:mb-8 text-slate-900">
                             Your One-Stop DIY Craft <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-500">Workshops</span>, Event & Supplies
+                            <span className="text-transparent bg-clip-text bg-linear-to-r from-pink-500 to-orange-500">Workshops</span>, Event & Supplies
                         </h1>
 
                         <p className="max-w-2xl mx-auto text-base sm:text-xl text-slate-700 mb-8 sm:mb-12 leading-relaxed font-medium">
@@ -341,6 +348,7 @@ export default function App() {
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
                             <MotionLink
                                 to="/quote"
+                                {...quoteLinkWarmupHandlers}
                                 whileHover={{ scale: 1.05, y: -2 }}
                                 whileTap={{ scale: 0.95 }}
                                 className="w-full sm:w-auto bg-slate-900 text-white px-8 sm:px-10 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:bg-violet-700 shadow-xl shadow-slate-900/20 transition-colors"
@@ -440,7 +448,7 @@ export default function App() {
                             whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, type: "spring" }}
-                            className="relative aspect-square bg-white rounded-[2rem] sm:rounded-[3rem] overflow-hidden shadow-2xl shadow-violet-900/10 border-8 border-white flex items-center justify-center p-8"
+                            className="relative aspect-square bg-white rounded-4xl sm:rounded-[3rem] overflow-hidden shadow-2xl shadow-violet-900/10 border-8 border-white flex items-center justify-center p-8"
                         >
                             <img src="/assets/Website/branding/logo.png" alt="Crafted By You logo" className="h-full w-full object-contain" />
                         </motion.div>
@@ -453,14 +461,14 @@ export default function App() {
             <ClientsSection />
 
             {/* Contact Footer */}
-            <footer id="testimonials" className="bg-gradient-to-br from-violet-900 via-purple-900 to-fuchsia-900 text-white overflow-hidden">
+            <footer id="testimonials" className="bg-linear-to-br from-violet-900 via-purple-900 to-fuchsia-900 text-white overflow-hidden">
                 <div className="mx-auto grid max-w-7xl gap-0 lg:grid-cols-[1.1fr_0.9fr]">
-                    <div className="min-h-[360px] bg-white/10 p-4 sm:p-6 lg:p-8">
+                    <div className="min-h-90 bg-white/10 p-4 sm:p-6 lg:p-8">
                         <div className="h-full overflow-hidden rounded-[1.75rem] border border-white/25 bg-white shadow-2xl shadow-black/10">
                             <iframe
                                 title="Crafted By You location"
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.9257263688414!2d101.72741727342634!3d3.114352696861179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc372cb924eb2b%3A0xfb7f0640ee198b4f!2sCrafted%20by%20You!5e0!3m2!1sen!2sie!4v1773589933553!5m2!1sen!2sie"
-                                className="h-[420px] w-full lg:h-full min-h-[420px]"
+                                className="h-105 w-full lg:h-full min-h-105"
                                 loading="lazy"
                                 referrerPolicy="no-referrer-when-downgrade"
                                 allowFullScreen
