@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Users, ArrowRight, CheckCircle2, Sparkles, Paintbrush, Phone, MapPin } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Sparkles, Paintbrush, Phone, MapPin } from 'lucide-react';
 import { FaInstagram, FaWhatsapp, FaLinkedinIn, FaFacebookF } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import { workshops } from './data/workshops';
@@ -393,8 +393,6 @@ export default function App() {
 
             <GallerySection />
 
-            <AssetsSection />
-
             {/* Features / Benefits */}
             <section id="benefits" className="py-16 sm:py-32 px-4 sm:px-6 bg-[#FFF8F2]">
                 <div className="max-w-7xl mx-auto">
@@ -407,7 +405,7 @@ export default function App() {
                             className="space-y-10"
                         >
                             <h2 className="text-3xl sm:text-5xl font-black leading-[1.1]">
-                                Why Forward-Thinking <br /> Teams Choose <span className="text-violet-700">ArtisanFlow</span>
+                                Why Forward-Thinking <br /> Teams Choose <span className="text-violet-700">CraftedByYou</span>
                             </h2>
                             <div className="space-y-8">
                                 {[
@@ -437,27 +435,15 @@ export default function App() {
                             whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, type: "spring" }}
-                            className="relative aspect-square bg-white rounded-[2rem] sm:rounded-[3rem] overflow-hidden shadow-2xl shadow-violet-900/10 border-8 border-white"
+                            className="relative aspect-square bg-white rounded-[2rem] sm:rounded-[3rem] overflow-hidden shadow-2xl shadow-violet-900/10 border-8 border-white flex items-center justify-center p-8"
                         >
-                            <img src="/assets/Website/about/intro1st.jpg" alt="Workshop team" className="absolute inset-0 h-full w-full object-cover" />
-                            <div className="absolute inset-0 bg-gradient-to-br from-pink-300/40 via-purple-300/30 to-indigo-400/40" />
-                            <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                <motion.div
-                                    animate={{ y: [0, -15, 0] }}
-                                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                                >
-                                    <Users size={140} className="text-white drop-shadow-lg" />
-                                </motion.div>
-                                <p className="text-white font-black text-lg sm:text-2xl mt-4 sm:mt-6 drop-shadow-md">Team Magic Happens Here</p>
-                            </div>
-
-                            {/* Decorative floating shapes over the image */}
-                            <div className="absolute top-10 left-10 w-16 h-16 bg-yellow-400 rounded-full mix-blend-overlay animate-pulse" />
-                            <div className="absolute bottom-10 right-10 w-24 h-24 bg-pink-400 rounded-full mix-blend-overlay animate-bounce" />
+                            <img src="/assets/Website/branding/logo.png" alt="Crafted By You logo" className="h-full w-full object-contain" />
                         </motion.div>
                     </div>
                 </div>
             </section>
+
+            <AssetsSection />
 
             <ClientsSection />
 
