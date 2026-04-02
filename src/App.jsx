@@ -84,10 +84,12 @@ const WorkshopCard = ({ title, tag, delay, gradient, imageSrc }) => (
     </MotionLink>
 );
 
+// Keep hero backgrounds in an array to make image rotation easy later.
 const heroBackgrounds = [
     '/assets/Website/backgrounds/header_background.png',
 ];
 
+// Brand logos shown in the client grid.
 const clients = [
     { name: 'Vinda', logoSrc: '/assets/Website/clients/Vinda.png' },
     { name: 'UOB', logoSrc: '/assets/Website/clients/UOB.png' },
@@ -105,6 +107,7 @@ const clients = [
     { name: 'Four Season', logoSrc: '/assets/Website/clients/Four Season.png' },
 ];
 
+// Gallery strip data for both marquee rows.
 const galleryPhotos = [
     { title: 'Gallery 1', imageSrc: '/assets/Website/gallery/gallery1.jpeg' },
     { title: 'Gallery 2', imageSrc: '/assets/Website/gallery/gallery2.jpeg' },
@@ -126,23 +129,25 @@ const galleryPhotos = [
     { title: 'Gallery 21', imageSrc: '/assets/Website/gallery/gallery21.jpg' },
 ];
 
+// Partner cards with logo and short description.
 const partnerAssets = [
     {
         title: 'MyEnsy',
         imageSrc: '/assets/Website/partners/MyEnsyLogo.png',
         description:
-            'MYENSY Academy provides DIY hands-on courses, professional aromatherapy certification, customized perfumery guides, and a one-stop shop for pure essential oils, carrier oils, and material kits. This allows you to complete the full "learn + do + create" experience from the comfort of your home.',
+            'MYENSY Academy provides DIY hands-on courses, professional aromatherapy certification, customized perfumery guides, and a one-stop shop for pure essential oils, carrier oils, and material kits. This helps you complete the full "learn + do + create" experience from the comfort of your home.',
     },
     {
         title: 'smovf',
         imageSrc: '/assets/Website/partners/smovf.jpeg',
         description:
-            'Let the world\'s brands scent be unique in the world. SMOVF FRAGRANCE is quickly making waves in the perfume industry, offering unique and alluring scents.',
+            'Let your brand scent stand out. SMOVF FRAGRANCE is quickly making waves in the perfume industry by offering unique and alluring scents.',
     },
 ];
 
 const getRandomWorkshopSpotlights = (workshops, count = 3) => {
     if (!Array.isArray(workshops) || workshops.length === 0) return [];
+    // Lightweight shuffle is sufficient for rotating spotlight cards.
     const shuffled = [...workshops].sort(() => Math.random() - 0.5);
     return shuffled.slice(0, Math.min(count, shuffled.length));
 };

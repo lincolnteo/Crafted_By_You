@@ -1,3 +1,4 @@
+// Central workshop catalogue used by the homepage spotlight and workshops listing page.
 export const workshops = [
   {
     title: 'Aroma Wellness Mist',
@@ -73,7 +74,7 @@ export const workshops = [
     title: 'DIY Perfume Making - Create Your Personal Life Code',
     tag: 'Fragrance',
     description:
-      "Craft a scent that is uniquely yours. In this hands-on workshop, you'll blend different fragrance notes to design a perfume that reflects your personality, emotions, and memories. Each scent combination becomes your life code - a personal signature that tells your story without words. Whether its calming, uplifting, or bold, your fragrance is a reflection of who you are in this moment. Create it. Own it. Wear your story.",
+      "Craft a scent that is uniquely yours. In this hands-on workshop, you'll blend different fragrance notes to design a perfume that reflects your personality, emotions, and memories. Each scent combination becomes your life code - a personal signature that tells your story without words. Whether it's calming, uplifting, or bold, your fragrance is a reflection of who you are in this moment. Create it. Own it. Wear your story.",
     imageSrc: '/assets/Website/workshops/perfume.jpeg',
   },
   {

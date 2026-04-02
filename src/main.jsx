@@ -9,6 +9,7 @@ import WorkshopsPage from './Components/WorkshopsPage.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <HashRouter>
+      {/* Keep routes hash-based so static hosting works without server rewrites. */}
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/quote" element={<QuotePage />} />

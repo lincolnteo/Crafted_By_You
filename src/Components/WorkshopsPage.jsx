@@ -20,6 +20,7 @@ export default function WorkshopsPage() {
           </Link>
         </div>
 
+        {/* Render cards from the shared workshop dataset to keep content in sync. */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           {workshops.map((workshop) => (
             <article

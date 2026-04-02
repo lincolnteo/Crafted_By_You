@@ -7,6 +7,7 @@ export default function QuotePage() {
   const embedContainerRef = useRef(null)
 
   useEffect(() => {
+    // Load Jotform script on mount and fully clean it up on unmount.
     const container = embedContainerRef.current
     if (!container) return
 
