@@ -533,16 +533,16 @@ export default function App() {
                         </div>
 
                         <div className="mt-10 flex items-center gap-5 text-white/85">
-                            <a href="#" aria-label="Instagram" className="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 transition-colors hover:bg-white/15 hover:text-white">
+                            <a href="https://www.instagram.com/craftedbyyou97/" target="_blank" rel="noreferrer noopener" aria-label="Instagram" className="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 transition-colors hover:bg-white/15 hover:text-white">
                                 <FaInstagram size={24} />
                             </a>
-                            <a href="#" aria-label="WhatsApp" className="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 transition-colors hover:bg-white/15 hover:text-white">
+                            <a href="https://wa.me/60175658275" target="_blank" rel="noreferrer noopener" aria-label="WhatsApp" className="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 transition-colors hover:bg-white/15 hover:text-white">
                                 <FaWhatsapp size={24} />
                             </a>
-                            <a href="#" aria-label="LinkedIn" className="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 transition-colors hover:bg-white/15 hover:text-white">
+                            <a href="https://www.linkedin.com/in/crafted-by-you-at-sc-arts-studio/" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn" className="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 transition-colors hover:bg-white/15 hover:text-white">
                                 <FaLinkedinIn size={24} />
                             </a>
-                            <a href="#" aria-label="Facebook" className="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 transition-colors hover:bg-white/15 hover:text-white">
+                            <a href="https://www.facebook.com/craftedbyyou977" target="_blank" rel="noreferrer noopener" aria-label="Facebook" className="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 transition-colors hover:bg-white/15 hover:text-white">
                                 <FaFacebookF size={24} />
                             </a>
                         </div>
