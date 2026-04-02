@@ -29,7 +29,7 @@ export default function WorkshopsPage() {
               <img
                 src={workshop.imageSrc}
                 alt={workshop.title}
-                className="mb-4 h-44 w-full rounded-2xl object-cover"
+                className="mb-4 h-44 w-full rounded-2xl bg-slate-100 p-2 object-contain"
               />
               <span className="mb-4 inline-block rounded-full bg-orange-50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-orange-600">
                 {workshop.tag}

@@ -60,7 +60,7 @@ export const workshops = [
     tag: 'Nature Craft',
     description:
       'A terrarium is a miniature ecosystem contained in a transparent container. You can create a self-sustaining environment for plants, often with decorative elements like stones, moss, or small figurines. Terrariums are a popular way to bring a piece of nature indoors and can be both aesthetically pleasing and low-maintenance.',
-    imageSrc: '/assets/Website/workshops/1terrarium.png',
+    imageSrc: '/assets/Website/workshops/terrarium.png',
   },
   {
     title: 'Personalised Postcards',
