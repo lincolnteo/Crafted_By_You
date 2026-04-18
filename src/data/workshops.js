@@ -113,6 +113,13 @@ export const workshops = [
     imageSrc: '/assets/Website/workshops/tufting.jpg',
   },
   {
+    title: 'Personalised Music Box',
+    tag: 'Music',
+    description:
+      'Create you own personalised musical box and bring your creativity to life. Design and decorate a rotating scene while enjoing a soothing melody, making it a meaningful keepsake or treasure or gift',
+      imageSrc: '/assets/Website/workshops/musical_box.jpg',
+  },
+  {
     title: 'None of the above contact us',
     tag: 'Custom Request',
     description:

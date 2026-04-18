@@ -150,7 +150,49 @@ const partnerAssets = [
         description:
             'Let your brand scent stand out. SMOVF FRAGRANCE is quickly making waves in the perfume industry by offering unique and alluring scents.',
     },
+    {
+        title: 'Luumi Space',
+        imageSrc: '/assets/Website/partners/LuumiSpaceLogo.jpeg',
+        description:
+            'Luumi Space is proudly certified in SDCA, KGAD, and KPIA, with credentials from Korea. We are dedicated to delivering high-value craftsmanship through our range of artistic creations.',
+    },
 ];
+
+const workshopProducts = workshops.filter((workshop) => workshop.tag !== 'Custom Request');
+const marqueeWorkshopProducts = workshopProducts.length > 0
+    ? [workshopProducts[workshopProducts.length - 1], ...workshopProducts.slice(0, -1)]
+    : workshopProducts;
+const MARQUEE_SET_SIZE = 6;
+const MARQUEE_UPDATE_MS = 8000;
+
+const shuffleItems = (items) => [...items].sort(() => Math.random() - 0.5);
+
+const getRandomWorkshopSet = (items, count) => {
+    if (!Array.isArray(items) || items.length === 0) return [];
+    const safeCount = Math.min(count, items.length);
+    return shuffleItems(items).slice(0, safeCount);
+};
+
+const getNextDistinctWorkshopSet = (items, previousSet, count) => {
+    if (!Array.isArray(items) || items.length === 0) return [];
+
+    const safeCount = Math.min(count, items.length);
+    if (!Array.isArray(previousSet) || previousSet.length === 0) {
+        return getRandomWorkshopSet(items, safeCount);
+    }
+
+    const previousTitles = new Set(previousSet.map((workshop) => workshop.title));
+    const eligible = items.filter((workshop) => !previousTitles.has(workshop.title));
+
+    // Use a fully disjoint next set whenever enough workshops are available.
+    if (eligible.length >= safeCount) {
+        return getRandomWorkshopSet(eligible, safeCount);
+    }
+
+    // If total workshops are too few for full disjointness, maximize difference.
+    const overlapping = items.filter((workshop) => previousTitles.has(workshop.title));
+    return [...shuffleItems(eligible), ...shuffleItems(overlapping)].slice(0, safeCount);
+};
 
 const getRandomWorkshopSpotlights = (workshops, count = 3) => {
     if (!Array.isArray(workshops) || workshops.length === 0) return [];
@@ -159,7 +201,7 @@ const getRandomWorkshopSpotlights = (workshops, count = 3) => {
     return shuffled.slice(0, Math.min(count, shuffled.length));
 };
 
-const WorkshopsMarquee = () => (
+const WorkshopsMarquee = ({ marqueeWorkshops }) => (
     <section className="bg-violet-900 py-5 sm:py-8 overflow-hidden border-y-4 border-pink-500">
         <div className="flex w-fit">
             <motion.div
@@ -167,7 +209,7 @@ const WorkshopsMarquee = () => (
                 transition={{ duration: 55, repeat: Infinity, ease: 'linear' }}
                 className="flex items-center whitespace-nowrap"
             >
-                {[...workshops, ...workshops].map((workshop, index) => (
+                {[...marqueeWorkshops, ...marqueeWorkshops].map((workshop, index) => (
                     <div key={`${workshop.title}-${index}`} className="mx-5 sm:mx-10 flex items-center gap-3 sm:gap-4">
                         <span className="text-sm sm:text-lg font-black uppercase tracking-wider text-violet-200/90">
                             {workshop.title}
@@ -222,7 +264,7 @@ const AssetsSection = () => (
                 </p>
             </div>
 
-            <div className="mx-auto grid max-w-xl grid-cols-2 gap-4">
+            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 sm:grid-cols-3">
                 {partnerAssets.map((asset, index) => (
                     <figure
                         key={asset.title}
@@ -304,12 +346,25 @@ const GallerySection = () => (
 export default function App() {
     const { scrollYProgress } = useScroll();
     const y = useTransform(scrollYProgress, [0, 1], [0, -150]);
-    const [spotlightWorkshops, setSpotlightWorkshops] = useState(() => getRandomWorkshopSpotlights(workshops, 3));
+    const [spotlightWorkshops, setSpotlightWorkshops] = useState(() => getRandomWorkshopSpotlights(workshopProducts, 3));
+    const [marqueeWorkshops, setMarqueeWorkshops] = useState(() =>
+        getRandomWorkshopSet(marqueeWorkshopProducts, MARQUEE_SET_SIZE)
+    );
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            setSpotlightWorkshops(getRandomWorkshopSpotlights(workshops, 3));
+            setSpotlightWorkshops(getRandomWorkshopSpotlights(workshopProducts, 3));
         }, 6000);
+
+        return () => clearInterval(intervalId);
+    }, []);
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setMarqueeWorkshops((previousSet) =>
+                getNextDistinctWorkshopSet(marqueeWorkshopProducts, previousSet, MARQUEE_SET_SIZE)
+            );
+        }, MARQUEE_UPDATE_MS);
 
         return () => clearInterval(intervalId);
     }, []);
@@ -368,7 +423,7 @@ export default function App() {
                 </div>
             </section>
 
-            <WorkshopsMarquee />
+            <WorkshopsMarquee marqueeWorkshops={marqueeWorkshops} />
 
             {/* Workshop Grid Section */}
             <section id="workshops" className="py-16 sm:py-32 px-4 sm:px-6 bg-cyan-50 relative border-b-4 border-white">
@@ -489,7 +544,7 @@ export default function App() {
                             </div>
 
                             <div className="space-y-4">
-                                <p className="text-sm sm:text-base uppercase tracking-[0.35em] text-white/70">Talk To Us</p>
+                                <p className="text-sm sm:text-base uppercase tracking-[0.35em] text-white/70">Whatsapp us</p>
                                 <a href="tel:+60175658275" className="inline-flex text-2xl sm:text-4xl font-black text-yellow-300 hover:text-yellow-200 transition-colors">
                                     +60 17-5658 275
                                 </a>
