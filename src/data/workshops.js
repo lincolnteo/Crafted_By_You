@@ -131,7 +131,7 @@ export const workshops = [
     tag: 'Mosaic',
     description:
       'Inspired by the rich heritage of Turkish mosaic art, this workshop allows you to design a vibrant lantern using colourful glass tiles. A perfect blend of culture and creativity, bringing warm ambient light to your home.',
-      imageSrc: '/assets/Website/workshops/HLZC5390.jpeg',
+      imageSrc: '/assets/Website/workshops/HLZC5390.JPG',
   },
   {
     title: 'None of the above contact us',
