@@ -5,7 +5,7 @@ export const workshops = [
     tag: 'Wellness',
     description:
       'Enter our exclusive Mist Lab and craft a personalised spray infused with premium essential oils. Curate your own mood blend - from Focus to Confidence - and take home a scent designed to elevate your day.',
-    imageSrc: '/assets/Website/workshops/Aromatheraphy Spray-Mist.jpeg',
+    imageSrc: '/assets/Website/workshops/Aromatheraphy Spray-Mist.jpg',
   },
   {
     title: 'Floral Bath Salt',
@@ -19,7 +19,7 @@ export const workshops = [
     tag: 'Accessories',
     description:
       'Create your own personalised charm using colourful alphabet letters, a plush charm, and a fluffy heart pom-pom. Design a unique keychain to decorate your bag or keys - fun, creative, and perfect for all ages.',
-    imageSrc: '/assets/Website/workshops/CuteCharm.jpeg',
+    imageSrc: '/assets/Website/workshops/CuteCharm1.jpeg',
   },
   {
     title: 'Aroma Diffuser Stone',
@@ -40,7 +40,7 @@ export const workshops = [
     tag: 'Fragrance',
     description:
       'A blend of natural herbs and dried flowers that gently releases its aroma over time, promoting relaxation, freshness, and balance.',
-    imageSrc: '/assets/Website/workshops/Herbal_Flower_Fragrance_Pouch.jpeg',
+    imageSrc: '/assets/Website/workshops/Herbal_Flower Fragrance_Pouch.jpg',
   },
   {
     title: 'Natural Body Lotion',
@@ -54,21 +54,21 @@ export const workshops = [
     tag: 'Painting',
     description:
       'It is a form of abstract art that involves pouring various colors of acrylic paint onto a canvas to create unique, visually captivating designs; with a marbled or cellular appearance.',
-    imageSrc: '/assets/Website/workshops/acrylic_pour_painting.jpg',
+    imageSrc: '/assets/Website/workshops/Acrylic Pour Painting.jpg',
   },
   {
     title: 'Terrarium Build',
     tag: 'Nature Craft',
     description:
       'A terrarium is a miniature ecosystem contained in a transparent container. You can create a self-sustaining environment for plants, often with decorative elements like stones, moss, or small figurines. Terrariums are a popular way to bring a piece of nature indoors and can be both aesthetically pleasing and low-maintenance.',
-    imageSrc: '/assets/Website/workshops/terrarium.png',
+    imageSrc: '/assets/Website/workshops/Terrarium.jpeg',
   },
   {
     title: 'Personalised Postcards',
     tag: 'Paper Craft',
     description:
       'Create your own personalised postcards inspired by different celebrations. Mix and match fun materials to design meaningful cards, perfect for sharing heartfelt messages with loved ones. A creative, engaging, and versatile workshop suitable for all occasions and ages.',
-    imageSrc: '/assets/Website/workshops/postcard.jpeg',
+    imageSrc: '/assets/Website/workshops/Postcard.jpg',
   },
   {
     title: 'DIY Perfume Making - Create Your Personal Life Code',
@@ -96,7 +96,7 @@ export const workshops = [
     tag: 'Fragrance',
     description:
       'Handcraft a scented candle infused with fragrance oils to produce a pleasant aroma when burned. These candles can create a cozy and inviting atmosphere while offering potential aromatherapy benefits.',
-    imageSrc: '/assets/Website/workshops/Scented_Candle.png',
+    imageSrc: '/assets/Website/workshops/Scented_Candle.jpg',
   },
   {
     title: 'Sand Painting Candle',

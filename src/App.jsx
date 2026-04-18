@@ -68,7 +68,7 @@ const WorkshopCard = ({ title, tag, delay, gradient, imageSrc }) => (
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.6, delay, type: "spring", bounce: 0.4 }}
         whileHover={{ y: -15, scale: 1.03, rotate: 2 }}
-        className="group relative overflow-hidden rounded-[2.5rem] bg-slate-100 aspect-4/5 cursor-pointer shadow-xl shadow-slate-200/50"
+        className="group relative overflow-hidden rounded-[2.5rem] bg-slate-100 aspect-square cursor-pointer shadow-xl shadow-slate-200/50"
     >
         <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent z-10" />
         <div className="absolute top-6 left-6 z-20">
@@ -84,7 +84,7 @@ const WorkshopCard = ({ title, tag, delay, gradient, imageSrc }) => (
             </div>
         </div>
         {imageSrc ? (
-            <img src={imageSrc} alt={title} className="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700" />
+            <img src={imageSrc} alt={title} className="block w-[70%] h-[70%] mx-auto my-[15%] p-2 object-contain object-center group-hover:scale-105 transition-transform duration-700" />
         ) : (
             <div className={`w-full h-full bg-linear-to-br ${gradient} group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700`} />
         )}
