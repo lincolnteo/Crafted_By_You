@@ -165,7 +165,16 @@ const marqueeWorkshopProducts = workshopProducts.length > 0
 const MARQUEE_SET_SIZE = 6;
 const MARQUEE_UPDATE_MS = 8000;
 
-const shuffleItems = (items) => [...items].sort(() => Math.random() - 0.5);
+const shuffleItems = (items) => {
+    const shuffled = [...items];
+
+    for (let index = shuffled.length - 1; index > 0; index -= 1) {
+        const randomIndex = Math.floor(Math.random() * (index + 1));
+        [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+    }
+
+    return shuffled;
+};
 
 const getRandomWorkshopSet = (items, count) => {
     if (!Array.isArray(items) || items.length === 0) return [];
@@ -173,25 +182,59 @@ const getRandomWorkshopSet = (items, count) => {
     return shuffleItems(items).slice(0, safeCount);
 };
 
+const getWorkshopSetSignature = (workshopSet) =>
+    [...new Set((Array.isArray(workshopSet) ? workshopSet : []).map((workshop) => workshop.title))].sort().join('|');
+
 const getNextDistinctWorkshopSet = (items, previousSet, count) => {
     if (!Array.isArray(items) || items.length === 0) return [];
 
     const safeCount = Math.min(count, items.length);
+
     if (!Array.isArray(previousSet) || previousSet.length === 0) {
         return getRandomWorkshopSet(items, safeCount);
     }
 
+    const previousSignature = getWorkshopSetSignature(previousSet);
     const previousTitles = new Set(previousSet.map((workshop) => workshop.title));
     const eligible = items.filter((workshop) => !previousTitles.has(workshop.title));
 
+    const buildCandidate = (sourceItems) => {
+        if (!Array.isArray(sourceItems) || sourceItems.length === 0) return [];
+
+        for (let attempt = 0; attempt < 100; attempt += 1) {
+            const candidate = getRandomWorkshopSet(sourceItems, safeCount);
+            if (getWorkshopSetSignature(candidate) !== previousSignature) {
+                return candidate;
+            }
+        }
+
+        return [];
+    };
+
     // Use a fully disjoint next set whenever enough workshops are available.
     if (eligible.length >= safeCount) {
-        return getRandomWorkshopSet(eligible, safeCount);
+        const candidate = buildCandidate(eligible);
+        if (candidate.length > 0) {
+            return candidate;
+        }
     }
 
     // If total workshops are too few for full disjointness, maximize difference.
     const overlapping = items.filter((workshop) => previousTitles.has(workshop.title));
-    return [...shuffleItems(eligible), ...shuffleItems(overlapping)].slice(0, safeCount);
+    const candidate = buildCandidate([...shuffleItems(eligible), ...shuffleItems(overlapping)]);
+    if (candidate.length > 0) {
+        return candidate;
+    }
+
+    if (items.length <= 1) {
+        return items.slice(0, safeCount);
+    }
+
+    return shuffleItems(items)
+        .slice(0, safeCount)
+        .map((workshop, index) => (index === 0 && workshop.title === previousSet[0]?.title ? items[1] : workshop))
+        .filter(Boolean)
+        .slice(0, safeCount);
 };
 
 const getRandomWorkshopSpotlights = (workshops, count = 3) => {
