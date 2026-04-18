@@ -120,6 +120,13 @@ export const workshops = [
       imageSrc: '/assets/Website/workshops/musical_box.jpg',
   },
   {
+    title: 'Spa Floral Body Scrub',
+    tag: 'Wellness',
+    description:
+      'Create your own spa-inspired floral body scrub using natural ingredients and delicate dried flowers. Enjoy a relaxing hands-on experience while crafting a personalised scrub that gently exfoliates and refreshes your skin.',
+      imageSrc: '/assets/Website/workshops/Spa_floral_Body_Scrub.jpeg',
+  },
+  {
     title: 'None of the above contact us',
     tag: 'Custom Request',
     description:
