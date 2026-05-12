@@ -28,7 +28,7 @@ const Navbar = () => (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
             <div className="text-lg sm:text-2xl font-bold text-slate-900 flex items-center gap-2 leading-none">
                 <img
-                    src="/assets/Website/branding/logo.png"
+                    src="/assets/branding/logo.png"
                     alt="Crafted By You logo"
                     className="h-10 w-10 sm:h-14 sm:w-14 rounded-full object-contain"
                 />
@@ -93,66 +93,66 @@ const WorkshopCard = ({ title, tag, delay, gradient, imageSrc }) => (
 
 // Keep hero backgrounds in an array to make image rotation easy later.
 const heroBackgrounds = [
-    '/assets/Website/backgrounds/header_background.png',
+    '/assets/backgrounds/header_background.png',
 ];
 
 // Brand logos shown in the client grid.
 const clients = [
-    { name: 'Vinda', logoSrc: '/assets/Website/clients/Vinda.png' },
-    { name: 'UOB', logoSrc: '/assets/Website/clients/UOB.png' },
-    { name: 'Traveloka', logoSrc: '/assets/Website/clients/traveloka.png' },
-    { name: 'TITAN', logoSrc: '/assets/Website/clients/TITAN.png' },
-    { name: 'Safi', logoSrc: '/assets/Website/clients/Safi.png' },
-    { name: 'Prasarana', logoSrc: '/assets/Website/clients/Prasarana.png' },
-    { name: 'Pantai KL', logoSrc: '/assets/Website/clients/Pantai KL.png' },
-    { name: 'MRC', logoSrc: '/assets/Website/clients/MRC.png' },
-    { name: 'Magnum', logoSrc: '/assets/Website/clients/Magnum.png' },
-    { name: 'LE Consulting', logoSrc: '/assets/Website/clients/LE Consulting.png' },
-    { name: 'Kingsbee', logoSrc: '/assets/Website/clients/Kingsbee.png' },
-    { name: 'IQVIA', logoSrc: '/assets/Website/clients/IQVIA.png' },
-    { name: 'GAMUDA', logoSrc: '/assets/Website/clients/GAMUDA.png' },
-    { name: 'Four Season', logoSrc: '/assets/Website/clients/Four Season.png' },
+    { name: 'Vinda', logoSrc: '/assets/clients/Vinda.png' },
+    { name: 'UOB', logoSrc: '/assets/clients/UOB.png' },
+    { name: 'Traveloka', logoSrc: '/assets/clients/traveloka.png' },
+    { name: 'TITAN', logoSrc: '/assets/clients/TITAN.png' },
+    { name: 'Safi', logoSrc: '/assets/clients/Safi.png' },
+    { name: 'Prasarana', logoSrc: '/assets/clients/Prasarana.png' },
+    { name: 'Pantai KL', logoSrc: '/assets/clients/Pantai KL.png' },
+    { name: 'MRC', logoSrc: '/assets/clients/MRC.png' },
+    { name: 'Magnum', logoSrc: '/assets/clients/Magnum.png' },
+    { name: 'LE Consulting', logoSrc: '/assets/clients/LE Consulting.png' },
+    { name: 'Kingsbee', logoSrc: '/assets/clients/Kingsbee.png' },
+    { name: 'IQVIA', logoSrc: '/assets/clients/IQVIA.png' },
+    { name: 'GAMUDA', logoSrc: '/assets/clients/GAMUDA.png' },
+    { name: 'Four Season', logoSrc: '/assets/clients/Four Season.png' },
 ];
 
 // Gallery strip data for both marquee rows.
 const galleryPhotos = [
-    { title: 'Gallery 1', imageSrc: '/assets/Website/gallery/gallery1.jpeg' },
-    { title: 'Gallery 2', imageSrc: '/assets/Website/gallery/gallery2.jpeg' },
-    { title: 'Gallery 3', imageSrc: '/assets/Website/gallery/gallery3.jpeg' },
-    { title: 'Gallery 4', imageSrc: '/assets/Website/gallery/gallery4.jpeg' },
-    { title: 'Gallery 5', imageSrc: '/assets/Website/gallery/gallery5.jpeg' },
-    { title: 'Gallery 7', imageSrc: '/assets/Website/gallery/gallery7.jpeg' },
-    { title: 'Gallery 8', imageSrc: '/assets/Website/gallery/gallery8.jpeg' },
-    { title: 'Gallery 9', imageSrc: '/assets/Website/gallery/gallery9.jpeg' },
-    { title: 'Gallery 10', imageSrc: '/assets/Website/gallery/gallery10.jpg' },
-    { title: 'Gallery 11', imageSrc: '/assets/Website/gallery/gallery11.jpeg' },
-    { title: 'Gallery 12', imageSrc: '/assets/Website/gallery/gallery12.jpeg' },
-    { title: 'Gallery 13', imageSrc: '/assets/Website/gallery/gallery13.jpeg' },
-    { title: 'Gallery 15', imageSrc: '/assets/Website/gallery/gallery15.jpeg' },
-    { title: 'Gallery 16', imageSrc: '/assets/Website/gallery/gallery16.jpeg' },
-    { title: 'Gallery 17', imageSrc: '/assets/Website/gallery/gallery17.jpeg' },
-    { title: 'Gallery 18', imageSrc: '/assets/Website/gallery/gallery18.jpeg' },
-    { title: 'Gallery 20', imageSrc: '/assets/Website/gallery/gallery20.jpeg' },
-    { title: 'Gallery 21', imageSrc: '/assets/Website/gallery/gallery21.jpg' },
+    { title: 'Gallery 1', imageSrc: '/assets/gallery/gallery1.jpeg' },
+    { title: 'Gallery 2', imageSrc: '/assets/gallery/gallery2.jpeg' },
+    { title: 'Gallery 3', imageSrc: '/assets/gallery/gallery3.jpeg' },
+    { title: 'Gallery 4', imageSrc: '/assets/gallery/gallery4.jpeg' },
+    { title: 'Gallery 5', imageSrc: '/assets/gallery/gallery5.jpeg' },
+    { title: 'Gallery 7', imageSrc: '/assets/gallery/gallery7.jpeg' },
+    { title: 'Gallery 8', imageSrc: '/assets/gallery/gallery8.jpeg' },
+    { title: 'Gallery 9', imageSrc: '/assets/gallery/gallery9.jpeg' },
+    { title: 'Gallery 10', imageSrc: '/assets/gallery/gallery10.jpg' },
+    { title: 'Gallery 11', imageSrc: '/assets/gallery/gallery11.jpeg' },
+    { title: 'Gallery 12', imageSrc: '/assets/gallery/gallery12.jpeg' },
+    { title: 'Gallery 13', imageSrc: '/assets/gallery/gallery13.jpeg' },
+    { title: 'Gallery 15', imageSrc: '/assets/gallery/gallery15.jpeg' },
+    { title: 'Gallery 16', imageSrc: '/assets/gallery/gallery16.jpeg' },
+    { title: 'Gallery 17', imageSrc: '/assets/gallery/gallery17.jpeg' },
+    { title: 'Gallery 18', imageSrc: '/assets/gallery/gallery18.jpeg' },
+    { title: 'Gallery 20', imageSrc: '/assets/gallery/gallery20.jpeg' },
+    { title: 'Gallery 21', imageSrc: '/assets/gallery/gallery21.jpg' },
 ];
 
 // Partner cards with logo and short description.
 const partnerAssets = [
     {
         title: 'MyEnsy',
-        imageSrc: '/assets/Website/partners/MyEnsyLogo.png',
+        imageSrc: '/assets/partners/MyEnsyLogo.png',
         description:
             'MYENSY Academy provides DIY hands-on courses, professional aromatherapy certification, customized perfumery guides, and a one-stop shop for pure essential oils, carrier oils, and material kits. This helps you complete the full "learn + do + create" experience from the comfort of your home.',
     },
     {
         title: 'smovf',
-        imageSrc: '/assets/Website/partners/smovf.jpeg',
+        imageSrc: '/assets/partners/smovf.jpeg',
         description:
             'Let your brand scent stand out. SMOVF FRAGRANCE is quickly making waves in the perfume industry by offering unique and alluring scents.',
     },
     {
         title: 'Luumi Space',
-        imageSrc: '/assets/Website/partners/LuumiSpaceLogo.jpeg',
+        imageSrc: '/assets/partners/LuumiSpaceLogo.jpeg',
         description:
             'Luumi Space is proudly certified in SDCA, KGAD, and KPIA, with credentials from Korea. We are dedicated to delivering high-value craftsmanship through our range of artistic creations.',
     },
@@ -548,7 +548,7 @@ export default function App() {
                             transition={{ duration: 0.8, type: "spring" }}
                             className="relative aspect-square bg-white rounded-4xl sm:rounded-[3rem] overflow-hidden shadow-2xl shadow-violet-900/10 border-8 border-white flex items-center justify-center p-8"
                         >
-                            <img src="/assets/Website/branding/logo.png" alt="Crafted By You logo" className="h-full w-full object-contain" />
+                            <img src="/assets/branding/logo.png" alt="Crafted By You logo" className="h-full w-full object-contain" />
                         </motion.div>
                     </div>
                 </div>
