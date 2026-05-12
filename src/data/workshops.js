@@ -138,7 +138,7 @@ export const workshops = [
     tag: 'Accessories',
     description:
       'Stitching tiny beads together to form your favorite beautiful patterns and designs. It could turn out to be a charming keychain, coaster, display and etc',
-    imageSrc: '/assets/Website/workshops/stitchBeads.jpg',
+    imageSrc: '/assets/Website/workshops/stitchBeads.jpeg',
   },
   {
     title: 'None of the above contact us',
