@@ -134,6 +134,13 @@ export const workshops = [
       imageSrc: '/assets/Website/workshops/mosiac_vase.jpg',
   },
   {
+    title: 'Stitch Beads',
+    tag: 'Accessories',
+    description:
+      'Stitching tiny beads together to form your favorite beautiful patterns and designs. It could turn out to be a charming keychain, coaster, display and etc',
+    imageSrc: '/assets/Website/workshops/stitchBeads.jpg',
+  },
+  {
     title: 'None of the above contact us',
     tag: 'Custom Request',
     description:
