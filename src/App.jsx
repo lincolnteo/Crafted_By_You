@@ -589,7 +589,7 @@ export default function App() {
                             <div className="space-y-4">
                                 <p className="text-sm sm:text-base uppercase tracking-[0.35em] text-white/70">Whatsapp us</p>
                                 <a href="tel:+60175658275" className="inline-flex text-2xl sm:text-4xl font-black text-yellow-300 hover:text-yellow-200 transition-colors">
-                                    +60 17-5658 275
+                                    +60 17-527-8275
                                 </a>
                             </div>
                         </div>
