@@ -1,11 +1,11 @@
 // Central workshop catalogue used by the homepage spotlight and workshops listing page.
 export const workshops = [
   {
-    title: 'Aroma Wellness Mist',
-    tag: 'Wellness',
+    title: 'Hand & Foot Casting',
+    tag: 'Accessories',
     description:
-      'Enter our exclusive Mist Lab and craft a personalised spray infused with premium essential oils. Curate your own mood blend - from Focus to Confidence - and take home a scent designed to elevate your day.',
-    imageSrc: '/assets/workshops/Aromatheraphy Spray-Mist.jpg',
+      "Keepsakes Capture every precious detail. Treasure every memory. From a newborn's tiny footprint to the hands of loved ones, our Hand & Foot casting service transforms life's most meaningfull moments into timesless keep sakes, Every piece is carefully handcrafted to preseerve the unique details that make each memeore special."
+    ,imageSrc: '/assets/workshops/Hand&FootCasting.jpeg',
   },
   {
     title: 'Floral Bath Salt',
@@ -20,13 +20,6 @@ export const workshops = [
     description:
       'Create your own personalised charm using colourful alphabet letters, a plush charm, and a fluffy heart pom-pom. Design a unique keychain to decorate your bag or keys - fun, creative, and perfect for all ages.',
     imageSrc: '/assets/workshops/CuteCharm1.jpeg',
-  },
-  {
-    title: 'Aroma Diffuser Stone',
-    tag: 'Ceramics',
-    description:
-      'Crafted from high-purity gypsum/ceramic and hand-polished for a clean, elegant look that suits any space. It requires no water and no heat, helping to preserve the natural properties of essential oils while gently diffusing their aroma.',
-    imageSrc: '/assets/workshops/Clay Diffuser.jpg.jpeg',
   },
   {
     title: 'Fluid Bear',
@@ -71,13 +64,6 @@ export const workshops = [
     imageSrc: '/assets/workshops/Postcard.jpg',
   },
   {
-    title: 'DIY Perfume Making - Create Your Personal Life Code',
-    tag: 'Fragrance',
-    description:
-      "Craft a scent that is uniquely yours. In this hands-on workshop, you'll blend different fragrance notes to design a perfume that reflects your personality, emotions, and memories. Each scent combination becomes your life code - a personal signature that tells your story without words. Whether it's calming, uplifting, or bold, your fragrance is a reflection of who you are in this moment. Create it. Own it. Wear your story.",
-    imageSrc: '/assets/workshops/perfume.jpeg',
-  },
-  {
     title: 'Neon Sign Art',
     tag: 'Decor',
     description:
@@ -92,11 +78,11 @@ export const workshops = [
     imageSrc: '/assets/workshops/mosaic_arts.jpg',
   },
   {
-    title: 'Scented Candle',
+    title: 'Scented Candle+',
     tag: 'Fragrance',
     description:
       'Handcraft a scented candle infused with fragrance oils to produce a pleasant aroma when burned. These candles can create a cozy and inviting atmosphere while offering potential aromatherapy benefits.',
-    imageSrc: '/assets/workshops/Scented_Candle.jpg',
+    imageSrc: '/assets/workshops/Scented_Candle1.jpg',
   },
   {
     title: 'Sand Painting Candle',
@@ -139,6 +125,20 @@ export const workshops = [
     description:
       'Stitching tiny beads together to form your favorite beautiful patterns and designs. It could turn out to be a charming keychain, coaster, display and etc',
     imageSrc: '/assets/workshops/stitchBeads.jpeg',
+  },
+  {
+    title: 'Aqua Puff',
+    tag: 'Accessories',
+    description:
+      'Turn a soft, fluffy puff into your very own adorable creation! Draw, colour, and personalise cute characters, animals, or shapes to create a unique decorative piece. This fun and beginner-friendly workshop is perfect for children, families, and anyone who loves creative crafts.',
+    imageSrc: '/assets/workshops/aqua_puff.jpg',
+  },
+  {
+    title: 'Personalized Keepsake Memory Book',
+    tag: 'Accessories',
+    description:
+      "Celebrate life's most meaningful moments with a handcrafted keepsake made just for you. Each Personalized Keepsake Memory Book is thoughtfully designed to tell a unique story through heartfelt messages, photos, and beautiful handmade details. Whether it's for a birthday, anniversary, graduation, or any special occasion, this one-of-a-kind gift transforms precious memories into a timeless treasure that will be cherished for years to come.",
+    imageSrc: '/assets/workshops/memory_book.jpg',
   },
   {
     title: 'None of the above contact us',
