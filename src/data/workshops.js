@@ -160,7 +160,7 @@ export const workshops = [
     description:
       "Craft a scent that is uniquely yours. In this hands-on workshop, you'll blend different fragrance notes to design a perfume that reflects your personality, emotions, and memories. Each scent combination becomes your life code - a personal signature that tells your story without words. Whether it's calming, uplifting, or bold, your fragrance is a reflection of who you are in this moment. Create it. Own it. Wear your story.",
     imageSrc: '/assets/workshops/perfume.jpeg',
-  },
+  },  
   {
     title: 'None of the above contact us',
     tag: 'Custom Request',
