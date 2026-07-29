@@ -141,6 +141,27 @@ export const workshops = [
     imageSrc: '/assets/workshops/memory_book.jpg',
   },
   {
+    title: 'Aroma Wellness Mist',
+    tag: 'Wellness',
+    description:
+      'Enter our exclusive Mist Lab and craft a personalised spray infused with premium essential oils. Curate your own mood blend - from Focus to Confidence - and take home a scent designed to elevate your day.',
+    imageSrc: '/assets/workshops/Aromatheraphy Spray-Mist.jpg',
+  },
+  {
+    title: 'Aroma Diffuser Stone',
+    tag: 'Ceramics',
+    description:
+      'Crafted from high-purity gypsum/ceramic and hand-polished for a clean, elegant look that suits any space. It requires no water and no heat, helping to preserve the natural properties of essential oils while gently diffusing their aroma.',
+    imageSrc: '/assets/workshops/Clay Diffuser.jpg.jpeg',
+  },
+  {
+    title: 'DIY Perfume Making - Create Your Personal Life Code',
+    tag: 'Fragrance',
+    description:
+      "Craft a scent that is uniquely yours. In this hands-on workshop, you'll blend different fragrance notes to design a perfume that reflects your personality, emotions, and memories. Each scent combination becomes your life code - a personal signature that tells your story without words. Whether it's calming, uplifting, or bold, your fragrance is a reflection of who you are in this moment. Create it. Own it. Wear your story.",
+    imageSrc: '/assets/workshops/perfume.jpeg',
+  },  
+  {
     title: 'None of the above contact us',
     tag: 'Custom Request',
     description:

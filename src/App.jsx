@@ -588,8 +588,8 @@ export default function App() {
 
                             <div className="space-y-4">
                                 <p className="text-sm sm:text-base uppercase tracking-[0.35em] text-white/70">Whatsapp us</p>
-                                <a href="tel:+60175278275" className="inline-flex text-2xl sm:text-4xl font-black text-yellow-300 hover:text-yellow-200 transition-colors">
-                                    +60 17-527 8275
+                                <a href="tel:+60175658275" className="inline-flex text-2xl sm:text-4xl font-black text-yellow-300 hover:text-yellow-200 transition-colors">
+                                    +60 17-565 8275
                                 </a>
                             </div>
                         </div>
@@ -598,7 +598,7 @@ export default function App() {
                             <a href="https://www.instagram.com/craftedbyyou97/" target="_blank" rel="noreferrer noopener" aria-label="Instagram" className="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 transition-colors hover:bg-white/15 hover:text-white">
                                 <FaInstagram size={24} />
                             </a>
-                            <a href="https://wa.me/60175278275" target="_blank" rel="noreferrer noopener" aria-label="WhatsApp" className="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 transition-colors hover:bg-white/15 hover:text-white">
+                            <a href="https://wa.me/60175658275" target="_blank" rel="noreferrer noopener" aria-label="WhatsApp" className="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 transition-colors hover:bg-white/15 hover:text-white">
                                 <FaWhatsapp size={24} />
                             </a>
                             <a href="https://www.linkedin.com/in/crafted-by-you-at-sc-arts-studio/" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn" className="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 transition-colors hover:bg-white/15 hover:text-white">
