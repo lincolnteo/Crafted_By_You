@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { workshops } from './data/workshops';
 import { prewarmJotform } from './utils/jotform';
 
-const MotionLink = motion(Link);
+const MotionLink = motion.create(Link);
 
 const quoteLinkWarmupHandlers = {
     onMouseEnter: prewarmJotform,
@@ -84,7 +84,7 @@ const WorkshopCard = ({ title, tag, delay, gradient, imageSrc }) => (
             </div>
         </div>
         {imageSrc ? (
-            <img src={imageSrc} alt={title} className="block w-[70%] h-[70%] mx-auto my-[15%] p-2 object-contain object-center group-hover:scale-105 transition-transform duration-700" />
+            <img src={imageSrc} alt={title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700" />
         ) : (
             <div className={`w-full h-full bg-linear-to-br ${gradient} group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700`} />
         )}

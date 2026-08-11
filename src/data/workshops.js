@@ -148,13 +148,6 @@ export const workshops = [
     imageSrc: '/assets/workshops/Aromatheraphy Spray-Mist.jpg',
   },
   {
-    title: 'Aroma Diffuser Stone',
-    tag: 'Ceramics',
-    description:
-      'Crafted from high-purity gypsum/ceramic and hand-polished for a clean, elegant look that suits any space. It requires no water and no heat, helping to preserve the natural properties of essential oils while gently diffusing their aroma.',
-    imageSrc: '/assets/workshops/Clay Diffuser.jpg.jpeg',
-  },
-  {
     title: 'DIY Perfume Making - Create Your Personal Life Code',
     tag: 'Fragrance',
     description:
