@@ -4,6 +4,7 @@ import { ArrowRight, CheckCircle2, Sparkles, Paintbrush, Phone, MapPin } from 'l
 import { FaInstagram, FaWhatsapp, FaLinkedinIn, FaFacebookF } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import { workshops } from './data/workshops';
+import CraftYourWedding from './Components/CraftYourWedding';
 import { prewarmJotform } from './utils/jotform';
 
 const MotionLink = motion.create(Link);
@@ -326,6 +327,91 @@ const AssetsSection = () => (
     </section>
 );
 
+const makeSecondSet = (items) => {
+    if (!Array.isArray(items) || items.length === 0) return [];
+    // Create a shuffled second set that avoids same-item-in-same-position where possible
+    const first = items.slice();
+    const second = items.slice();
+
+    // Simple Fisher-Yates shuffle
+    for (let i = second.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [second[i], second[j]] = [second[j], second[i]];
+    }
+
+    // If any items still line up with same index, rotate the second array until they differ
+    let attempts = 0;
+    while (attempts < second.length) {
+        let clash = false;
+        for (let k = 0; k < first.length; k++) {
+            if (first[k]?.imageSrc === second[k]?.imageSrc) {
+                clash = true;
+                break;
+            }
+        }
+        if (!clash) break;
+        second.push(second.shift());
+        attempts += 1;
+    }
+
+    return second;
+};
+
+const MarqueeRow = ({ items, speed = 60 }) => {
+    const firstRef = React.useRef(null);
+    const wrapperRef = React.useRef(null);
+    const [firstWidth, setFirstWidth] = React.useState(0);
+
+    React.useLayoutEffect(() => {
+        const measure = () => {
+            if (firstRef.current) setFirstWidth(firstRef.current.getBoundingClientRect().width);
+        };
+        measure();
+        window.addEventListener('resize', measure);
+        return () => window.removeEventListener('resize', measure);
+    }, [items]);
+
+    const secondSet = React.useMemo(() => makeSecondSet(items), [items]);
+
+    // Duration based on width and speed pixels-per-second
+    const duration = firstWidth > 0 ? Math.max(18, firstWidth / speed) : 40;
+
+    return (
+        <div className="flex w-full overflow-hidden">
+            <motion.div
+                ref={wrapperRef}
+                className="flex gap-5 whitespace-nowrap will-change-transform"
+                animate={{ x: firstWidth ? [-0, -firstWidth] : 0 }}
+                transition={{ x: { duration, repeat: Infinity, ease: 'linear', repeatType: 'loop' } }}
+            >
+                <div ref={firstRef} className="flex gap-5">
+                    {items.map((photo, index) => (
+                        <article key={`m-first-${photo.title}-${index}`} className="w-56 sm:w-64 md:w-72 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+                            {photo.imageSrc ? (
+                                <img src={photo.imageSrc} alt={photo.title} className="h-40 sm:h-52 w-full object-cover" />
+                            ) : (
+                                <div className="flex h-40 sm:h-52 w-full items-center justify-center bg-slate-200 text-sm font-semibold text-slate-600">Add photo here</div>
+                            )}
+                        </article>
+                    ))}
+                </div>
+
+                <div className="flex gap-5">
+                    {secondSet.map((photo, index) => (
+                        <article key={`m-second-${photo.title}-${index}`} className="w-56 sm:w-64 md:w-72 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+                            {photo.imageSrc ? (
+                                <img src={photo.imageSrc} alt={photo.title} className="h-40 sm:h-52 w-full object-cover" />
+                            ) : (
+                                <div className="flex h-40 sm:h-52 w-full items-center justify-center bg-slate-200 text-sm font-semibold text-slate-600">Add photo here</div>
+                            )}
+                        </article>
+                    ))}
+                </div>
+            </motion.div>
+        </div>
+    );
+};
+
 const GallerySection = () => (
     <section id="gallery" className="bg-slate-100 py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -335,51 +421,8 @@ const GallerySection = () => (
         </div>
 
         <div className="w-full space-y-5 overflow-hidden">
-            <div className="flex w-fit">
-                <motion.div
-                    animate={{ x: '-50%' }}
-                    transition={{ duration: 50, repeat: Infinity, ease: 'linear' }}
-                    className="flex gap-5 whitespace-nowrap"
-                >
-                    {[...galleryPhotos, ...galleryPhotos].map((photo, index) => (
-                        <article
-                            key={`gallery-top-${photo.title}-${index}`}
-                            className="w-56 sm:w-64 md:w-72 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm"
-                        >
-                            {photo.imageSrc ? (
-                                <img src={photo.imageSrc} alt={photo.title} className="h-40 sm:h-52 w-full object-cover" />
-                            ) : (
-                                <div className="flex h-40 sm:h-52 w-full items-center justify-center bg-slate-200 text-sm font-semibold text-slate-600">
-                                    Add photo here
-                                </div>
-                            )}
-                        </article>
-                    ))}
-                </motion.div>
-            </div>
-
-            <div className="flex w-fit">
-                <motion.div
-                    animate={{ x: ['-50%', '0%'] }}
-                    transition={{ duration: 58, repeat: Infinity, ease: 'linear' }}
-                    className="flex gap-5 whitespace-nowrap"
-                >
-                    {[...galleryPhotos, ...galleryPhotos].map((photo, index) => (
-                        <article
-                            key={`gallery-bottom-${photo.title}-${index}`}
-                            className="w-56 sm:w-64 md:w-72 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm"
-                        >
-                            {photo.imageSrc ? (
-                                <img src={photo.imageSrc} alt={photo.title} className="h-40 sm:h-52 w-full object-cover" />
-                            ) : (
-                                <div className="flex h-40 sm:h-52 w-full items-center justify-center bg-slate-200 text-sm font-semibold text-slate-600">
-                                    Add photo here
-                                </div>
-                            )}
-                        </article>
-                    ))}
-                </motion.div>
-            </div>
+            <MarqueeRow items={galleryPhotos} speed={60} />
+            <MarqueeRow items={galleryPhotos} speed={48} />
         </div>
     </section>
 );
@@ -502,6 +545,7 @@ export default function App() {
                 </div>
             </section>
 
+            <CraftYourWedding />
             <GallerySection />
 
             {/* Features / Benefits */}
