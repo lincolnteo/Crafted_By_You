@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { prewarmJotform } from '../utils/jotform'
 
 const WHATSAPP_NUMBER = '60175658275'
 
@@ -86,7 +88,16 @@ export default function CraftYourWedding() {
         </div>
 
         <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 justify-center">
-          <button onClick={() => openWhatsApp('Hello CraftedByYou, I\'d like to craft my wedding — please advise next steps.')} className="bg-gradient-to-r from-pink-500 to-orange-500 text-white px-6 py-3 rounded-full font-bold">Enquire on WhatsApp</button>
+          <button onClick={() => openWhatsApp('Hello CraftedByYou, I\'d like to craft my wedding — please advise next steps.')} className="bg-linear-to-r from-pink-500 to-orange-500 text-white px-6 py-3 rounded-full font-bold">Enquire on WhatsApp</button>
+          <Link
+            to="/quote"
+            onMouseEnter={prewarmJotform}
+            onFocus={prewarmJotform}
+            onTouchStart={prewarmJotform}
+            className="rounded-full border-2 border-pink-100 bg-white px-6 py-3 font-bold text-pink-600 transition-colors hover:border-pink-300 hover:bg-pink-50"
+          >
+            Get a Quote
+          </Link>
         </div>
       </div>
     </section>

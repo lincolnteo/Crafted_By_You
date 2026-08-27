@@ -40,9 +40,21 @@ const Navbar = () => (
                 <button type="button" onClick={() => scrollToSection('gallery')} className="hover:text-pink-500 transition-colors">Gallery</button>
                 <button type="button" onClick={() => scrollToSection('testimonials')} className="hover:text-orange-500 transition-colors">Find Us!</button>
             </div>
-            <Link to="/quote" {...quoteLinkWarmupHandlers} className="bg-linear-to-r from-pink-500 to-orange-500 text-white px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold hover:shadow-lg hover:shadow-pink-500/30 hover:scale-105 transition-all duration-300">
-                Get a Quote
-            </Link>
+            <div className="flex items-center gap-2">
+                <a
+                    href="https://wa.me/60175658275?text=Hello%20CraftedByYou%2C%20I%27d%20like%20to%20enquire%20about%20your%20services."
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="inline-flex items-center gap-1.5 rounded-full border-2 border-green-500 px-3 py-2 text-xs font-bold text-green-600 transition-colors hover:bg-green-50 sm:px-5 sm:py-2.5 sm:text-sm"
+                >
+                    <FaWhatsapp aria-hidden="true" />
+                    <span className="sm:hidden">WhatsApp</span>
+                    <span className="hidden sm:inline">Enquire on WhatsApp</span>
+                </a>
+                <Link to="/quote" {...quoteLinkWarmupHandlers} className="bg-linear-to-r from-pink-500 to-orange-500 text-white px-3 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold hover:shadow-lg hover:shadow-pink-500/30 hover:scale-105 transition-all duration-300">
+                    Get a Quote
+                </Link>
+            </div>
         </div>
     </nav>
 );
