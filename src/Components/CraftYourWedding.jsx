@@ -11,7 +11,7 @@ function openWhatsApp(message) {
 
 const activities = [
   {
-    step: '02',
+    step: '1',
     stage: 'Create together',
     title: 'Scented Flower Candle Gifts',
     description: 'A beautiful handcrafted flower candle symbolising love, warmth, and new beginnings. Personalised with your wedding details, it is a meaningful keepsake your guests can cherish long after your special day.',
@@ -19,7 +19,7 @@ const activities = [
     image: '/assets/wedding/FlowerSoap.png'
   },
   {
-    step: '06',
+    step: '2',
     stage: 'Share your thanks',
     title: 'Fragrance Pouch Gifts',
     description: 'Filled with a delightful blend of natural herbs, this elegant fragrance pouch adds a refreshing scent to wardrobes, handbags, or cars. A thoughtful wedding favour that carries your heartfelt appreciation.',
@@ -27,7 +27,7 @@ const activities = [
     image: '/assets/wedding/Fragrance.png'
   },
   {
-    step: '07',
+    step: '3',
     stage: 'Invite relaxation',
     title: 'Aroma Bath Salt',
     description: 'A relaxing blend of Himalayan salts, Epsom salt, and dried flower petals designed to create a soothing spa experience at home. A perfect way to thank your guests with a little relaxation and self-care.',
@@ -35,7 +35,7 @@ const activities = [
     image: '/assets/wedding/AromaBathSalt.png'
   },
   {
-    step: '08',
+    step: '4',
     stage: 'Make it personal',
     title: 'Lovely Name Charm Gifts',
     description: 'A personalised handmade charm featuring each guest\'s name and adorable accessories. Perfect as a bag charm, keychain, or memorable keepsake that reminds them of your special day.',
@@ -43,7 +43,7 @@ const activities = [
     image: '/assets/wedding/NameCharm.png'
   },
   {
-    step: '09',
+    step: '5',
     stage: 'Nourish the senses',
     title: 'Floral Body Scrub Gifts',
     description: 'A luxurious handcrafted body scrub made with natural exfoliating ingredients and dried flower petals. It leaves the skin feeling soft, smooth, and refreshed while offering a relaxing spa-like experience at home.',
