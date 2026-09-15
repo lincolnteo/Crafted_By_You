@@ -15,7 +15,7 @@ export const workshops = [
     imageSrc: '/assets/workshops/FloralBathSalt.png',
   },
   {
-    title: 'Cute Charm',
+    title: 'Lovely Name Charm',
     tag: 'Accessories',
     description:
       'Create your own personalised charm using colourful alphabet letters, a plush charm, and a fluffy heart pom-pom. Design a unique keychain to decorate your bag or keys - fun, creative, and perfect for all ages.',
@@ -153,7 +153,42 @@ export const workshops = [
     description:
       "Craft a scent that is uniquely yours. In this hands-on workshop, you'll blend different fragrance notes to design a perfume that reflects your personality, emotions, and memories. Each scent combination becomes your life code - a personal signature that tells your story without words. Whether it's calming, uplifting, or bold, your fragrance is a reflection of who you are in this moment. Create it. Own it. Wear your story.",
     imageSrc: '/assets/workshops/perfume.jpeg',
-  },  
+  },
+  {
+    title: 'Patchwork Fabric Lamp',
+    tag: 'Fragrance',
+    description:
+      "Unleash your creativity and turn fabric, lace and decorative trims into a charming handmade table lamp! Choose your favourite colours, patterns and embellishments to create a one-of-a-kind lamp that reflects your personality. A fun and relaxing craft experience that you can proudly take home and use as a beautiful décor piece.",
+      imageSrc: '/assets/workshops/patchWorkFabricLamp.jpg',
+  },
+  {
+    title: 'Patch & Heat Press',
+    tag: 'Fragrance',
+    description:
+      "Turn a plain fabric item into something uniquely yours! Choose from a fun collection of colourful patches, letters, words and cute designs, then arrange and heat-press them onto your fabric to create a personalised masterpiece. A simple, creative and enjoyable workshop for all ages.",
+    imageSrc: '/assets/workshops/patchAndHeatPress.jpg',
+  },
+  {
+    title: 'fidgetClicker',
+    tag: 'Fragrance',
+    description:
+      "Create your own colourful Fidget Clicker and enjoy the satisfying click with every press! Choose your favourite letters and personalise your clicker to make it uniquely yours. A fun, hands-on activity that combines creativity, personalisation and a little stress-relieving sensory play.",
+    imageSrc: '/assets/workshops/fidgetClicker.jpg',
+  },
+  {
+    title: 'Hanging Aroma Diffuser',
+    tag: 'Fragrance',
+    description:
+      "A fun and meaningful accessory that can be enjoyed as a bag charm, hanging accessory or personal fragrance piece.",
+    imageSrc: '/assets/workshops/hangingAromaDiffuser.jpg',
+  },
+  {
+    title: 'Pressed Flower Art',
+    tag: 'Fragrance',
+    description:
+      "Create a beautiful piece of artwork using delicate pressed flowers and natural botanicals. Arrange your favourite flowers, leaves and colours to design your own unique composition, then preserve them as a timeless keepsake. A calming and creative activity that connects you with nature while expressing your artistic side.",
+    imageSrc: '/assets/workshops/pressedFlowerArt.jpg',
+  },
   {
     title: 'None of the above contact us',
     tag: 'Custom Request',
