@@ -11,7 +11,7 @@ const quoteLinkWarmupHandlers = {
 
 export default function WorkshopsPage() {
   return (
-    <div className="min-h-screen bg-slate-50 px-4 py-10 text-slate-900 sm:px-6">
+    <div className="min-h-screen w-full overflow-visible bg-slate-50 px-4 py-10 pb-16 text-slate-900 sm:px-6">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
@@ -29,22 +29,22 @@ export default function WorkshopsPage() {
         </div>
 
         {/* Render cards from shared workshop dataset in App.jsx modern overlay card style */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-2 gap-4 sm:gap-8 md:grid-cols-3">
           {workshops.map((workshop) => (
             <div
               key={workshop.title}
-              className="group relative overflow-hidden rounded-[2.2rem] bg-slate-900 aspect-square cursor-pointer shadow-xl shadow-slate-200/60 border border-slate-200 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-pink-500/20"
+              className="group relative grid aspect-square overflow-hidden rounded-[2.2rem] bg-slate-900 cursor-pointer shadow-xl shadow-slate-200/60 border border-slate-200 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-pink-500/20"
             >
               {workshop.imageSrc ? (
                 <img
                   src={workshop.imageSrc}
                   alt={workshop.title}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
+                  className="col-start-1 row-start-1 block h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-108"
                 />
               ) : (
-                <div className="w-full h-full bg-linear-to-br from-pink-500 to-orange-500 group-hover:scale-108 transition-transform duration-700" />
+                <div className="col-start-1 row-start-1 h-full w-full bg-linear-to-br from-pink-500 to-orange-500 group-hover:scale-108 transition-transform duration-700" />
               )}
-              <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/35 to-transparent z-10 pointer-events-none" />
+              <div className="col-start-1 row-start-1 h-full w-full bg-linear-to-t from-black/90 via-black/35 to-transparent z-10 pointer-events-none" />
               
               <div className="absolute top-5 left-5 z-20">
                 <span className="px-4 py-1.5 bg-white/20 backdrop-blur-md text-white text-xs font-black uppercase tracking-widest rounded-full border border-white/40 shadow-sm">
