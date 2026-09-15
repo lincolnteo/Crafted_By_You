@@ -145,7 +145,7 @@ export const workshops = [
     tag: 'Wellness',
     description:
       'Enter our exclusive Mist Lab and craft a personalised spray infused with premium essential oils. Curate your own mood blend - from Focus to Confidence - and take home a scent designed to elevate your day.',
-    imageSrc: '/assets/workshops/Aromatheraphy Spray-Mist.jpg',
+    imageSrc: '/assets/workshops/aromaWellnessMist.jpg',
   },
   {
     title: 'DIY Perfume Making - Create Your Personal Life Code',
@@ -156,21 +156,21 @@ export const workshops = [
   },
   {
     title: 'Patchwork Fabric Lamp',
-    tag: 'Fragrance',
+    tag: 'Accessories',
     description:
       "Unleash your creativity and turn fabric, lace and decorative trims into a charming handmade table lamp! Choose your favourite colours, patterns and embellishments to create a one-of-a-kind lamp that reflects your personality. A fun and relaxing craft experience that you can proudly take home and use as a beautiful décor piece.",
       imageSrc: '/assets/workshops/patchWorkFabricLamp.jpg',
   },
   {
     title: 'Patch & Heat Press',
-    tag: 'Fragrance',
+    tag: 'Accessories',
     description:
       "Turn a plain fabric item into something uniquely yours! Choose from a fun collection of colourful patches, letters, words and cute designs, then arrange and heat-press them onto your fabric to create a personalised masterpiece. A simple, creative and enjoyable workshop for all ages.",
     imageSrc: '/assets/workshops/patchAndHeatPress.jpg',
   },
   {
     title: 'fidgetClicker',
-    tag: 'Fragrance',
+    tag: 'Accessories',
     description:
       "Create your own colourful Fidget Clicker and enjoy the satisfying click with every press! Choose your favourite letters and personalise your clicker to make it uniquely yours. A fun, hands-on activity that combines creativity, personalisation and a little stress-relieving sensory play.",
     imageSrc: '/assets/workshops/fidgetClicker.jpg',
@@ -184,7 +184,7 @@ export const workshops = [
   },
   {
     title: 'Pressed Flower Art',
-    tag: 'Fragrance',
+    tag: 'Art',
     description:
       "Create a beautiful piece of artwork using delicate pressed flowers and natural botanicals. Arrange your favourite flowers, leaves and colours to design your own unique composition, then preserve them as a timeless keepsake. A calming and creative activity that connects you with nature while expressing your artistic side.",
     imageSrc: '/assets/workshops/pressedFlowerArt.jpg',
