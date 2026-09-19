@@ -3,27 +3,51 @@ export const workshops = [
   {
     title: 'Hand & Foot Casting',
     tag: 'Accessories',
+    duration: '1.5 - 2 hours',
+    age: '4+',
+    hardness: 'Beginner friendly',
     description:
-      "Keepsakes Capture every precious detail. Treasure every memory. From a newborn's tiny footprint to the hands of loved ones, our Hand & Foot casting service transforms life's most meaningfull moments into timesless keep sakes, Every piece is carefully handcrafted to preseerve the unique details that make each memeore special."
-    ,imageSrc: '/assets/workshops/Hand&FootCasting.jpeg',
+      "Keepsakes Capture every precious detail. Treasure every memory. From a newborn's tiny footprint to the hands of loved ones, our Hand & Foot casting service transforms life's most meaningfull moments into timesless keep sakes, Every piece is carefully handcrafted to preseerve the unique details that make each memory special.",
+    imageSrc: '/assets/workshops/Hand&FootCasting.jpeg',
+    galleryImages: [
+      '/assets/workshops/Hand&FootCasting.jpeg',
+      '/assets/workshops/HLZC5390.JPG',
+    ],
   },
   {
     title: 'Floral Bath Salt',
     tag: 'Wellness',
+    duration: '1.5 - 2 hours',
+    age: '4+',
+    hardness: 'Beginner friendly',
     description:
       'Create your own aroma diffuser with Himalayan and Epsom salts. You can use it as an aroma diffuser, scrubbing bath salt, or foot soak.',
     imageSrc: '/assets/workshops/FloralBathSalt.png',
+    galleryImages: [
+      '/assets/workshops/FloralBathSalt.png',
+      '/assets/workshops/Spa_floral_Body_Scrub.jpeg',
+    ],
   },
   {
     title: 'Lovely Name Charm',
     tag: 'Accessories',
+    duration: '1.5 - 2 hours',
+    age: '4+',
+    hardness: 'Beginner friendly',
     description:
       'Create your own personalised charm using colourful alphabet letters, a plush charm, and a fluffy heart pom-pom. Design a unique keychain to decorate your bag or keys - fun, creative, and perfect for all ages.',
     imageSrc: '/assets/workshops/CuteCharm1.jpeg',
+    galleryImages: [
+      '/assets/workshops/CuteCharm1.jpeg',
+      '/assets/workshops/CuteCharm.jpeg',
+    ],
   },
   {
     title: 'Fluid Bear',
     tag: 'Art',
+    duration: '1.5 - 2 hours',
+    age: '8+',
+    hardness: 'Beginner friendly',
     description:
       'Let the fluid paint flow over a white bear figurine to create dynamic patterns. Then dress up your bear beautifully!',
     imageSrc: '/assets/workshops/fluid_bear.jpg',
@@ -31,6 +55,9 @@ export const workshops = [
   {
     title: 'Herbal Flower Fragrance Pouch',
     tag: 'Fragrance',
+    duration: '1.5 - 2 hours',
+    age: '4+',
+    hardness: 'Beginner friendly',
     description:
       'A blend of natural herbs and dried flowers that gently releases its aroma over time, promoting relaxation, freshness, and balance.',
     imageSrc: '/assets/workshops/Herbal_Flower Fragrance_Pouch.jpg',
@@ -38,6 +65,9 @@ export const workshops = [
   {
     title: 'Natural Body Lotion',
     tag: 'Self Care',
+    duration: '1.5 - 2 hours',
+    age: '4+',
+    hardness: 'Beginner friendly',
     description:
       'Ever wonder how body lotion is made? Learn to DIY your own naturally derived body lotion that is refreshing and definitely non-greasy.',
     imageSrc: '/assets/workshops/lotion.jpg',
@@ -45,20 +75,38 @@ export const workshops = [
   {
     title: 'Acrylic Pour Painting',
     tag: 'Painting',
+    duration: '1.5 - 2 hours',
+    age: '8+',
+    hardness: 'Beginner friendly',
     description:
       'It is a form of abstract art that involves pouring various colors of acrylic paint onto a canvas to create unique, visually captivating designs; with a marbled or cellular appearance.',
     imageSrc: '/assets/workshops/Acrylic Pour Painting.jpg',
+    galleryImages: [
+      '/assets/workshops/Acrylic Pour Painting.jpg',
+      '/assets/workshops/acrylic_pour_painting.jpg',
+    ],
   },
   {
     title: 'Terrarium Build',
     tag: 'Nature Craft',
+    duration: '1.5 - 2 hours',
+    age: '4+',
+    hardness: 'Beginner friendly',
     description:
       'A terrarium is a miniature ecosystem contained in a transparent container. You can create a self-sustaining environment for plants, often with decorative elements like stones, moss, or small figurines. Terrariums are a popular way to bring a piece of nature indoors and can be both aesthetically pleasing and low-maintenance.',
     imageSrc: '/assets/workshops/Terrarium.jpeg',
+    galleryImages: [
+      '/assets/workshops/Terrarium.jpeg',
+      '/assets/workshops/terrarium.png',
+      '/assets/workshops/1terrarium.png',
+    ],
   },
   {
     title: 'Personalised Postcards',
     tag: 'Paper Craft',
+    duration: '1.5 - 2 hours',
+    age: '4+',
+    hardness: 'Beginner friendly',
     description:
       'Create your own personalised postcards inspired by different celebrations. Mix and match fun materials to design meaningful cards, perfect for sharing heartfelt messages with loved ones. A creative, engaging, and versatile workshop suitable for all occasions and ages.',
     imageSrc: '/assets/workshops/Postcard.jpg',
@@ -66,6 +114,9 @@ export const workshops = [
   {
     title: 'Neon Sign Art',
     tag: 'Decor',
+    duration: '1.5 - 2 hours',
+    age: '12+',
+    hardness: 'Intermediate',
     description:
       'Experience Korean-style neon sign crafting and learn how to light it up. You can create your own neon signs inspired by vibrant and expressive neon signage. Materials used include flexible LED neon lights, canvas or acrylic boards, and various tools.',
     imageSrc: '/assets/workshops/neon_sign.jpg',
@@ -73,6 +124,9 @@ export const workshops = [
   {
     title: 'Mosaic Coaster',
     tag: 'Mosaic',
+    duration: '1.5 - 2 hours',
+    age: '8+',
+    hardness: 'Beginner friendly',
     description:
       'Mosaic art has a rich history, dating back to ancient civilizations, and it continues to be a popular and versatile art form today.',
     imageSrc: '/assets/workshops/mosaic_arts.jpg',
@@ -80,13 +134,24 @@ export const workshops = [
   {
     title: 'Scented Candle+',
     tag: 'Fragrance',
+    duration: '1.5 - 2 hours',
+    age: '8+',
+    hardness: 'Beginner friendly',
     description:
       'Handcraft a scented candle infused with fragrance oils to produce a pleasant aroma when burned. These candles can create a cozy and inviting atmosphere while offering potential aromatherapy benefits.',
     imageSrc: '/assets/workshops/Scented_Candle1.jpg',
+    galleryImages: [
+      '/assets/workshops/Scented_Candle1.jpg',
+      '/assets/workshops/Scented_Candle.jpg',
+      '/assets/workshops/Scented_Candle.png',
+    ],
   },
   {
     title: 'Sand Painting Candle',
     tag: 'Art',
+    duration: '1.5 - 2 hours',
+    age: '8+',
+    hardness: 'Beginner friendly',
     description:
       'Inspired by the intricate beauty of traditional sand paintings, this candle not only captivates with its vibrant design but also fills your space with your preferred fragrances.',
     imageSrc: '/assets/workshops/Sand_Painting_Scented_Candle.jpg',
@@ -94,6 +159,9 @@ export const workshops = [
   {
     title: 'Tufting',
     tag: 'Textile',
+    duration: '2 - 3 hours',
+    age: '12+',
+    hardness: 'Intermediate',
     description:
       'Discover the joy of the latest trending pastime: crafting your own rug. We provide the tools and expert guidance to help you use a tufting gun and create a unique rug. Join us on this delightful rug-making journey!',
     imageSrc: '/assets/workshops/tufting.jpg',
@@ -101,13 +169,19 @@ export const workshops = [
   {
     title: 'Personalised Music Box',
     tag: 'Music',
+    duration: '1.5 - 2 hours',
+    age: '8+',
+    hardness: 'Beginner friendly',
     description:
-      'Create you own personalised musical box and bring your creativity to life. Design and decorate a rotating scene while enjoing a soothing melody, making it a meaningful keepsake or treasure or gift',
-      imageSrc: '/assets/workshops/musical_box.jpg',
+      'Create your own personalised music box and bring your creativity to life. Design and decorate a rotating scene while enjoying a soothing melody, making it a meaningful keepsake, treasure, or gift.',
+    imageSrc: '/assets/workshops/musical_box.jpg',
   },
   {
     title: 'Spa Floral Body Scrub',
     tag: 'Wellness',
+    duration: '1.5 - 2 hours',
+    age: '8+',
+    hardness: 'Beginner friendly',
     description:
       'Create your own spa-inspired floral body scrub using natural ingredients and delicate dried flowers. Enjoy a relaxing hands-on experience while crafting a personalised scrub that gently exfoliates and refreshes your skin.',
       imageSrc: '/assets/workshops/Spa_floral_Body_Scrub.jpeg',
@@ -115,6 +189,9 @@ export const workshops = [
   {
     title: 'Turkish Mosaic Lantern',
     tag: 'Mosaic',
+    duration: '2 - 3 hours',
+    age: '12+',
+    hardness: 'Intermediate',
     description:
       'Inspired by the rich heritage of Turkish mosaic art, this workshop allows you to design a vibrant lantern using colourful glass tiles. A perfect blend of culture and creativity, bringing warm ambient light to your home.',
       imageSrc: '/assets/workshops/mosiac_vase.jpg',
@@ -122,6 +199,9 @@ export const workshops = [
   {
     title: 'Stitch Beads',
     tag: 'Accessories',
+    duration: '1.5 - 2 hours',
+    age: '8+',
+    hardness: 'Beginner friendly',
     description:
       'Stitching tiny beads together to form your favorite beautiful patterns and designs. It could turn out to be a charming keychain, coaster, display and etc',
     imageSrc: '/assets/workshops/stitchBeads.jpeg',
@@ -129,6 +209,9 @@ export const workshops = [
   {
     title: 'Aqua Puff',
     tag: 'Accessories',
+    duration: '1.5 - 2 hours',
+    age: '4+',
+    hardness: 'Beginner friendly',
     description:
       'Turn a soft, fluffy puff into your very own adorable creation! Draw, colour, and personalise cute characters, animals, or shapes to create a unique decorative piece. This fun and beginner-friendly workshop is perfect for children, families, and anyone who loves creative crafts.',
     imageSrc: '/assets/workshops/aqua_puff.jpg',
@@ -136,6 +219,9 @@ export const workshops = [
   {
     title: 'Personalized Keepsake Memory Book',
     tag: 'Accessories',
+    duration: '2 - 3 hours',
+    age: '8+',
+    hardness: 'Beginner friendly',
     description:
       "Celebrate life's most meaningful moments with a handcrafted keepsake made just for you. Each Personalized Keepsake Memory Book is thoughtfully designed to tell a unique story through heartfelt messages, photos, and beautiful handmade details. Whether it's for a birthday, anniversary, graduation, or any special occasion, this one-of-a-kind gift transforms precious memories into a timeless treasure that will be cherished for years to come.",
     imageSrc: '/assets/workshops/memory_book.jpg',
@@ -143,6 +229,9 @@ export const workshops = [
   {
     title: 'Aroma Wellness Mist',
     tag: 'Wellness',
+    duration: '1.5 - 2 hours',
+    age: '12+',
+    hardness: 'Beginner friendly',
     description:
       'Enter our exclusive Mist Lab and craft a personalised spray infused with premium essential oils. Curate your own mood blend - from Focus to Confidence - and take home a scent designed to elevate your day.',
     imageSrc: '/assets/workshops/aromaWellnessMist.jpg',
@@ -150,6 +239,9 @@ export const workshops = [
   {
     title: 'DIY Perfume Making - Create Your Personal Life Code',
     tag: 'Fragrance',
+    duration: '2 - 3 hours',
+    age: '12+',
+    hardness: 'Intermediate',
     description:
       "Craft a scent that is uniquely yours. In this hands-on workshop, you'll blend different fragrance notes to design a perfume that reflects your personality, emotions, and memories. Each scent combination becomes your life code - a personal signature that tells your story without words. Whether it's calming, uplifting, or bold, your fragrance is a reflection of who you are in this moment. Create it. Own it. Wear your story.",
     imageSrc: '/assets/workshops/perfume.jpeg',
@@ -157,6 +249,9 @@ export const workshops = [
   {
     title: 'Patchwork Fabric Lamp',
     tag: 'Accessories',
+    duration: '2 - 3 hours',
+    age: '12+',
+    hardness: 'Intermediate',
     description:
       "Unleash your creativity and turn fabric, lace and decorative trims into a charming handmade table lamp! Choose your favourite colours, patterns and embellishments to create a one-of-a-kind lamp that reflects your personality. A fun and relaxing craft experience that you can proudly take home and use as a beautiful décor piece.",
       imageSrc: '/assets/workshops/patchWorkFabricLamp.jpg',
@@ -164,13 +259,19 @@ export const workshops = [
   {
     title: 'Patch & Heat Press',
     tag: 'Accessories',
+    duration: '1.5 - 2 hours',
+    age: '4+',
+    hardness: 'Beginner friendly',
     description:
       "Turn a plain fabric item into something uniquely yours! Choose from a fun collection of colourful patches, letters, words and cute designs, then arrange and heat-press them onto your fabric to create a personalised masterpiece. A simple, creative and enjoyable workshop for all ages.",
     imageSrc: '/assets/workshops/patchAndHeatPress.jpg',
   },
   {
-    title: 'fidgetClicker',
+    title: 'Fidget Clicker',
     tag: 'Accessories',
+    duration: '1 - 1.5 hours',
+    age: '4+',
+    hardness: 'Beginner friendly',
     description:
       "Create your own colourful Fidget Clicker and enjoy the satisfying click with every press! Choose your favourite letters and personalise your clicker to make it uniquely yours. A fun, hands-on activity that combines creativity, personalisation and a little stress-relieving sensory play.",
     imageSrc: '/assets/workshops/fidgetClicker.jpg',
@@ -178,6 +279,9 @@ export const workshops = [
   {
     title: 'Hanging Aroma Diffuser',
     tag: 'Fragrance',
+    duration: '1.5 - 2 hours',
+    age: '8+',
+    hardness: 'Beginner friendly',
     description:
       "A fun and meaningful accessory that can be enjoyed as a bag charm, hanging accessory or personal fragrance piece.",
     imageSrc: '/assets/workshops/hangingAromaDiffuser.jpg',
@@ -185,13 +289,29 @@ export const workshops = [
   {
     title: 'Pressed Flower Art',
     tag: 'Art',
+    duration: '1.5 - 2 hours',
+    age: '8+',
+    hardness: 'Beginner friendly',
     description:
       "Create a beautiful piece of artwork using delicate pressed flowers and natural botanicals. Arrange your favourite flowers, leaves and colours to design your own unique composition, then preserve them as a timeless keepsake. A calming and creative activity that connects you with nature while expressing your artistic side.",
     imageSrc: '/assets/workshops/pressedFlowerArt.jpg',
   },
   {
+    title: 'Batik Key Fob',
+    tag: 'Art',
+    duration: '1.5 - 2 hours',
+    age: '8+',
+    hardness: 'Beginner friendly',
+    description:
+    'Discover the beauty of Malaysian batik while creating your very own personalised key fob. Choose your favourite batik fabric, arrange the colours and patterns, and transform them into a stylish handmade accessory. A fun and easy craft that combines traditional Malaysian artistry with modern creativity.',
+    imageSrc: '/assets/workshops/batikKeyFob.jpeg',
+  },
+  {
     title: 'None of the above contact us',
     tag: 'Custom Request',
+    duration: 'Flexible',
+    age: 'All ages',
+    hardness: 'Customizable',
     description:
       'Looking for something different? Contact us and we can tailor a workshop experience to match your event goals.',
   },

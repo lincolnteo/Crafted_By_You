@@ -68,6 +68,10 @@ export default function CraftYourWedding() {
                 <img
                   src={activity.image}
                   alt={activity.title}
+                  width="640"
+                  height="448"
+                  loading="lazy"
+                  decoding="async"
                   className="h-56 w-full bg-slate-50 object-contain transition-transform duration-500 group-hover:scale-105"
                 />
                 <span className="absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white text-sm font-extrabold text-slate-900 shadow-md">
