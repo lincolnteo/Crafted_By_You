@@ -1,11 +1,18 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { JOTFORM_FORM_URL, prewarmJotform } from '../utils/jotform'
+import { setPageSeo } from '../utils/seo'
 
 export default function QuotePage() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
+    setPageSeo({
+      title: 'Get a Quote | Crafted By You',
+      description: 'Request a custom quote for DIY craft workshops, corporate events, and private celebrations in Kuala Lumpur.',
+      path: '/quote',
+      noindex: true,
+    })
     // Warm up Jotform host before iframe navigation starts.
     prewarmJotform()
   }, [])

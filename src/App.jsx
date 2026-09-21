@@ -1,20 +1,41 @@
 import React, { useEffect, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, CheckCircle2, Sparkles, Paintbrush, Phone, MapPin } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, CheckCircle2, Sparkles, Paintbrush } from 'lucide-react';
 import { FaInstagram, FaWhatsapp, FaLinkedinIn, FaFacebookF } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import { workshops } from './data/workshops';
 import CraftYourWedding from './Components/CraftYourWedding';
 import { prewarmJotform } from './utils/jotform';
+import { setPageSeo } from './utils/seo';
 
 const MotionLink = motion.create(Link);
 
+const TrustindexReviews = () => {
+    const widgetRef = React.useRef(null);
+
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.trustindex.io/loader.js?271d51981ba9864d1f868c433e2';
+        script.async = true;
+        script.defer = true;
+        widgetRef.current?.appendChild(script);
+
+        return () => {
+            script.remove();
+        };
+    }, []);
+
+    return <div ref={widgetRef} className="h-full w-full overflow-auto" aria-label="Google reviews" />;
+};
+
+// These handlers start loading the JotForm page before someone clicks a quote button.
 const quoteLinkWarmupHandlers = {
     onMouseEnter: prewarmJotform,
     onFocus: prewarmJotform,
     onTouchStart: prewarmJotform,
 };
 
+// Scrolls to a section on the landing page when a navbar item is selected.
 const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -22,8 +43,9 @@ const scrollToSection = (sectionId) => {
     }
 };
 
-// --- Components ---
+// --- Reusable landing-page components ---
 
+// Fixed top navigation with links to the main page sections and quote/contact actions.
 const Navbar = () => (
     <nav className="fixed top-0 w-full z-50 bg-[#FFF8F2]/80 backdrop-blur-md border-b border-orange-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
@@ -31,6 +53,8 @@ const Navbar = () => (
                 <img
                     src="/assets/branding/logo.png"
                     alt="Crafted By You logo"
+                    width="56"
+                    height="56"
                     className="h-10 w-10 sm:h-14 sm:w-14 rounded-full object-contain"
                 />
                 Crafted By <span className="text-transparent bg-clip-text bg-linear-to-r from-pink-500 to-orange-500">You</span>
@@ -59,6 +83,7 @@ const Navbar = () => (
     </nav>
 );
 
+// Decorative animated color shape used behind the hero content.
 const FloatingBlob = ({ className, delay = 0, duration = 7 }) => (
     <motion.div
         animate={{
@@ -72,84 +97,80 @@ const FloatingBlob = ({ className, delay = 0, duration = 7 }) => (
     />
 );
 
-const WorkshopCard = ({ title, tag, delay, gradient, imageSrc }) => (
+// One curated workshop card. Clicking it opens the full workshop catalogue.
+const WorkshopCard = ({ title, tag, gradient, imageSrc }) => (
     <MotionLink
         to="/workshops"
         aria-label={`View ${title} workshop details`}
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6, delay, type: "spring", bounce: 0.4 }}
         whileHover={{ y: -15, scale: 1.03, rotate: 2 }}
-        className="group relative overflow-hidden rounded-[2.5rem] bg-slate-100 aspect-square cursor-pointer shadow-xl shadow-slate-200/50"
+        className="group relative block aspect-square w-full min-w-0 cursor-pointer overflow-hidden rounded-3xl bg-slate-100 shadow-xl shadow-slate-200/50 sm:rounded-[2.5rem]"
     >
         <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent z-10" />
-        <div className="absolute top-6 left-6 z-20">
-            <span className="px-4 py-1.5 bg-white/20 backdrop-blur-md text-white text-xs font-black uppercase tracking-widest rounded-full border border-white/40 shadow-sm">
+        <div className="absolute left-3 top-3 z-20 sm:left-6 sm:top-6">
+            <span className="rounded-full border border-white/40 bg-white/20 px-2 py-1 text-[9px] font-black uppercase tracking-wider text-white shadow-sm backdrop-blur-md sm:px-4 sm:py-1.5 sm:text-xs sm:tracking-widest">
                 {tag}
             </span>
         </div>
-        <div className="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 z-20 pr-4 sm:pr-6">
-            <h3 className="text-2xl sm:text-3xl font-black text-white mb-3 leading-tight">{title}</h3>
-            <div className="flex items-center text-pink-300 group-hover:text-white group-hover:gap-3 transition-all duration-300 font-bold">
-                <span>View Details</span>
-                <ArrowRight size={20} className="ml-2" />
+        <div className="absolute bottom-4 left-4 z-20 pr-3 sm:bottom-8 sm:left-8 sm:pr-6">
+            <h3 className="mb-1 text-base font-black leading-tight text-white sm:mb-3 sm:text-3xl">{title}</h3>
+            <div className="flex items-center font-bold text-pink-300 transition-all duration-300 group-hover:gap-3 group-hover:text-white">
+                <span className="text-xs sm:text-base">View Details</span>
+                <ArrowRight size={16} className="ml-1 sm:ml-2 sm:h-5 sm:w-5" />
             </div>
         </div>
         {imageSrc ? (
-            <img src={imageSrc} alt={title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700" />
+            <img src={imageSrc} alt={title} width="800" height="800" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700" />
         ) : (
             <div className={`w-full h-full bg-linear-to-br ${gradient} group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700`} />
         )}
     </MotionLink>
 );
 
-// Keep hero backgrounds in an array to make image rotation easy later.
+// Hero background images. Keeping these in an array makes future rotation easy.
 const heroBackgrounds = [
     '/assets/backgrounds/header_background.png',
 ];
 
-// Brand logos shown in the client grid.
+// Brand logos displayed in the client section near the bottom of the page.
 const clients = [
     { name: 'Vinda', logoSrc: '/assets/clients/Vinda.png' },
     { name: 'UOB', logoSrc: '/assets/clients/UOB.png' },
-    { name: 'Traveloka', logoSrc: '/assets/clients/traveloka.png' },
+    { name: 'Traveloka', logoSrc: '/assets/clients/Traveloka.png' },
     { name: 'TITAN', logoSrc: '/assets/clients/TITAN.png' },
     { name: 'Safi', logoSrc: '/assets/clients/Safi.png' },
     { name: 'Prasarana', logoSrc: '/assets/clients/Prasarana.png' },
-    { name: 'Pantai KL', logoSrc: '/assets/clients/Pantai KL.png' },
+    { name: 'Pantai KL', logoSrc: '/assets/clients/Pantai.png' },
     { name: 'MRC', logoSrc: '/assets/clients/MRC.png' },
     { name: 'Magnum', logoSrc: '/assets/clients/Magnum.png' },
-    { name: 'LE Consulting', logoSrc: '/assets/clients/LE Consulting.png' },
+    { name: 'LE Consulting', logoSrc: '/assets/clients/LEConsulting.png' },
     { name: 'Kingsbee', logoSrc: '/assets/clients/Kingsbee.png' },
     { name: 'IQVIA', logoSrc: '/assets/clients/IQVIA.png' },
     { name: 'GAMUDA', logoSrc: '/assets/clients/GAMUDA.png' },
-    { name: 'Four Season', logoSrc: '/assets/clients/Four Season.png' },
+    { name: 'Four Season', logoSrc: '/assets/clients/FourSeason.png'},
+    { name: 'Leap Motor', logoSrc: '/assets/clients/LeapMotor.png' },
+    { name: 'Coway', logoSrc: '/assets/clients/Coway.png' }
 ];
 
-// Gallery strip data for both marquee rows.
+// Images used by the two continuously scrolling gallery rows.
 const galleryPhotos = [
     { title: 'Gallery 1', imageSrc: '/assets/gallery/gallery1.jpeg' },
     { title: 'Gallery 2', imageSrc: '/assets/gallery/gallery2.jpeg' },
     { title: 'Gallery 3', imageSrc: '/assets/gallery/gallery3.jpeg' },
     { title: 'Gallery 4', imageSrc: '/assets/gallery/gallery4.jpeg' },
     { title: 'Gallery 5', imageSrc: '/assets/gallery/gallery5.jpeg' },
+    { title: 'Gallery 6', imageSrc: '/assets/gallery/gallery6.jpeg' },
     { title: 'Gallery 7', imageSrc: '/assets/gallery/gallery7.jpeg' },
     { title: 'Gallery 8', imageSrc: '/assets/gallery/gallery8.jpeg' },
     { title: 'Gallery 9', imageSrc: '/assets/gallery/gallery9.jpeg' },
-    { title: 'Gallery 10', imageSrc: '/assets/gallery/gallery10.jpg' },
+    { title: 'Gallery 10', imageSrc: '/assets/gallery/gallery10.jpeg' },
     { title: 'Gallery 11', imageSrc: '/assets/gallery/gallery11.jpeg' },
-    { title: 'Gallery 12', imageSrc: '/assets/gallery/gallery12.jpeg' },
     { title: 'Gallery 13', imageSrc: '/assets/gallery/gallery13.jpeg' },
+    { title: 'Gallery 14', imageSrc: '/assets/gallery/gallery14.jpeg' },    
     { title: 'Gallery 15', imageSrc: '/assets/gallery/gallery15.jpeg' },
     { title: 'Gallery 16', imageSrc: '/assets/gallery/gallery16.jpeg' },
-    { title: 'Gallery 17', imageSrc: '/assets/gallery/gallery17.jpeg' },
-    { title: 'Gallery 18', imageSrc: '/assets/gallery/gallery18.jpeg' },
-    { title: 'Gallery 20', imageSrc: '/assets/gallery/gallery20.jpeg' },
-    { title: 'Gallery 21', imageSrc: '/assets/gallery/gallery21.jpg' },
 ];
 
-// Partner cards with logo and short description.
+// Partner cards shown in the Creative Partners section.
 const partnerAssets = [
     {
         title: 'MyEnsy',
@@ -159,125 +180,26 @@ const partnerAssets = [
     },
     {
         title: 'smovf',
-        imageSrc: '/assets/partners/smovf.jpeg',
+        imageSrc: '/assets/partners/smovf.png',
         description:
             'Let your brand scent stand out. SMOVF FRAGRANCE is quickly making waves in the perfume industry by offering unique and alluring scents.',
     },
     {
         title: 'Luumi Space',
-        imageSrc: '/assets/partners/LuumiSpaceLogo.jpeg',
+        imageSrc: '/assets/partners/LuumiSpaceLogo.png',
         description:
             'Luumi Space is proudly certified in SDCA, KGAD, and KPIA, with credentials from Korea. We are dedicated to delivering high-value craftsmanship through our range of artistic creations.',
     },
 ];
 
 const workshopProducts = workshops.filter((workshop) => workshop.tag !== 'Custom Request');
-const marqueeWorkshopProducts = workshopProducts.length > 0
-    ? [workshopProducts[workshopProducts.length - 1], ...workshopProducts.slice(0, -1)]
-    : workshopProducts;
-const MARQUEE_SET_SIZE = 6;
-const MARQUEE_UPDATE_MS = 8000;
-
-const shuffleItems = (items) => {
-    const shuffled = [...items];
-
-    for (let index = shuffled.length - 1; index > 0; index -= 1) {
-        const randomIndex = Math.floor(Math.random() * (index + 1));
-        [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
-    }
-
-    return shuffled;
-};
-
-const getRandomWorkshopSet = (items, count) => {
-    if (!Array.isArray(items) || items.length === 0) return [];
-    const safeCount = Math.min(count, items.length);
-    return shuffleItems(items).slice(0, safeCount);
-};
-
-const getWorkshopSetSignature = (workshopSet) =>
-    [...new Set((Array.isArray(workshopSet) ? workshopSet : []).map((workshop) => workshop.title))].sort().join('|');
-
-const getNextDistinctWorkshopSet = (items, previousSet, count) => {
-    if (!Array.isArray(items) || items.length === 0) return [];
-
-    const safeCount = Math.min(count, items.length);
-
-    if (!Array.isArray(previousSet) || previousSet.length === 0) {
-        return getRandomWorkshopSet(items, safeCount);
-    }
-
-    const previousSignature = getWorkshopSetSignature(previousSet);
-    const previousTitles = new Set(previousSet.map((workshop) => workshop.title));
-    const eligible = items.filter((workshop) => !previousTitles.has(workshop.title));
-
-    const buildCandidate = (sourceItems) => {
-        if (!Array.isArray(sourceItems) || sourceItems.length === 0) return [];
-
-        for (let attempt = 0; attempt < 100; attempt += 1) {
-            const candidate = getRandomWorkshopSet(sourceItems, safeCount);
-            if (getWorkshopSetSignature(candidate) !== previousSignature) {
-                return candidate;
-            }
-        }
-
-        return [];
-    };
-
-    // Use a fully disjoint next set whenever enough workshops are available.
-    if (eligible.length >= safeCount) {
-        const candidate = buildCandidate(eligible);
-        if (candidate.length > 0) {
-            return candidate;
-        }
-    }
-
-    // If total workshops are too few for full disjointness, maximize difference.
-    const overlapping = items.filter((workshop) => previousTitles.has(workshop.title));
-    const candidate = buildCandidate([...shuffleItems(eligible), ...shuffleItems(overlapping)]);
-    if (candidate.length > 0) {
-        return candidate;
-    }
-
-    if (items.length <= 1) {
-        return items.slice(0, safeCount);
-    }
-
-    return shuffleItems(items)
-        .slice(0, safeCount)
-        .map((workshop, index) => (index === 0 && workshop.title === previousSet[0]?.title ? items[1] : workshop))
-        .filter(Boolean)
-        .slice(0, safeCount);
-};
-
+// Chooses the small set of workshop cards shown in Curated Experiences.
 const getRandomWorkshopSpotlights = (workshops, count = 3) => {
     if (!Array.isArray(workshops) || workshops.length === 0) return [];
     // Lightweight shuffle is sufficient for rotating spotlight cards.
     const shuffled = [...workshops].sort(() => Math.random() - 0.5);
     return shuffled.slice(0, Math.min(count, shuffled.length));
 };
-
-const WorkshopsMarquee = ({ marqueeWorkshops }) => (
-    <section className="bg-violet-900 py-5 sm:py-8 overflow-hidden border-y-4 border-pink-500">
-        <div className="flex w-fit">
-            <motion.div
-                animate={{ x: '-50%' }}
-                transition={{ duration: 55, repeat: Infinity, ease: 'linear' }}
-                className="flex items-center whitespace-nowrap"
-            >
-                {[...marqueeWorkshops, ...marqueeWorkshops].map((workshop, index) => (
-                    <div key={`${workshop.title}-${index}`} className="mx-5 sm:mx-10 flex items-center gap-3 sm:gap-4">
-                        <span className="text-sm sm:text-lg font-black uppercase tracking-wider text-violet-200/90">
-                            {workshop.title}
-                        </span>
-                        <Sparkles className="text-pink-400/70" size={14} />
-                    </div>
-                ))}
-            </motion.div>
-        </div>
-    </section>
-);
-
 const ClientsSection = () => (
     <section id="clients" className="bg-slate-50 px-4 sm:px-6 py-16 sm:py-24">
         <div className="mx-auto max-w-7xl">
@@ -294,7 +216,7 @@ const ClientsSection = () => (
                         key={client.name}
                         className="flex h-24 items-center justify-center rounded-2xl border border-slate-200 bg-white p-3 shadow-sm"
                     >
-                        <img src={client.logoSrc} alt={client.name} className="max-h-12 w-full object-contain" />
+                        <img src={client.logoSrc} alt={client.name} width="240" height="96" loading="lazy" decoding="async" className="max-h-12 w-full object-contain" />
                     </div>
                 ))}
             </div>
@@ -327,7 +249,7 @@ const AssetsSection = () => (
                         className="overflow-hidden rounded-2xl border border-rose-100 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                     >
                         <div className={`mb-4 h-1 w-full rounded-full ${index % 2 === 0 ? 'bg-linear-to-r from-pink-400 to-rose-400' : 'bg-linear-to-r from-orange-400 to-amber-400'}`} />
-                        <img src={asset.imageSrc} alt={asset.title} className="h-24 w-full object-contain" />
+                        <img src={asset.imageSrc} alt={asset.title} width="640" height="192" loading="lazy" decoding="async" className="h-24 w-full object-contain" />
                         <figcaption className="mt-3 text-center text-xs font-black uppercase tracking-wider text-slate-600">
                             {asset.title}
                         </figcaption>
@@ -339,130 +261,141 @@ const AssetsSection = () => (
     </section>
 );
 
-const makeSecondSet = (items) => {
-    if (!Array.isArray(items) || items.length === 0) return [];
-    // Create a shuffled second set that avoids same-item-in-same-position where possible
-    const first = items.slice();
-    const second = items.slice();
-
-    // Simple Fisher-Yates shuffle
-    for (let i = second.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [second[i], second[j]] = [second[j], second[i]];
-    }
-
-    // If any items still line up with same index, rotate the second array until they differ
-    let attempts = 0;
-    while (attempts < second.length) {
-        let clash = false;
-        for (let k = 0; k < first.length; k++) {
-            if (first[k]?.imageSrc === second[k]?.imageSrc) {
-                clash = true;
-                break;
-            }
-        }
-        if (!clash) break;
-        second.push(second.shift());
-        attempts += 1;
-    }
-
-    return second;
-};
-
-const MarqueeRow = ({ items, speed = 60 }) => {
-    const firstRef = React.useRef(null);
-    const wrapperRef = React.useRef(null);
-    const [firstWidth, setFirstWidth] = React.useState(0);
-
-    React.useLayoutEffect(() => {
-        const measure = () => {
-            if (firstRef.current) setFirstWidth(firstRef.current.getBoundingClientRect().width);
-        };
-        measure();
-        window.addEventListener('resize', measure);
-        return () => window.removeEventListener('resize', measure);
-    }, [items]);
-
-    const secondSet = React.useMemo(() => makeSecondSet(items), [items]);
-
-    // Duration based on width and speed pixels-per-second
-    const duration = firstWidth > 0 ? Math.max(18, firstWidth / speed) : 40;
-
-    return (
-        <div className="flex w-full overflow-hidden">
-            <motion.div
-                ref={wrapperRef}
-                className="flex gap-5 whitespace-nowrap will-change-transform"
-                animate={{ x: firstWidth ? [-0, -firstWidth] : 0 }}
-                transition={{ x: { duration, repeat: Infinity, ease: 'linear', repeatType: 'loop' } }}
-            >
-                <div ref={firstRef} className="flex gap-5">
-                    {items.map((photo, index) => (
-                        <article key={`m-first-${photo.title}-${index}`} className="w-56 sm:w-64 md:w-72 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-                            {photo.imageSrc ? (
-                                <img src={photo.imageSrc} alt={photo.title} className="h-40 sm:h-52 w-full object-cover" />
-                            ) : (
-                                <div className="flex h-40 sm:h-52 w-full items-center justify-center bg-slate-200 text-sm font-semibold text-slate-600">Add photo here</div>
-                            )}
-                        </article>
-                    ))}
-                </div>
-
-                <div className="flex gap-5">
-                    {secondSet.map((photo, index) => (
-                        <article key={`m-second-${photo.title}-${index}`} className="w-56 sm:w-64 md:w-72 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-                            {photo.imageSrc ? (
-                                <img src={photo.imageSrc} alt={photo.title} className="h-40 sm:h-52 w-full object-cover" />
-                            ) : (
-                                <div className="flex h-40 sm:h-52 w-full items-center justify-center bg-slate-200 text-sm font-semibold text-slate-600">Add photo here</div>
-                            )}
-                        </article>
-                    ))}
-                </div>
-            </motion.div>
-        </div>
-    );
-};
-
-const GallerySection = () => (
-    <section id="gallery" className="bg-slate-100 py-16 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-            <div className="mb-10 text-center">
-                <h2 className="text-3xl sm:text-4xl font-black text-slate-900 md:text-5xl">Photo Gallery</h2>
-            </div>
-        </div>
-
-        <div className="w-full space-y-5 overflow-hidden">
-            <MarqueeRow items={galleryPhotos} speed={60} />
-            <MarqueeRow items={galleryPhotos} speed={48} />
-        </div>
-    </section>
-);
-
-// --- Main Page ---
-
-export default function App() {
-    const { scrollYProgress } = useScroll();
-    const y = useTransform(scrollYProgress, [0, 1], [0, -150]);
-    const [spotlightWorkshops, setSpotlightWorkshops] = useState(() => getRandomWorkshopSpotlights(workshopProducts, 3));
-    const [marqueeWorkshops, setMarqueeWorkshops] = useState(() =>
-        getRandomWorkshopSet(marqueeWorkshopProducts, MARQUEE_SET_SIZE)
-    );
+const GallerySection = () => {
+    const galleryRef = React.useRef(null);
+    const resumeAutoScrollRef = React.useRef(null);
+    const galleryAnimationRef = React.useRef(null);
+    const loopedGalleryPhotos = [...galleryPhotos, ...galleryPhotos];
 
     useEffect(() => {
-        const intervalId = setInterval(() => {
-            setSpotlightWorkshops(getRandomWorkshopSpotlights(workshopProducts, 3));
-        }, 6000);
-
-        return () => clearInterval(intervalId);
+        const gallery = galleryRef.current;
+        if (gallery) gallery.scrollLeft = gallery.scrollWidth / 2;
     }, []);
 
+    useEffect(() => () => {
+        window.clearTimeout(resumeAutoScrollRef.current);
+        window.cancelAnimationFrame(galleryAnimationRef.current);
+    }, []);
+
+    const animateGalleryScroll = (distance) => {
+        const gallery = galleryRef.current;
+        if (!gallery) return;
+
+        window.cancelAnimationFrame(galleryAnimationRef.current);
+        const start = gallery.scrollLeft;
+        const duration = 650;
+        const startedAt = performance.now();
+
+        const animate = (now) => {
+            const progress = Math.min((now - startedAt) / duration, 1);
+            const easedProgress = progress < 0.5
+                ? 4 * progress * progress * progress
+                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+            gallery.scrollLeft = start + distance * easedProgress;
+            if (progress < 1) {
+                galleryAnimationRef.current = window.requestAnimationFrame(animate);
+            } else {
+                galleryAnimationRef.current = null;
+            }
+        };
+
+        galleryAnimationRef.current = window.requestAnimationFrame(animate);
+    };
+
+    const pauseAutoScroll = () => {
+        window.clearTimeout(resumeAutoScrollRef.current);
+        resumeAutoScrollRef.current = window.setTimeout(() => {
+            resumeAutoScrollRef.current = null;
+        }, 2500);
+    };
+
     useEffect(() => {
+        const autoScroll = window.setInterval(() => {
+            if (resumeAutoScrollRef.current) return;
+
+            animateGalleryScroll(window.innerWidth >= 640 ? 370 : 300);
+        }, 3000);
+
+        return () => window.clearInterval(autoScroll);
+    }, []);
+
+    const handleGalleryWheel = (event) => {
+        pauseAutoScroll();
+        const wheelDistance = Math.abs(event.deltaY) > Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
+        if (!wheelDistance) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+        galleryRef.current?.scrollBy({ left: wheelDistance, behavior: 'smooth' });
+    };
+
+    const handleGalleryScroll = () => {
+        const gallery = galleryRef.current;
+        if (!gallery) return;
+
+        const setWidth = gallery.scrollWidth / 2;
+        if (gallery.scrollLeft <= 0) gallery.scrollLeft += setWidth;
+        if (gallery.scrollLeft >= setWidth) gallery.scrollLeft -= setWidth;
+    };
+
+    return (
+        <section id="gallery" className="bg-slate-100 py-16 sm:py-24">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6">
+                <div className="mb-10 flex items-center justify-between gap-4">
+                    <div>
+                        <h2 className="text-3xl font-black text-slate-900 sm:text-4xl md:text-5xl">Photo Gallery</h2>
+                        <p className="heart-beat mt-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-3.5 py-2 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500 shadow-sm backdrop-blur-sm">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 shrink-0 text-pink-500 fill-none stroke-current stroke-2">
+                                <path d="M8 7v7a4 4 0 0 0 8 0V7a4 4 0 0 0-8 0Z" strokeLinecap="round" />
+                                <path d="M12 5v4" strokeLinecap="round" />
+                            </svg>
+                            <span className="hidden sm:inline">Scroll to explore</span>
+                            <span className="sm:hidden">Swipe to explore</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                ref={galleryRef}
+                onWheelCapture={handleGalleryWheel}
+                onTouchStart={pauseAutoScroll}
+                onTouchMove={pauseAutoScroll}
+                onTouchEnd={pauseAutoScroll}
+                onScroll={handleGalleryScroll}
+                className="flex snap-x snap-mandatory overscroll-contain touch-pan-x gap-5 overflow-x-auto px-4 pb-4 scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] sm:px-6"
+            >
+                {loopedGalleryPhotos.map((photo, index) => (
+                    <article key={`${photo.title}-${index}`} className="w-[280px] shrink-0 snap-always snap-center overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm sm:w-[350px]">
+                        {photo.imageSrc ? (
+                            <img src={photo.imageSrc} alt={photo.title} width="350" height="250" loading="lazy" decoding="async" className="h-52 w-full object-cover sm:h-64" />
+                        ) : (
+                            <div className="flex h-52 w-full items-center justify-center bg-slate-200 text-sm font-semibold text-slate-600 sm:h-64">Add photo here</div>
+                        )}
+                    </article>
+                ))}
+            </div>
+        </section>
+    );
+};
+
+// --- Landing page ---
+
+export default function App() {
+    // Four cards are rendered on mobile; the fourth is hidden at the desktop breakpoint below.
+    const [spotlightWorkshops, setSpotlightWorkshops] = useState(() => getRandomWorkshopSpotlights(workshopProducts, 4));
+
+    useEffect(() => {
+        setPageSeo({
+            title: 'Crafted By You | DIY Workshops & Corporate Events',
+            description: 'Hands-on DIY craft workshops for corporate events, team building, birthdays, and private sessions in Kuala Lumpur. Request a quote with Crafted By You.',
+            path: '/',
+        });
+
         const intervalId = setInterval(() => {
-            setMarqueeWorkshops((previousSet) =>
-                getNextDistinctWorkshopSet(marqueeWorkshopProducts, previousSet, MARQUEE_SET_SIZE)
-            );
-        }, MARQUEE_UPDATE_MS);
+            setSpotlightWorkshops(getRandomWorkshopSpotlights(workshopProducts, 4));
+        }, 6000);
 
         return () => clearInterval(intervalId);
     }, []);
@@ -471,7 +404,9 @@ export default function App() {
         <div className="min-h-screen bg-[#FFF8F2] text-slate-900 selection:bg-pink-200 selection:text-pink-900 overflow-hidden">
             <Navbar />
 
-            {/* Hero Section */}
+            <main>
+
+            {/* Hero: main introduction and primary actions. */}
             <section className="relative pt-28 sm:pt-40 pb-14 sm:pb-20 px-4 sm:px-6 overflow-hidden">
                 {/* Animated Background Blobs */}
                 <FloatingBlob className="w-96 h-96 bg-pink-300 -top-20 -left-10" delay={0} duration={8} />
@@ -479,7 +414,7 @@ export default function App() {
                 <FloatingBlob className="w-80 h-80 bg-violet-300 bottom-10 left-1/3" delay={1} duration={9} />
 
                 <div className="absolute inset-0 z-0 opacity-20">
-                    <img src={heroBackgrounds[0]} alt="Hero background" className="h-full w-full object-cover" />
+                    <img src={heroBackgrounds[0]} alt="" width="1920" height="1080" fetchPriority="high" decoding="async" className="h-full w-full object-cover" />
                 </div>
 
                 <div className="max-w-7xl mx-auto text-center relative z-10">
@@ -521,9 +456,7 @@ export default function App() {
                 </div>
             </section>
 
-            <WorkshopsMarquee marqueeWorkshops={marqueeWorkshops} />
-
-            {/* Workshop Grid Section */}
+            {/* Curated Experiences: two columns on mobile and three on desktop. */}
             <section id="workshops" className="py-16 sm:py-32 px-4 sm:px-6 bg-cyan-50 relative border-b-4 border-white">
                 {/* Decorative corner icon */}
                 <Paintbrush className="absolute top-10 right-10 text-cyan-200 opacity-50 rotate-45" size={120} />
@@ -543,24 +476,26 @@ export default function App() {
                         </MotionLink>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-2 gap-3 sm:gap-8 md:grid-cols-3">
                         {spotlightWorkshops.map((workshop, index) => (
-                            <WorkshopCard
-                                key={`${workshop.title}-${index}`}
-                                title={workshop.title}
-                                tag={workshop.tag}
-                                delay={0.1 + index * 0.1}
-                                imageSrc={workshop.imageSrc}
-                            />
+                            <div key={`${workshop.title}-${index}`} className={`min-w-0 ${index > 2 ? 'md:hidden' : ''}`}>
+                                <WorkshopCard
+                                    title={workshop.title}
+                                    tag={workshop.tag}
+                                    imageSrc={workshop.imageSrc}
+                                />
+                            </div>
                         ))}
                     </div>
                 </div>
             </section>
 
+            {/* Separate wedding-focused experience page section. */}
             <CraftYourWedding />
+            {/* Scrolling photo gallery. */}
             <GallerySection />
 
-            {/* Features / Benefits */}
+            {/* Benefits: explains why teams choose Crafted By You. */}
             <section id="benefits" className="py-16 sm:py-32 px-4 sm:px-6 bg-[#FFF8F2]">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-20 items-center">
@@ -589,7 +524,7 @@ export default function App() {
                                             <CheckCircle2 size={24} />
                                         </div>
                                         <div>
-                                            <h4 className="font-black text-lg sm:text-xl mb-2">{item.title}</h4>
+                                            <h3 className="font-black text-lg sm:text-xl mb-2">{item.title}</h3>
                                             <p className="text-slate-600 font-medium leading-relaxed">{item.desc}</p>
                                         </div>
                                     </motion.div>
@@ -604,7 +539,7 @@ export default function App() {
                             transition={{ duration: 0.8, type: "spring" }}
                             className="relative aspect-square bg-white rounded-4xl sm:rounded-[3rem] overflow-hidden shadow-2xl shadow-violet-900/10 border-8 border-white flex items-center justify-center p-8"
                         >
-                            <img src="/assets/branding/logo.png" alt="Crafted By You logo" className="h-full w-full object-contain" />
+                            <TrustindexReviews />
                         </motion.div>
                     </div>
                 </div>
@@ -613,6 +548,8 @@ export default function App() {
             <AssetsSection />
 
             <ClientsSection />
+
+            </main>
 
             {/* Contact Footer */}
             <footer id="testimonials" className="bg-linear-to-br from-violet-900 via-purple-900 to-fuchsia-900 text-white overflow-hidden">
@@ -643,7 +580,7 @@ export default function App() {
                             </div>
 
                             <div className="space-y-4">
-                                <p className="text-sm sm:text-base uppercase tracking-[0.35em] text-white/70">Whatsapp us</p>
+                                <p className="text-sm sm:text-base uppercase tracking-[0.35em] text-white/70">WhatsApp us</p>
                                 <a href="tel:+60175658275" className="inline-flex text-2xl sm:text-4xl font-black text-yellow-300 hover:text-yellow-200 transition-colors">
                                     +60 17-565 8275
                                 </a>

@@ -3,3 +3,19 @@
 html {
 	font-size: 14px;
 }
+
+body {
+	zoom: 0.9;
+}
+
+@keyframes heart-beat {
+	0%, 100% { transform: scale(1); }
+	12% { transform: scale(1.06); }
+	24% { transform: scale(1); }
+	36% { transform: scale(1.04); }
+	48% { transform: scale(1); }
+}
+
+.heart-beat {
+	animation: heart-beat 2.2s ease-in-out infinite;
+}
