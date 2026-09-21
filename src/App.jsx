@@ -61,8 +61,11 @@ const Navbar = () => (
             </div>
             <div className="hidden md:flex gap-8 text-sm font-bold text-slate-600">
                 <button type="button" onClick={() => scrollToSection('workshops')} className="hover:text-pink-500 transition-colors">Workshops</button>
-                <button type="button" onClick={() => scrollToSection('gallery')} className="hover:text-pink-500 transition-colors">Gallery</button>
-                <button type="button" onClick={() => scrollToSection('testimonials')} className="hover:text-orange-500 transition-colors">Find Us!</button>
+                <button type="button" onClick={() => scrollToSection('wedding')} className="hover:text-pink-500 transition-colors">Wedding</button>
+                <button type="button" onClick={() => scrollToSection('gallery')} className="hover:text-orange-500 transition-colors">Gallery</button>
+                <button type="button" onClick={() => scrollToSection('about')} className="hover:text-orange-500 transition-colors">About Us</button>
+                <button type="button" onClick={() => scrollToSection('contact')} className="hover:text-orange-500 transition-colors">Find Us!</button>
+
             </div>
             <div className="flex items-center gap-2">
                 <a
@@ -135,7 +138,7 @@ const heroBackgrounds = [
 const clients = [
     { name: 'Vinda', logoSrc: '/assets/clients/Vinda.png' },
     { name: 'UOB', logoSrc: '/assets/clients/UOB.png' },
-    { name: 'Traveloka', logoSrc: '/assets/clients/Traveloka.png' },
+    { name: 'Traveloka', logoSrc: '/assets/clients/traveloka.png' },
     { name: 'TITAN', logoSrc: '/assets/clients/TITAN.png' },
     { name: 'Safi', logoSrc: '/assets/clients/Safi.png' },
     { name: 'Prasarana', logoSrc: '/assets/clients/Prasarana.png' },
@@ -491,12 +494,11 @@ export default function App() {
             </section>
 
             {/* Separate wedding-focused experience page section. */}
-            <CraftYourWedding />
+            <CraftYourWedding id="wedding" /> 
             {/* Scrolling photo gallery. */}
             <GallerySection />
-
-            {/* Benefits: explains why teams choose Crafted By You. */}
-            <section id="benefits" className="py-16 sm:py-32 px-4 sm:px-6 bg-[#FFF8F2]">
+            {/* About section. */}
+            <section id="about" className="py-16 sm:py-32 px-4 sm:px-6 bg-[#F8F8F8]">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-20 items-center">
                         <motion.div
@@ -552,7 +554,7 @@ export default function App() {
             </main>
 
             {/* Contact Footer */}
-            <footer id="testimonials" className="bg-linear-to-br from-violet-900 via-purple-900 to-fuchsia-900 text-white overflow-hidden">
+            <footer id="contact" className="bg-linear-to-br from-violet-900 via-purple-900 to-fuchsia-900 text-white overflow-hidden">
                 <div className="mx-auto grid max-w-7xl gap-0 lg:grid-cols-[1.1fr_0.9fr]">
                     <div className="min-h-90 bg-white/10 p-4 sm:p-6 lg:p-8">
                         <div className="h-full overflow-hidden rounded-[1.75rem] border border-white/25 bg-white shadow-2xl shadow-black/10">
