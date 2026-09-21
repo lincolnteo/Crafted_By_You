@@ -135,7 +135,7 @@ const heroBackgrounds = [
 const clients = [
     { name: 'Vinda', logoSrc: '/assets/clients/Vinda.png' },
     { name: 'UOB', logoSrc: '/assets/clients/UOB.png' },
-    { name: 'Traveloka', logoSrc: '/assets/clients/Traveloka.png' },
+    { name: 'Traveloka', logoSrc: '/assets/clients/traveloka.png' },
     { name: 'TITAN', logoSrc: '/assets/clients/TITAN.png' },
     { name: 'Safi', logoSrc: '/assets/clients/Safi.png' },
     { name: 'Prasarana', logoSrc: '/assets/clients/Prasarana.png' },
