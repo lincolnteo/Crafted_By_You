@@ -21,7 +21,6 @@ const getGalleryImages = (workshop) => {
 const getDetails = (workshop) => ({
   duration: workshop.duration || '1.5 - 2 hours',
   age: workshop.age || (workshop.tag === 'Art' ? '8+' : '4+'),
-  hardness: workshop.hardness || 'Beginner friendly',
   fullDescription: workshop.fullDescription || `${workshop.description} Our facilitators guide every step, so you can enjoy a relaxed creative experience and take home something made by you.`,
 })
 
@@ -117,7 +116,7 @@ function WorkshopDetails({ workshop, onClose, onSelect }) {
             <h1 className="max-w-xl text-3xl font-black leading-tight sm:text-5xl">{workshop.title}</h1>
             <p className="mt-5 text-base leading-7 text-slate-600">{details.fullDescription}</p>
             <dl className="mt-8 grid grid-cols-2 gap-3 text-sm">
-              {[['Duration', details.duration], ['Suitable age', details.age], ['Hardness', details.hardness], ['Customisation', 'Available on request!']].map(([label, value]) => (
+              {[['Duration', details.duration], ['Suitable age', details.age], ['Customisation', 'Available on request!']].map(([label, value]) => (
                 <div key={label} className="rounded-2xl bg-orange-50/70 p-4"><dt className="text-xs font-bold uppercase tracking-wide text-slate-500">{label}</dt><dd className="mt-1 font-bold text-slate-900">{value}</dd></div>
               ))}
             </dl>
