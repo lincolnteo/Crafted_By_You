@@ -279,4 +279,3 @@ export const workshops = [
       'Looking for something different? Contact us and we can tailor a workshop experience to match your event goals.',
   },
 ]
-
