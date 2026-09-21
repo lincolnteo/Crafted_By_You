@@ -10,8 +10,7 @@ export const workshops = [
       "Keepsakes Capture every precious detail. Treasure every memory. From a newborn's tiny footprint to the hands of loved ones, our Hand & Foot casting service transforms life's most meaningfull moments into timesless keep sakes, Every piece is carefully handcrafted to preseerve the unique details that make each memory special.",
     imageSrc: '/assets/workshops/Hand&FootCasting.jpeg',
     galleryImages: [
-      '/assets/workshops/Hand&FootCasting.jpeg',
-      '/assets/workshops/HLZC5390.JPG',
+      '/assets/workshops/Hand&FootCasting.jpeg'
     ],
   },
   {
@@ -24,8 +23,7 @@ export const workshops = [
       'Create your own aroma diffuser with Himalayan and Epsom salts. You can use it as an aroma diffuser, scrubbing bath salt, or foot soak.',
     imageSrc: '/assets/workshops/FloralBathSalt.png',
     galleryImages: [
-      '/assets/workshops/FloralBathSalt.png',
-      '/assets/workshops/Spa_floral_Body_Scrub.jpeg',
+      '/assets/workshops/FloralBathSalt.png'
     ],
   },
   {
@@ -38,8 +36,7 @@ export const workshops = [
       'Create your own personalised charm using colourful alphabet letters, a plush charm, and a fluffy heart pom-pom. Design a unique keychain to decorate your bag or keys - fun, creative, and perfect for all ages.',
     imageSrc: '/assets/workshops/CuteCharm1.jpeg',
     galleryImages: [
-      '/assets/workshops/CuteCharm1.jpeg',
-      '/assets/workshops/CuteCharm.jpeg',
+      '/assets/workshops/CuteCharm1.jpeg'
     ],
   },
   {
@@ -82,8 +79,7 @@ export const workshops = [
       'It is a form of abstract art that involves pouring various colors of acrylic paint onto a canvas to create unique, visually captivating designs; with a marbled or cellular appearance.',
     imageSrc: '/assets/workshops/Acrylic Pour Painting.jpg',
     galleryImages: [
-      '/assets/workshops/Acrylic Pour Painting.jpg',
-      '/assets/workshops/acrylic_pour_painting.jpg',
+      '/assets/workshops/Acrylic Pour Painting.jpg'
     ],
   },
   {
@@ -96,9 +92,7 @@ export const workshops = [
       'A terrarium is a miniature ecosystem contained in a transparent container. You can create a self-sustaining environment for plants, often with decorative elements like stones, moss, or small figurines. Terrariums are a popular way to bring a piece of nature indoors and can be both aesthetically pleasing and low-maintenance.',
     imageSrc: '/assets/workshops/Terrarium.jpeg',
     galleryImages: [
-      '/assets/workshops/Terrarium.jpeg',
-      '/assets/workshops/terrarium.png',
-      '/assets/workshops/1terrarium.png',
+      '/assets/workshops/Terrarium.jpeg'
     ],
   },
   {
@@ -141,9 +135,7 @@ export const workshops = [
       'Handcraft a scented candle infused with fragrance oils to produce a pleasant aroma when burned. These candles can create a cozy and inviting atmosphere while offering potential aromatherapy benefits.',
     imageSrc: '/assets/workshops/Scented_Candle1.jpg',
     galleryImages: [
-      '/assets/workshops/Scented_Candle1.jpg',
-      '/assets/workshops/Scented_Candle.jpg',
-      '/assets/workshops/Scented_Candle.png',
+      '/assets/workshops/Scented_Candle1.jpg'
     ],
   },
   {

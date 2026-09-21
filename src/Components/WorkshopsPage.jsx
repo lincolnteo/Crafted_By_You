@@ -100,11 +100,6 @@ function WorkshopGallery({ workshop, expanded = false }) {
 function WorkshopDetails({ workshop, onClose, onSelect }) {
   const details = getDetails(workshop)
   const similar = workshops.filter((item) => item.title !== workshop.title && item.tag === workshop.tag && item.imageSrc).slice(0, 3)
-  const faqs = [
-    ['Can I customise my workshop?', 'Yes. Customisation is available on request, subject to materials and event requirements.'],
-    ['Is this suitable for beginners?', 'Absolutely. Our facilitators guide you through each stage and provide all materials.'],
-    ['Can you host private events?', 'Yes, we can bring the workshop to birthdays, corporate events, schools, and celebrations.'],
-  ]
 
   return (
     <div className="fixed inset-0 z-60 overflow-y-auto bg-[#fffaf6] text-slate-900">
@@ -129,13 +124,6 @@ function WorkshopDetails({ workshop, onClose, onSelect }) {
             <Link to="/quote" {...quoteLinkWarmupHandlers} className="heart-beat mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-linear-to-r from-pink-500 via-orange-500 to-yellow-400 px-6 py-4 text-sm font-black text-white shadow-lg shadow-orange-200 transition hover:from-pink-600 hover:via-orange-600 hover:to-yellow-500"><Heart size={17} fill="currentColor" /> Get Your Quote Now!</Link>
           </div>
         </div>
-
-        <section className="mx-auto max-w-3xl py-12 sm:py-16">
-          <h2 className="text-2xl font-black sm:text-3xl">Frequently Asked Questions</h2>
-          <div className="mt-5 divide-y divide-orange-100 border-y border-orange-100">
-            {faqs.map(([question, answer]) => <details key={question} className="group py-5"><summary className="cursor-pointer list-none pr-8 text-base font-bold marker:hidden">{question}<span className="float-right text-orange-500 transition group-open:rotate-45">+</span></summary><p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600">{answer}</p></details>)}
-          </div>
-        </section>
 
         {similar.length > 0 && <section className="hidden border-t border-orange-100 py-12 lg:block"><h2 className="text-2xl font-black">You may also enjoy</h2><div className="mt-6 grid grid-cols-3 gap-6">{similar.map((item) => <button type="button" key={item.title} onClick={() => onSelect(item)} className="group text-left"><div className="aspect-4/3 overflow-hidden rounded-3xl bg-slate-100"><img src={item.imageSrc} alt={item.title} width="800" height="600" loading="lazy" decoding="async" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" /></div><h3 className="mt-3 font-black">{item.title}</h3><p className="mt-1 text-sm text-slate-500">View workshop details <ArrowRight className="inline" size={14} /></p></button>)}</div></section>}
       </div>

@@ -193,86 +193,6 @@ const partnerAssets = [
 ];
 
 const workshopProducts = workshops.filter((workshop) => workshop.tag !== 'Custom Request');
-// The homepage excludes the custom-request item from rotating workshop displays.
-const marqueeWorkshopProducts = workshopProducts.length > 0
-    ? [workshopProducts[workshopProducts.length - 1], ...workshopProducts.slice(0, -1)]
-    : workshopProducts;
-const MARQUEE_SET_SIZE = 6;
-const MARQUEE_UPDATE_MS = 8000;
-
-const shuffleItems = (items) => {
-    const shuffled = [...items];
-
-    for (let index = shuffled.length - 1; index > 0; index -= 1) {
-        const randomIndex = Math.floor(Math.random() * (index + 1));
-        [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
-    }
-
-    return shuffled;
-};
-
-// Returns a random selection for the moving homepage workshop displays.
-const getRandomWorkshopSet = (items, count) => {
-    if (!Array.isArray(items) || items.length === 0) return [];
-    const safeCount = Math.min(count, items.length);
-    return shuffleItems(items).slice(0, safeCount);
-};
-
-const getWorkshopSetSignature = (workshopSet) =>
-    [...new Set((Array.isArray(workshopSet) ? workshopSet : []).map((workshop) => workshop.title))].sort().join('|');
-
-const getNextDistinctWorkshopSet = (items, previousSet, count) => {
-    if (!Array.isArray(items) || items.length === 0) return [];
-
-    const safeCount = Math.min(count, items.length);
-
-    if (!Array.isArray(previousSet) || previousSet.length === 0) {
-        return getRandomWorkshopSet(items, safeCount);
-    }
-
-    const previousSignature = getWorkshopSetSignature(previousSet);
-    const previousTitles = new Set(previousSet.map((workshop) => workshop.title));
-    const eligible = items.filter((workshop) => !previousTitles.has(workshop.title));
-
-    const buildCandidate = (sourceItems) => {
-        if (!Array.isArray(sourceItems) || sourceItems.length === 0) return [];
-
-        for (let attempt = 0; attempt < 100; attempt += 1) {
-            const candidate = getRandomWorkshopSet(sourceItems, safeCount);
-            if (getWorkshopSetSignature(candidate) !== previousSignature) {
-                return candidate;
-            }
-        }
-
-        return [];
-    };
-
-    // Use a fully disjoint next set whenever enough workshops are available.
-    if (eligible.length >= safeCount) {
-        const candidate = buildCandidate(eligible);
-        if (candidate.length > 0) {
-            return candidate;
-        }
-    }
-
-    // If total workshops are too few for full disjointness, maximize difference.
-    const overlapping = items.filter((workshop) => previousTitles.has(workshop.title));
-    const candidate = buildCandidate([...shuffleItems(eligible), ...shuffleItems(overlapping)]);
-    if (candidate.length > 0) {
-        return candidate;
-    }
-
-    if (items.length <= 1) {
-        return items.slice(0, safeCount);
-    }
-
-    return shuffleItems(items)
-        .slice(0, safeCount)
-        .map((workshop, index) => (index === 0 && workshop.title === previousSet[0]?.title ? items[1] : workshop))
-        .filter(Boolean)
-        .slice(0, safeCount);
-};
-
 // Chooses the small set of workshop cards shown in Curated Experiences.
 const getRandomWorkshopSpotlights = (workshops, count = 3) => {
     if (!Array.isArray(workshops) || workshops.length === 0) return [];
@@ -280,28 +200,6 @@ const getRandomWorkshopSpotlights = (workshops, count = 3) => {
     const shuffled = [...workshops].sort(() => Math.random() - 0.5);
     return shuffled.slice(0, Math.min(count, shuffled.length));
 };
-// Purple workshop-name marquee.
-const WorkshopsMarquee = ({ marqueeWorkshops }) => (
-    <section className="bg-violet-900 py-5 sm:py-8 overflow-hidden border-y-4 border-pink-500">
-        <div className="flex w-fit">
-            <motion.div
-                animate={{ x: '-50%' }}
-                transition={{ duration: 55, repeat: Infinity, ease: 'linear' }}
-                className="flex items-center whitespace-nowrap"
-            >
-                {[...marqueeWorkshops, ...marqueeWorkshops].map((workshop, index) => (
-                    <div key={`${workshop.title}-${index}`} className="mx-5 sm:mx-10 flex items-center gap-3 sm:gap-4">
-                        <span className="text-sm sm:text-lg font-black uppercase tracking-wider text-violet-200/90">
-                            {workshop.title}
-                        </span>
-                        <Sparkles className="text-pink-400/70" size={14} />
-                    </div>
-                ))}
-            </motion.div>
-        </div>
-    </section>
-);
-
 const ClientsSection = () => (
     <section id="clients" className="bg-slate-50 px-4 sm:px-6 py-16 sm:py-24">
         <div className="mx-auto max-w-7xl">
@@ -363,112 +261,130 @@ const AssetsSection = () => (
     </section>
 );
 
-const makeSecondSet = (items) => {
-    if (!Array.isArray(items) || items.length === 0) return [];
-    // Create a shuffled second set that avoids same-item-in-same-position where possible
-    const first = items.slice();
-    const second = items.slice();
+const GallerySection = () => {
+    const galleryRef = React.useRef(null);
+    const resumeAutoScrollRef = React.useRef(null);
+    const galleryAnimationRef = React.useRef(null);
+    const loopedGalleryPhotos = [...galleryPhotos, ...galleryPhotos];
 
-    // Simple Fisher-Yates shuffle
-    for (let i = second.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [second[i], second[j]] = [second[j], second[i]];
-    }
+    useEffect(() => {
+        const gallery = galleryRef.current;
+        if (gallery) gallery.scrollLeft = gallery.scrollWidth / 2;
+    }, []);
 
-    // If any items still line up with same index, rotate the second array until they differ
-    let attempts = 0;
-    while (attempts < second.length) {
-        let clash = false;
-        for (let k = 0; k < first.length; k++) {
-            if (first[k]?.imageSrc === second[k]?.imageSrc) {
-                clash = true;
-                break;
+    useEffect(() => () => {
+        window.clearTimeout(resumeAutoScrollRef.current);
+        window.cancelAnimationFrame(galleryAnimationRef.current);
+    }, []);
+
+    const animateGalleryScroll = (distance) => {
+        const gallery = galleryRef.current;
+        if (!gallery) return;
+
+        window.cancelAnimationFrame(galleryAnimationRef.current);
+        const start = gallery.scrollLeft;
+        const duration = 650;
+        const startedAt = performance.now();
+
+        const animate = (now) => {
+            const progress = Math.min((now - startedAt) / duration, 1);
+            const easedProgress = progress < 0.5
+                ? 4 * progress * progress * progress
+                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+            gallery.scrollLeft = start + distance * easedProgress;
+            if (progress < 1) {
+                galleryAnimationRef.current = window.requestAnimationFrame(animate);
+            } else {
+                galleryAnimationRef.current = null;
             }
-        }
-        if (!clash) break;
-        second.push(second.shift());
-        attempts += 1;
-    }
-
-    return second;
-};
-
-const MarqueeRow = ({ items, speed = 60 }) => {
-    const firstRef = React.useRef(null);
-    const [firstWidth, setFirstWidth] = React.useState(0);
-
-    React.useLayoutEffect(() => {
-        const measure = () => {
-            if (firstRef.current) setFirstWidth(firstRef.current.getBoundingClientRect().width);
         };
-        measure();
-        window.addEventListener('resize', measure);
-        return () => window.removeEventListener('resize', measure);
-    }, [items]);
 
-    const secondSet = React.useMemo(() => makeSecondSet(items), [items]);
+        galleryAnimationRef.current = window.requestAnimationFrame(animate);
+    };
 
-    // Duration based on width and speed pixels-per-second
-    const duration = firstWidth > 0 ? Math.max(18, firstWidth / speed) : 40;
+    const pauseAutoScroll = () => {
+        window.clearTimeout(resumeAutoScrollRef.current);
+        resumeAutoScrollRef.current = window.setTimeout(() => {
+            resumeAutoScrollRef.current = null;
+        }, 2500);
+    };
+
+    useEffect(() => {
+        const autoScroll = window.setInterval(() => {
+            if (resumeAutoScrollRef.current) return;
+
+            animateGalleryScroll(window.innerWidth >= 640 ? 370 : 300);
+        }, 3000);
+
+        return () => window.clearInterval(autoScroll);
+    }, []);
+
+    const handleGalleryWheel = (event) => {
+        pauseAutoScroll();
+        const wheelDistance = Math.abs(event.deltaY) > Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
+        if (!wheelDistance) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+        galleryRef.current?.scrollBy({ left: wheelDistance, behavior: 'smooth' });
+    };
+
+    const handleGalleryScroll = () => {
+        const gallery = galleryRef.current;
+        if (!gallery) return;
+
+        const setWidth = gallery.scrollWidth / 2;
+        if (gallery.scrollLeft <= 0) gallery.scrollLeft += setWidth;
+        if (gallery.scrollLeft >= setWidth) gallery.scrollLeft -= setWidth;
+    };
 
     return (
-        <div className="flex w-full overflow-hidden">
-            <motion.div
-                className="flex gap-5 whitespace-nowrap will-change-transform"
-                animate={{ x: firstWidth ? [-0, -firstWidth] : 0 }}
-                transition={{ x: { duration, repeat: Infinity, ease: 'linear', repeatType: 'loop' } }}
-            >
-                <div ref={firstRef} className="flex gap-5">
-                    {items.map((photo, index) => (
-                        <article key={`m-first-${photo.title}-${index}`} className="w-56 sm:w-64 md:w-72 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-                            {photo.imageSrc ? (
-                                <img src={photo.imageSrc} alt={photo.title} width="288" height="208" loading="lazy" decoding="async" className="h-40 sm:h-52 w-full object-cover" />
-                            ) : (
-                                <div className="flex h-40 sm:h-52 w-full items-center justify-center bg-slate-200 text-sm font-semibold text-slate-600">Add photo here</div>
-                            )}
-                        </article>
-                    ))}
+        <section id="gallery" className="bg-slate-100 py-16 sm:py-24">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6">
+                <div className="mb-10 flex items-center justify-between gap-4">
+                    <div>
+                        <h2 className="text-3xl font-black text-slate-900 sm:text-4xl md:text-5xl">Photo Gallery</h2>
+                        <p className="heart-beat mt-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-3.5 py-2 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500 shadow-sm backdrop-blur-sm">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 shrink-0 text-pink-500 fill-none stroke-current stroke-2">
+                                <path d="M8 7v7a4 4 0 0 0 8 0V7a4 4 0 0 0-8 0Z" strokeLinecap="round" />
+                                <path d="M12 5v4" strokeLinecap="round" />
+                            </svg>
+                            <span className="hidden sm:inline">Scroll to explore</span>
+                            <span className="sm:hidden">Swipe to explore</span>
+                        </p>
+                    </div>
                 </div>
+            </div>
 
-                <div className="flex gap-5">
-                    {secondSet.map((photo, index) => (
-                        <article key={`m-second-${photo.title}-${index}`} className="w-56 sm:w-64 md:w-72 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-                            {photo.imageSrc ? (
-                                <img src={photo.imageSrc} alt={photo.title} width="288" height="208" loading="lazy" decoding="async" className="h-40 sm:h-52 w-full object-cover" />
-                            ) : (
-                                <div className="flex h-40 sm:h-52 w-full items-center justify-center bg-slate-200 text-sm font-semibold text-slate-600">Add photo here</div>
-                            )}
-                        </article>
-                    ))}
-                </div>
-            </motion.div>
-        </div>
+            <div
+                ref={galleryRef}
+                onWheelCapture={handleGalleryWheel}
+                onTouchStart={pauseAutoScroll}
+                onTouchMove={pauseAutoScroll}
+                onTouchEnd={pauseAutoScroll}
+                onScroll={handleGalleryScroll}
+                className="flex snap-x snap-mandatory overscroll-contain touch-pan-x gap-5 overflow-x-auto px-4 pb-4 scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] sm:px-6"
+            >
+                {loopedGalleryPhotos.map((photo, index) => (
+                    <article key={`${photo.title}-${index}`} className="w-[280px] shrink-0 snap-always snap-center overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm sm:w-[350px]">
+                        {photo.imageSrc ? (
+                            <img src={photo.imageSrc} alt={photo.title} width="350" height="250" loading="lazy" decoding="async" className="h-52 w-full object-cover sm:h-64" />
+                        ) : (
+                            <div className="flex h-52 w-full items-center justify-center bg-slate-200 text-sm font-semibold text-slate-600 sm:h-64">Add photo here</div>
+                        )}
+                    </article>
+                ))}
+            </div>
+        </section>
     );
 };
-
-const GallerySection = () => (
-    <section id="gallery" className="bg-slate-100 py-16 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-            <div className="mb-10 text-center">
-                <h2 className="text-3xl sm:text-4xl font-black text-slate-900 md:text-5xl">Photo Gallery</h2>
-            </div>
-        </div>
-
-        <div className="w-full space-y-5 overflow-hidden">
-            <MarqueeRow items={galleryPhotos} speed={60} />
-            <MarqueeRow items={galleryPhotos} speed={48} />
-        </div>
-    </section>
-);
 
 // --- Landing page ---
 
 export default function App() {
     // Four cards are rendered on mobile; the fourth is hidden at the desktop breakpoint below.
     const [spotlightWorkshops, setSpotlightWorkshops] = useState(() => getRandomWorkshopSpotlights(workshopProducts, 4));
-    const [marqueeWorkshops, setMarqueeWorkshops] = useState(() =>
-        getRandomWorkshopSet(marqueeWorkshopProducts, MARQUEE_SET_SIZE)
-    );
 
     useEffect(() => {
         setPageSeo({
@@ -480,16 +396,6 @@ export default function App() {
         const intervalId = setInterval(() => {
             setSpotlightWorkshops(getRandomWorkshopSpotlights(workshopProducts, 4));
         }, 6000);
-
-        return () => clearInterval(intervalId);
-    }, []);
-
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            setMarqueeWorkshops((previousSet) =>
-                getNextDistinctWorkshopSet(marqueeWorkshopProducts, previousSet, MARQUEE_SET_SIZE)
-            );
-        }, MARQUEE_UPDATE_MS);
 
         return () => clearInterval(intervalId);
     }, []);
@@ -549,9 +455,6 @@ export default function App() {
                     </motion.div>
                 </div>
             </section>
-
-            {/* Moving strip of workshop names between the hero and curated cards. */}
-            <WorkshopsMarquee marqueeWorkshops={marqueeWorkshops} />
 
             {/* Curated Experiences: two columns on mobile and three on desktop. */}
             <section id="workshops" className="py-16 sm:py-32 px-4 sm:px-6 bg-cyan-50 relative border-b-4 border-white">
