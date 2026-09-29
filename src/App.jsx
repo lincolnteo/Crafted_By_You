@@ -15,7 +15,7 @@ const TrustindexReviews = () => {
 
     useEffect(() => {
         const script = document.createElement('script');
-        script.src = 'https://cdn.trustindex.io/loader.js?69e513e82ff5513f4426c57276b';
+        script.src = 'https://cdn.trustindex.io/loader.js?6a08f3882b6d514cc04651e7a81';
         script.async = true;
         script.defer = true;
         widgetRef.current?.appendChild(script);
