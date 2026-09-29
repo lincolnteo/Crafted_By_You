@@ -10,12 +10,12 @@ import { setPageSeo } from './utils/seo';
 
 const MotionLink = motion.create(Link);
 
-const TrustindexReviews = () => {
+const JotformGoogleReviews = () => {
     const widgetRef = React.useRef(null);
 
     useEffect(() => {
         const script = document.createElement('script');
-        script.src = 'https://cdn.trustindex.io/loader.js?271d51981ba9864d1f868c433e2';
+        script.src = 'https://www.jotform.com/website-widgets/embed/01a0eca90900700086455fb005b07208d5f2';
         script.async = true;
         script.defer = true;
         widgetRef.current?.appendChild(script);
@@ -25,8 +25,13 @@ const TrustindexReviews = () => {
         };
     }, []);
 
-    return <div ref={widgetRef} className="h-full w-full overflow-auto" aria-label="Google reviews" />;
+    return (
+        <div ref={widgetRef} className="h-full w-full overflow-auto" aria-label="Google reviews">
+            <div id="JFWebsiteWidget-01a0eca90900700086455fb005b07208d5f2" />
+        </div>
+    );
 };
+
 
 // These handlers start loading the JotForm page before someone clicks a quote button.
 const quoteLinkWarmupHandlers = {
@@ -307,6 +312,8 @@ const GallerySection = () => {
     };
 
     const pauseAutoScroll = () => {
+        window.cancelAnimationFrame(galleryAnimationRef.current);
+        galleryAnimationRef.current = null;
         window.clearTimeout(resumeAutoScrollRef.current);
         resumeAutoScrollRef.current = window.setTimeout(() => {
             resumeAutoScrollRef.current = null;
@@ -338,8 +345,12 @@ const GallerySection = () => {
         if (!gallery) return;
 
         const setWidth = gallery.scrollWidth / 2;
-        if (gallery.scrollLeft <= 0) gallery.scrollLeft += setWidth;
-        if (gallery.scrollLeft >= setWidth) gallery.scrollLeft -= setWidth;
+        if (setWidth <= 0) return;
+        if (gallery.scrollLeft <= 0) {
+            gallery.scrollLeft += setWidth;
+        } else if (gallery.scrollLeft >= setWidth) {
+            gallery.scrollLeft -= setWidth;
+        }
     };
 
     return (
@@ -541,7 +552,7 @@ export default function App() {
                             transition={{ duration: 0.8, type: "spring" }}
                             className="relative aspect-square bg-white rounded-4xl sm:rounded-[3rem] overflow-hidden shadow-2xl shadow-violet-900/10 border-8 border-white flex items-center justify-center p-8"
                         >
-                            <TrustindexReviews />
+                            <JotformGoogleReviews />
                         </motion.div>
                     </div>
                 </div>
